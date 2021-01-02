@@ -13,4 +13,11 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
          Customize your theme here.
     </style>
+
+    <style name="AppTheme.ChipChoice" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="fontFamily">@font/gmarket_sans_medium</item>
+        <item name="android:textSize">14dp</item>
+        <item name="textStartPadding">12dp</item>
+        <item name="textEndPadding">10dp</item>
+    </style>
 </resources>
