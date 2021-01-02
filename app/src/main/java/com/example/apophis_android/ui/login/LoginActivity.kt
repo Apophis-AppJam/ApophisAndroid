@@ -1,8 +1,10 @@
-package com.example.apophis_android
+package com.example.apophis_android.ui.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.apophis_android.MainActivity
+import com.example.apophis_android.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient

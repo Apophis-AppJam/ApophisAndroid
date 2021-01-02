@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
+    tools:context=".ui.login.LoginActivity"
     android:background="@drawable/img_bg">
 
     <ImageView
@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/gmarket_sans_medium"
         android:text="당신의 이른 죽음"
-        android:textColor="@color/purpleab70f5"
+        android:textColor="@color/purpleAB70f5"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/login_text1"
         app:layout_constraintTop_toTopOf="@+id/login_text1"
