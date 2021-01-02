@@ -1,6 +1,7 @@
-package com.example.apophis_android
+package com.example.apophis_android.ui.login
 
 import android.app.Application
+import com.example.apophis_android.R
 import com.kakao.sdk.common.KakaoSdk
 
 class MyApplication : Application() {
