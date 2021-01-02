@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id "kotlin-android-extensions"
+    id "kotlin-kapt"
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -42,4 +45,15 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    implementation "com.kakao.sdk:v2-user:2.0.3" // 카카오 로그인, 사용자 관리
+    implementation "com.kakao.sdk:v2-talk:2.0.3" // 친구, 메시지(카카오톡)
+    implementation "com.kakao.sdk:v2-story:2.0.3" // 카카오스토리
+    implementation "com.kakao.sdk:v2-link:2.0.3" // 메시지(카카오링크)
+    implementation "com.kakao.sdk:v2-navi:2.0.3" // 카카오내비
+
+    implementation platform('com.google.firebase:firebase-bom:26.2.0')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-auth:19.1.0'
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
 }
