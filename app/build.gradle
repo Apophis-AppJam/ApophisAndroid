@@ -42,9 +42,11 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.wear:wear:1.1.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+<<<<<<< HEAD
 
     implementation "com.kakao.sdk:v2-user:2.0.3" // 카카오 로그인, 사용자 관리
     implementation "com.kakao.sdk:v2-talk:2.0.3" // 친구, 메시지(카카오톡)
@@ -56,4 +58,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-auth:19.1.0'
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
+=======
+    compileOnly 'com.google.android.wearable:wearable:2.8.1'
+>>>>>>> feature/4_secondDay_chat_layout
 }
