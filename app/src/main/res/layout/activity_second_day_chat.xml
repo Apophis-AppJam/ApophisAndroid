@@ -81,6 +81,35 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/btn_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="3dp"
+            app:layout_constraintBottom_toBottomOf="@+id/view_second_chat_keyboard"
+            app:layout_constraintEnd_toEndOf="@+id/view_second_chat_keyboard"
+            app:layout_constraintTop_toTopOf="@+id/view_second_chat_keyboard"
+            app:srcCompat="@drawable/btn_send_unact" />
+
+        <EditText
+            android:id="@+id/et_second_chat_message"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="8dp"
+            android:textSize="14dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/gmarket_sans_medium"
+            app:layout_constraintEnd_toStartOf="@+id/btn_send"
+            app:layout_constraintBottom_toBottomOf="@+id/view_second_chat_keyboard"
+            app:layout_constraintStart_toStartOf="@+id/view_second_chat_keyboard"
+            app:layout_constraintTop_toTopOf="@+id/view_second_chat_keyboard"
+            android:inputType="text" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

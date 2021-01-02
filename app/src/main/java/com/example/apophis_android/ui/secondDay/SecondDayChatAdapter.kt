@@ -1,6 +1,7 @@
 package com.example.apophis_android.ui.secondDay
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -72,9 +73,8 @@ class SecondDayChatAdapter(private val context: Context): RecyclerView.Adapter<R
     }
 
     inner class ChoiceViewHolder(itemView: View, inflater: LayoutInflater) : RecyclerView.ViewHolder(itemView) {
-        private var chipGroup: ChipGroup = itemView.findViewById(R.id.chipgroup_choice)
 
-        //private var keyboard: EditText = itemView.findViewById(R.id.et_chat_keyword)
+        private var chipGroup: ChipGroup = itemView.findViewById(R.id.chipgroup_choice)
         private val inflater: LayoutInflater = inflater
 
         fun bind(chipItem: MutableList<String>) {
@@ -86,11 +86,11 @@ class SecondDayChatAdapter(private val context: Context): RecyclerView.Adapter<R
                 chipGroup.addView(chip)
 
                 chip.setOnClickListener {
-                    //리스너 설정
-                    /*keyboard.setText(chip.text)*/
+                    chipClickListener.onChipClick(chip.text.toString())
                 }
             }
         }
+
     }
 
     override fun getItemCount(): Int {
@@ -100,6 +100,11 @@ class SecondDayChatAdapter(private val context: Context): RecyclerView.Adapter<R
     fun addChat(chatItem: ChatData) {
         chatDataList.add(chatItem)
         notifyItemInserted(chatDataList.size)
+    }
+
+    fun removeChat() {
+        chatDataList.removeAt(chatDataList.size-1)
+        notifyItemRemoved(chatDataList.size)
     }
 
     /* chip click listener */
