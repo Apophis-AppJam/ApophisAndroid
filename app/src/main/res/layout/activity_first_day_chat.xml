@@ -105,6 +105,7 @@
             android:paddingBottom="8dp"
             android:background="@null"
             android:textSize="14sp"
+            android:textColor="@color/white"
             android:hint="@string/chat_message_hint"
             android:includeFontPadding="false"
             android:textColorHint="@color/gray70"
