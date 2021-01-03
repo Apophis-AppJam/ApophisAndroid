@@ -21,14 +21,8 @@
         <item name="textEndPadding">10dp</item>
     </style>
 
-    <style name="TimePickertStyle" parent="@android:style/Widget.Material.TimePicker">
-        <item name="android:numbersTextColor">@color/white</item>
-        <item name="android:numbersInnerTextColor">@color/white</item>
-        <item name="android:numbersSelectorColor">@color/white</item>
-        <item name="android:numbersBackgroundColor">@color/black262627</item>
-    </style>
-
-    <style name="CustomTimePicker" parent="Theme.MaterialComponents.BottomSheetDialog" >
+    <style name="CustomTimePicker" parent="Widget.MaterialComponents.TimePicker">
+        <item name="android:textColor">@color/white</item>
         <item name="android:numbersTextColor">@color/white</item>
         <item name="android:numbersInnerTextColor">@color/white</item>
     </style>
