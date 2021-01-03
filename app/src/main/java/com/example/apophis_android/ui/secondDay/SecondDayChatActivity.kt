@@ -50,6 +50,7 @@ class SecondDayChatActivity : AppCompatActivity() {
             override fun onChipClick(data: String) {
                 et_second_chat_message.setText(data)
                 et_second_chat_message.setTextColor(Color.parseColor("#FFFFFF"))
+                btn_second_send.setImageResource(R.drawable.btn_send_act)
             }
         })
 

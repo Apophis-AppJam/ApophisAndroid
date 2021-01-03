@@ -1,4 +1,5 @@
 package com.example.apophis_android.ui.secondDay
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.apophis_android.R
@@ -19,6 +20,11 @@ class SecondDayTimepickerActivity : AppCompatActivity() {
 
         val intent = intent
         tv_clock_time.text = intent.getStringExtra("time")
+
+        /*if (intent != null) {
+            btn_time_setting_complete.setImageResource(R.drawable.btn_complete_act)
+            tv_time_setting_complete.setTextColor(Color.parseColor("#FFFFFF"))
+        }*/
     }
 
 }

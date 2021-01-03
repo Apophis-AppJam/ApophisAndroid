@@ -108,7 +108,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_time_setting" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tv_time_setting_complete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="73dp"
