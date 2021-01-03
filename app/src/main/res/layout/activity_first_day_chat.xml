@@ -107,7 +107,7 @@
             android:textSize="14sp"
             android:hint="@string/chat_message_hint"
             android:includeFontPadding="false"
-            android:textColorHint="@color/gray707070"
+            android:textColorHint="@color/gray70"
             android:fontFamily="@font/gmarket_sans_medium"
             app:layout_constraintEnd_toStartOf="@+id/btn_first_send"
             app:layout_constraintBottom_toBottomOf="@+id/view_first_chat_keyboard"
