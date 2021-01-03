@@ -10,4 +10,6 @@
     <string name="chat_title">아포니머스의 이야기</string>
     <string name="chat_message_hint">선택지를 골라주세요</string>
     <string name="compass_direction">동쪽</string>
+    <string name="camera_send">보내기</string>
+    <string name="camera_retake">다시 찍기</string>
 </resources>
