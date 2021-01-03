@@ -1,5 +1,6 @@
 package com.example.apophis_android.ui.secondDay
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -48,6 +49,7 @@ class SecondDayChatActivity : AppCompatActivity() {
         chatAdapter.setOnChipItemClickListener(object : SecondDayChatAdapter.OnChipClickListener {
             override fun onChipClick(data: String) {
                 et_second_chat_message.setText(data)
+                et_second_chat_message.setTextColor(Color.parseColor("#FFFFFF"))
             }
         })
 

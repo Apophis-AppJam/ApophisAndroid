@@ -7,10 +7,37 @@
     app:behavior_peekHeight="250dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout_timepicker"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:background="@color/black2C2C2D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_timepicker_complete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/gmarket_sans_medium"
+            android:text="완료"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <TimePicker
+        android:id="@+id/timepicker_second_day"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:timePickerMode="spinner"
+        style="@style/CustomTimePicker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout_timepicker"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

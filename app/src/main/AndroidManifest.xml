@@ -15,15 +15,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Apophis_android">
-        <activity android:name=".ui.firstDay.CompassActivity"></activity>
-        <activity android:name=".ui.firstDay.FirstDayChatActivity" />
 
         <meta-data
             android:name="com.google.android.wearable.standalone"
             android:value="true" />
 
-        <activity android:name=".ui.firstDay.FirstDayChatActivity"></activity>
-        <activity android:name=".ui.secondDay.SecondDayChatActivity"></activity>
+        <activity android:name=".ui.firstDay.FirstDayChatActivity" />
+        <activity android:name=".ui.firstDay.CompassActivity" />
+        <activity android:name=".ui.secondDay.SecondDayChatActivity" />
         <activity android:name=".ui.secondDay.SecondDayTimepickerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,10 +35,8 @@
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 <!-- Redirect URI: "kakao{NATIVE_APP_KEY}://oauth“ -->
                 <data
                     android:host="oauth"
