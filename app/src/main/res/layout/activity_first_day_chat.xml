@@ -40,7 +40,7 @@
             android:fontFamily="@font/gmarket_sans_medium"
             android:text="@string/chat_title"
             android:textColor="@color/white"
-            android:textSize="18dp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btn_first_back"
             app:layout_constraintTop_toTopOf="parent" />
@@ -104,7 +104,7 @@
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
             android:background="@null"
-            android:textSize="14dp"
+            android:textSize="14sp"
             android:hint="@string/chat_message_hint"
             android:includeFontPadding="false"
             android:textColorHint="@color/gray707070"
