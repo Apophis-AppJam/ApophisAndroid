@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <uses-feature android:name="android.hardware.type.watch" />
 
     <application
@@ -14,12 +15,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Apophis_android">
+        <activity android:name=".ui.secondDay.SecondDayChatActivity"></activity>
 
         <meta-data
             android:name="com.google.android.wearable.standalone"
             android:value="true" />
 
-        <activity android:name=".ui.secondDay.SecondDayChatActivity">
+        <activity android:name=".ui.secondDay.SecondDayTimepickerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,7 +43,6 @@
                     android:scheme="kakao1a6153a079915abd92ab12375b709763" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

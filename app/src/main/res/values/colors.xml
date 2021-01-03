@@ -12,6 +12,9 @@
     <color name="whiteB3FF">#B3FFFFFF</color>
     <color name="white4DFF">#4DFFFFFF</color>
 
+    <color name="grayC1">#C1C1C1</color>
+    <color name="gray70">#707070</color>
+
     <color name="black454546">#454546</color>
     <color name="black3A3A3B">#3A3A3B</color>
     <color name="black2C2C2D">#2C2C2D</color>
