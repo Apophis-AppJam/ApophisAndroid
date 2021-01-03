@@ -1,6 +1,5 @@
 package com.example.apophis_android.ui.secondDay
 
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -48,22 +47,22 @@ class SecondDayChatActivity : AppCompatActivity() {
         /* chip click listener 재정의 */
         chatAdapter.setOnChipItemClickListener(object : SecondDayChatAdapter.OnChipClickListener {
             override fun onChipClick(data: String) {
-                et_second_chat_message.setText(data)
+                et_first_chat_message.setText(data)
             }
         })
 
         /* 메세지 전송 버튼 클릭 시 */
-        btn_send.setOnClickListener {
+        btn_first_send.setOnClickListener {
             chatAdapter.removeChat()
-            val userChoice = et_second_chat_message.text.toString()
+            val userChoice = et_first_chat_message.text.toString()
             val chatRight = ChatData(mutableListOf(userChoice), 1)
             chatAdapter.addChat(chatRight)
-            et_second_chat_message.setText("")
+            et_first_chat_message.setText("")
         }
     }
 
     private fun initRcv() {
         chatAdapter = SecondDayChatAdapter(this)
-        rcv_second_chat.adapter = chatAdapter
+        rcv_first_chat.adapter = chatAdapter
     }
 }
