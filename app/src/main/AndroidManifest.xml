@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Apophis_android">
         <activity android:name=".ui.firstDay.CameraActivity"></activity>
-        <activity android:name=".ui.firstDay.CompassActivity" />
+        <activity android:name=".ui.firstDay.CompassActivity" android:exported="true" />
 
         <meta-data
             android:name="com.google.android.wearable.standalone"

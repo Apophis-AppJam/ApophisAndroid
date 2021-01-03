@@ -47,15 +47,4 @@
         app:layout_constraintTop_toTopOf="@+id/iv_compass_arrow"
         app:srcCompat="@drawable/img_compass" />
 
-    <ImageView
-        android:id="@+id/iv_compass_arrow_bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
-        android:layout_marginBottom="31dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_compass_direction"
-        app:srcCompat="@drawable/img_compass_arrow_bold"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
