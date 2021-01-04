@@ -40,7 +40,10 @@ class SecondDayBottomSheetDialogFragment : BottomSheetDialogFragment() {
             intent.putExtra("tag", 1000)
             startActivity(intent)
 
-            returnTransition
+            activity?.supportFragmentManager
+                ?.beginTransaction()
+                ?.remove(this)
+                ?.commit()
 
         }
     }

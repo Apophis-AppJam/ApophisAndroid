@@ -94,4 +94,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view_find_light_me_background" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginBottom="59dp"
+        android:src="@drawable/group_40"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view_find_light_me_background"
+        app:layout_constraintTop_toBottomOf="@+id/tv_find_light_me_header" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

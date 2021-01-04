@@ -90,4 +90,17 @@
         app:layout_constraintStart_toStartOf="@+id/view_find_dark_me_background"
         app:layout_constraintTop_toTopOf="@+id/view_find_dark_me_background" />
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="37dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginBottom="59dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/view_find_dark_me_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_back"
+        app:srcCompat="@drawable/group_41" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
