@@ -12,4 +12,7 @@
     <string name="compass_direction">동쪽</string>
     <string name="camera_send">보내기</string>
     <string name="camera_retake">다시 찍기</string>
+
+    <string name="find_light_me_title">밝은 나의 모습에 대해 적어보세요</string>
+    <string name="find_dark_me_title">어두운 나의 모습에 대해 적어보세요</string>
 </resources>

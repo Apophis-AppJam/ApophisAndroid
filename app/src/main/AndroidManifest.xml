@@ -5,10 +5,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-    <uses-feature android:name="android.hardware.type.watch" />
-
-    <!-- Request camera permissions -->
+    <uses-feature android:name="android.hardware.type.watch" /> <!-- Request camera permissions -->
     <uses-feature android:name="android.hardware.camera.any" />
+
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -31,11 +30,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <!-- Redirect URI: "kakao{NATIVE_APP_KEY}://oauth“ -->
@@ -44,14 +43,14 @@
                     android:scheme="kakao1a6153a079915abd92ab12375b709763" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".ui.firstDay.CameraActivity"></activity>
+        <activity android:name=".ui.firstDay.CameraActivity" />
         <activity android:name=".ui.firstDay.CompassActivity" />
-        <activity android:name=".ui.firstDay.FirstDayChatActivity"/>
+        <activity android:name=".ui.firstDay.FirstDayChatActivity" />
 
         <activity android:name=".ui.secondDay.SecondDayChatActivity" />
-        <activity android:name=".ui.secondDay.SecondDayTimepickerActivity"/>
-
+        <activity android:name=".ui.secondDay.SecondDayTimepickerActivity" />
+        <activity android:name=".ui.secondDay.SecondDayFindLightMeActivity" />
+        <activity android:name=".ui.secondDay.SecondDayFindDarkMeActivity" />
     </application>
 
 </manifest>
