@@ -13,7 +13,7 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
@@ -43,16 +43,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/img_clock"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="52dp"
-        android:src="@drawable/img_clock_unact"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_timepicker_header" />
-
-    <ImageView
         android:id="@+id/img_clock_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -62,16 +52,26 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_timepicker_header"
         app:srcCompat="@drawable/ic_time_unact" />
 
+    <ImageView
+        android:id="@+id/img_clock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="52dp"
+        android:src="@drawable/img_clock_unact"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_timepicker_header" />
+
     <TextView
         android:id="@+id/tv_clock_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="61dp"
         android:layout_marginTop="100dp"
-        android:text="0시 00분"
-        android:textSize="24dp"
-        android:textColor="@color/white"
         android:fontFamily="@font/gmarket_sans_medium"
+        android:text="0시 00분"
+        android:textColor="@color/white"
+        android:textSize="24dp"
         app:layout_constraintStart_toStartOf="@+id/img_clock"
         app:layout_constraintTop_toTopOf="@+id/img_clock" />
 
@@ -80,9 +80,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="93dp"
-        android:layout_marginTop="124dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_time_setting"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_clock"
         app:srcCompat="@drawable/btn_time_setting" />
 
     <ImageView
@@ -99,26 +99,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="94dp"
-        android:layout_marginTop="12dp"
-        android:text="시간 설정"
-        android:textSize="14dp"
-        android:textColor="@color/white"
+        android:layout_marginBottom="32dp"
         android:fontFamily="@font/gmarket_sans_medium"
-        app:layout_constraintStart_toStartOf="@+id/img_timepicker_background"
-        app:layout_constraintTop_toBottomOf="@+id/btn_time_setting" />
+        android:text="시간 설정"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_timepicker_background"
+        app:layout_constraintStart_toStartOf="@+id/img_timepicker_background" />
 
     <TextView
         android:id="@+id/tv_time_setting_complete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="73dp"
-        android:layout_marginTop="12dp"
-        android:text="완료"
-        android:textSize="14dp"
-        android:textColor="@color/gray70"
         android:fontFamily="@font/gmarket_sans_medium"
-        app:layout_constraintStart_toEndOf="@+id/tv_time_setting"
-        app:layout_constraintTop_toBottomOf="@+id/btn_time_setting_complete" />
+        android:text="완료"
+        android:textColor="@color/gray70"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_time_setting"
+        app:layout_constraintStart_toEndOf="@+id/tv_time_setting" />
 
+    <TextView
+        android:id="@+id/tv_timepiker_final_ment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="58dp"
+        android:text="늦은 저녁에 떠나고 싶어."
+        android:visibility="gone"
+        android:textSize="14dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/gmarket_sans_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_clock" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

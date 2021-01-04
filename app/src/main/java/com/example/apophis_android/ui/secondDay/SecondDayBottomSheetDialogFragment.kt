@@ -37,6 +37,7 @@ class SecondDayBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
             val intent = Intent(requireContext(), SecondDayTimepickerActivity::class.java)
             intent.putExtra("time", SimpleDateFormat("kk시 mm분").format(cal.time))
+            intent.putExtra("tag", 1000)
             startActivity(intent)
 
             returnTransition
