@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.secondDay.SecondDayFindDarkMeActivity"
-    android:background="#000000" >
+    android:background="@drawable/joel_filipe_qwo_n_ahbm_l_lo_unsplash_2" >
 
     <ImageView
         android:id="@+id/btn_back"
@@ -31,17 +31,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/img_find_me_complete"
+        android:id="@+id/btn_find_me_complete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="153dp"
         android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_find_me_complete"
+        app:layout_constraintBottom_toTopOf="@+id/tv_find_me_complete"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/btn_complete_unact" />
 
     <TextView
-        android:id="@+id/btn_find_me_complete"
+        android:id="@+id/tv_find_me_complete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="167dp"
@@ -54,13 +54,13 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <View
-        android:id="@+id/view_find_dark_me_background"
+        android:id="@+id/view_find_dark_me_content"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="33dp"
         android:layout_marginStart="124dp"
         android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/img_find_me_complete"
+        app:layout_constraintBottom_toTopOf="@+id/btn_find_me_complete"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_back"
@@ -85,22 +85,32 @@
         android:textSize="14dp"
         android:textColor="@color/white"
         android:fontFamily="@font/gmarket_sans_medium"
-        app:layout_constraintBottom_toBottomOf="@+id/view_find_dark_me_background"
+        app:layout_constraintBottom_toBottomOf="@+id/view_find_dark_me_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/view_find_dark_me_background"
-        app:layout_constraintTop_toTopOf="@+id/view_find_dark_me_background" />
+        app:layout_constraintStart_toStartOf="@+id/view_find_dark_me_content"
+        app:layout_constraintTop_toTopOf="@+id/view_find_dark_me_content" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/img_right_person"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="37dp"
         android:layout_marginEnd="26dp"
         android:layout_marginBottom="59dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/view_find_dark_me_background"
+        app:layout_constraintEnd_toStartOf="@+id/view_find_dark_me_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_back"
         app:srcCompat="@drawable/group_41" />
+
+    <ImageView
+        android:id="@+id/img_chat_tail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="23dp"
+        android:layout_marginBottom="117dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/img_right_person"
+        app:srcCompat="@drawable/group_12" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
