@@ -7,13 +7,21 @@
 <br>
 
 
-### 💌 회의록
+### 📌 Part-meeting
 
 https://www.notion.so/b562e3c34a9e4641b5025506546260a0
 
 <br> 
 
-### 🎵 역할분담
+### 🎨 Kanban-board
+
+<br>
+
+https://github.com/Apophis-AppJam/ApophisAndroid/projects/1
+
+<br>
+
+### 🎵 Roles
 
 <br>
 
