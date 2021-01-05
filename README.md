@@ -9,6 +9,8 @@
 
 ### 📌 Part-meeting
 
+<br>
+
 https://www.notion.so/b562e3c34a9e4641b5025506546260a0
 
 <br> 
