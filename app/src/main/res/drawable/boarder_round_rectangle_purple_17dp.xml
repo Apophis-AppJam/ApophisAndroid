@@ -5,7 +5,4 @@
         android:width="1dp"
         android:color="@color/purpleAB70f5" />
     <corners android:radius="17dp" />
-    <size
-        android:width="257dp"
-        android:height="34dp" />
 </shape>
