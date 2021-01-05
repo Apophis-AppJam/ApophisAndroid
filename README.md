@@ -1,10 +1,17 @@
 #  ApophisAndroid : *Never-Die-Zombieroid* 🌠🧛‍♀️
 
-
+<br>
 
 <img src="https://user-images.githubusercontent.com/63586451/103451833-33dd0080-4d0c-11eb-9e53-9f84439b32b9.png">
 
 <br>
+
+
+### 💌 회의록
+
+https://www.notion.so/b562e3c34a9e4641b5025506546260a0
+
+<br> 
 
 ### 🎵 역할분담
 
@@ -32,7 +39,3 @@
 
 <br>
 <br>
-
-### 💌 회의록
-
-https://www.notion.so/b562e3c34a9e4641b5025506546260a0
