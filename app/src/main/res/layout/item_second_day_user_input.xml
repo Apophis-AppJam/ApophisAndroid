@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/black262627">
+
+    <ImageView
+        android:id="@+id/img_chat_right_tail"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="7dp"
+        android:src="@drawable/img_textbox_right"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/view_chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/round_rectangle_purple_17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_user_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="@font/gmarket_sans_medium"
+            android:text="음..."
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/view_user_input_1"
+        android:layout_width="257dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/boarder_round_rectangle_purple_17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_chat" />
+
+    <View
+        android:id="@+id/view_user_input_2"
+        android:layout_width="257dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/boarder_round_rectangle_purple_17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_user_input_1" />
+
+    <View
+        android:id="@+id/view_user_input_3"
+        android:layout_width="257dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/boarder_round_rectangle_purple_17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_user_input_2" />
+
+    <TextView
+        android:id="@+id/tv_user_input_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:text="1."
+        android:textColor="@color/purple5A4F63"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_user_input_1"
+        app:layout_constraintStart_toStartOf="@+id/view_user_input_1"
+        app:layout_constraintTop_toTopOf="@+id/view_user_input_1" />
+
+    <TextView
+        android:id="@+id/tv_user_input_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:text="2."
+        android:textColor="@color/purple5A4F63"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_user_input_2"
+        app:layout_constraintStart_toStartOf="@+id/view_user_input_2"
+        app:layout_constraintTop_toTopOf="@+id/view_user_input_2" />
+
+    <TextView
+        android:id="@+id/tv_user_input_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:text="3."
+        android:textColor="@color/purple5A4F63"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_user_input_3"
+        app:layout_constraintStart_toStartOf="@+id/view_user_input_3"
+        app:layout_constraintTop_toTopOf="@+id/view_user_input_3" />
+
+    <EditText
+        android:id="@+id/et_user_input_1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@null"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:hint="챙기고 싶은 물건을 입력하세요"
+        android:inputType="text"
+        android:textColor="@color/purpleAB70f5"
+        android:textColorHint="@color/purple5A4F63"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_user_input_1"
+        app:layout_constraintEnd_toEndOf="@+id/view_user_input_1"
+        app:layout_constraintStart_toEndOf="@+id/tv_user_input_1"
+        app:layout_constraintTop_toTopOf="@+id/view_user_input_1" />
+
+    <EditText
+        android:id="@+id/et_user_input_2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@null"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:hint="챙기고 싶은 물건을 입력하세요"
+        android:inputType="text"
+        android:textColor="@color/purpleAB70f5"
+        android:textColorHint="@color/purple5A4F63"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_user_input_2"
+        app:layout_constraintEnd_toEndOf="@+id/view_user_input_2"
+        app:layout_constraintStart_toEndOf="@+id/tv_user_input_2"
+        app:layout_constraintTop_toTopOf="@+id/view_user_input_2" />
+
+    <EditText
+        android:id="@+id/et_user_input_3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@null"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:hint="챙기고 싶은 물건을 입력하세요"
+        android:inputType="text"
+        android:textColor="@color/purpleAB70f5"
+        android:textColorHint="@color/purple5A4F63"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_user_input_3"
+        app:layout_constraintEnd_toEndOf="@+id/view_user_input_3"
+        app:layout_constraintStart_toEndOf="@+id/tv_user_input_3"
+        app:layout_constraintTop_toTopOf="@+id/view_user_input_3" />
+
+    <TextView
+        android:id="@+id/tv_user_input_complete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:text="완료하기"
+        android:textColor="@color/purpleAB70f5"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_user_input_3" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
