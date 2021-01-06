@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.example.apophis_android.R
-import com.example.apophis_android.data.ChatData
+import com.example.apophis_android.data.entity.ChatData
 import kotlinx.android.synthetic.main.activity_second_day_chat.*
 
 class SecondDayChatActivity : AppCompatActivity() {

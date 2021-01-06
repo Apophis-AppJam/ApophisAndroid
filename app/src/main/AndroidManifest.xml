@@ -5,7 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-    <uses-feature android:name="android.hardware.type.watch" /> <!-- Request camera permissions -->
+    <!-- Request camera permissions -->
+    <uses-feature android:name="android.hardware.type.watch" />
     <uses-feature android:name="android.hardware.camera.any" />
 
     <uses-permission android:name="android.permission.CAMERA" />
@@ -17,13 +18,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Apophis_android">
+        android:theme="@style/Theme.Apophis_android"
+        android:usesCleartextTraffic="true">
 
         <meta-data
             android:name="com.google.android.wearable.standalone"
             android:value="true" />
 
-        <activity android:name=".ui.secondDay.SecondDayTimepickerActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -48,7 +50,7 @@
         <activity android:name=".ui.firstDay.FirstDayChatActivity" />
 
         <activity android:name=".ui.secondDay.SecondDayChatActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".ui.secondDay.SecondDayTimepickerActivity" />
         <activity android:name=".ui.secondDay.SecondDayFindLightMeActivity" />
         <activity android:name=".ui.secondDay.SecondDayFindDarkMeActivity" />
     </application>

@@ -1,4 +1,4 @@
-package com.example.apophis_android.data
+package com.example.apophis_android.data.entity
 
 /**
  * Created By kimdahyee

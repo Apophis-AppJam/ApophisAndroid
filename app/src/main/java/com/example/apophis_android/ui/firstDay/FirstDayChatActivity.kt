@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.apophis_android.R
-import com.example.apophis_android.data.ChatData
+import com.example.apophis_android.data.entity.ChatData
 import kotlinx.android.synthetic.main.activity_first_day_chat.*
 
 class FirstDayChatActivity : AppCompatActivity() {

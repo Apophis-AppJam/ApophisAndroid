@@ -1,7 +1,6 @@
 package com.example.apophis_android.ui.secondDay
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,7 @@ import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.apophis_android.R
-import com.example.apophis_android.data.ChatData
+import com.example.apophis_android.data.entity.ChatData
 import com.example.apophis_android.ui.ChipFactory
 import com.google.android.material.chip.ChipGroup
 import java.lang.IllegalArgumentException
