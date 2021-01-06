@@ -23,7 +23,7 @@
             android:name="com.google.android.wearable.standalone"
             android:value="true" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.secondDay.SecondDayTimepickerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -48,7 +48,7 @@
         <activity android:name=".ui.firstDay.FirstDayChatActivity" />
 
         <activity android:name=".ui.secondDay.SecondDayChatActivity" />
-        <activity android:name=".ui.secondDay.SecondDayTimepickerActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".ui.secondDay.SecondDayFindLightMeActivity" />
         <activity android:name=".ui.secondDay.SecondDayFindDarkMeActivity" />
     </application>

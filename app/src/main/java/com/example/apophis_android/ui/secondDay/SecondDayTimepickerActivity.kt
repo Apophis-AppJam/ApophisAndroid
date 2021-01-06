@@ -18,6 +18,8 @@ class SecondDayTimepickerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second_day_timepicker)
 
+        btn_timepicker_back.setOnClickListener { onBackPressed() }
+
         btn_time_setting.setOnClickListener {
             bottomSheetDialogFragment = SecondDayBottomSheetDialogFragment()
             bottomSheetDialogFragment.show(supportFragmentManager, "tag")

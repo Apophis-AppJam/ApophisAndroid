@@ -29,6 +29,7 @@ class SecondDayBottomSheetDialogFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         timePicker = view.findViewById(R.id.timepicker_second_day)
+
         tv_timepicker_complete.setOnClickListener {
 
             val cal = Calendar.getInstance()
