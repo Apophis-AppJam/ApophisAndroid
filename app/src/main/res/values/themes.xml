@@ -22,6 +22,7 @@
     </style>
 
     <style name="Widget.Material.Light.TimePicker" parent="android:Widget.Material.TimePicker">
+        <item name="background">@color/black00</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:numbersSelectorColor">@color/white</item>
     </style>

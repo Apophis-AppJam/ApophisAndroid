@@ -2,15 +2,20 @@ package com.example.apophis_android.ui.secondDay
 
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.MergeAdapter
 import android.os.Bundle
 import android.util.Log
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.ChatData
+import com.example.apophis_android.ui.secondDay.adpater.SecondDayChatAdapter
+import com.example.apophis_android.ui.secondDay.adpater.SecondDayChoiceAdapter
 import kotlinx.android.synthetic.main.activity_second_day_chat.*
 
 class SecondDayChatActivity : AppCompatActivity() {
 
     private lateinit var chatAdapter: SecondDayChatAdapter
+    private lateinit var choiceAdapter: SecondDayChoiceAdapter
+    private var mergeAdpater: MergeAdapter ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +42,7 @@ class SecondDayChatActivity : AppCompatActivity() {
         }*/
 
         val choice = ChatData(data, 2) //선택지
-        chatAdapter.addChat(choice)
+        choiceAdapter.addChat(choice)
 
         /*aponis2.forEach {
             val chatLeft = ChatData(mutableListOf(it), 0)
@@ -46,7 +51,7 @@ class SecondDayChatActivity : AppCompatActivity() {
 
 
         /* chip click listener 재정의 */
-        chatAdapter.setOnChipItemClickListener(object : SecondDayChatAdapter.OnChipClickListener {
+        choiceAdapter.setOnChipItemClickListener(object : SecondDayChoiceAdapter.OnChipClickListener {
             override fun onChipClick(data: String) {
                 et_second_chat_message.setText(data)
                 et_second_chat_message.setTextColor(Color.parseColor("#FFFFFF"))
@@ -66,6 +71,8 @@ class SecondDayChatActivity : AppCompatActivity() {
 
     private fun initRcv() {
         chatAdapter = SecondDayChatAdapter(this)
-        rcv_second_chat.adapter = chatAdapter
+        choiceAdapter = SecondDayChoiceAdapter(this)
+        mergeAdpater = MergeAdapter(chatAdapter, choiceAdapter)
+        rcv_second_chat.adapter = mergeAdpater
     }
 }

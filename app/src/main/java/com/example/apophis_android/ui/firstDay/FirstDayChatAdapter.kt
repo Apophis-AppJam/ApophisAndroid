@@ -99,8 +99,8 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
         return chatDataList.size
     }
 
-    fun addChat(chatItem: ChatData) {
-        chatDataList.add(chatItem)
+    fun addChat(chatDataItem: ChatData) {
+        chatDataList.add(chatDataItem)
         notifyItemInserted(chatDataList.size)
     }
 
