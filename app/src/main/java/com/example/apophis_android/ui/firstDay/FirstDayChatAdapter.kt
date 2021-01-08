@@ -22,7 +22,7 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
         return when (chatDataList[position].tag) {
             0 -> R.layout.item_chat_left
             1 -> R.layout.item_chat_right
-            else -> R.layout.item_chat_choice
+            else -> R.layout.item_chip_choice
         }
     }
 
@@ -37,8 +37,8 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
                 val view = layoutInflater.inflate(R.layout.item_chat_right, parent, false)
                 ChatViewHolder(view)
             }
-            R.layout.item_chat_choice -> {
-                val view = layoutInflater.inflate(R.layout.item_chat_choice, parent, false)
+            R.layout.item_chip_choice -> {
+                val view = layoutInflater.inflate(R.layout.item_chip_choice, parent, false)
                 ChoiceViewHolder(view, layoutInflater)
             }
             else ->
@@ -59,7 +59,7 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
     }
 
     inner class ChatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val content = itemView.findViewById<TextView>(R.id.chat_content)
+        private val content = itemView.findViewById<TextView>(R.id.aponymous_chat_content)
         fun bind(chatDataList: MutableList<String>) {
             chatDataList.forEach {
                 content.text = it

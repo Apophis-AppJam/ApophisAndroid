@@ -5,8 +5,7 @@ package com.example.apophis_android.data.entity
  * on 01월 03일, 2020
  */
 
-
-// 임시 데이터 클래스, 곧 삭제 예정
+/* 리팩토링을 위한 data class */
 data class ChatData(
     val content: MutableList<String>,
     val tag: Int
