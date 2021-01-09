@@ -12,6 +12,6 @@ data class ChoiceChatResponse(
     val info: String,
     val day: Int,
     val replyNum: Int,
-    @SerializedName("choiceChatWords")
-    val ChoiceChatWords: ArrayList<ChoiceChat>
+    @SerializedName("ChoiceWords")
+    val choiceWords: ArrayList<ChoiceChat>
 )

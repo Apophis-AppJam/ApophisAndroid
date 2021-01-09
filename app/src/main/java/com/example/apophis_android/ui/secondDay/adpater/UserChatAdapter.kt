@@ -21,11 +21,12 @@ import java.lang.IllegalArgumentException
  
 class UserChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val choiceChatList: MutableList<ChatData> = mutableListOf()
+    private val userChatList: MutableList<ChatData> = mutableListOf()
 
     override fun getItemViewType(position: Int): Int {
-        return when (choiceChatList[position].tag) {
-            0 -> R.layout.item_chip_choice
+        return when (userChatList[position].tag) {
+            0 -> R.layout.item_chat_user
+            1 -> R.layout.item_chip_choice
             else -> R.layout.item_second_day_user_input
         }
     }
@@ -33,6 +34,10 @@ class UserChatAdapter(private val context: Context): RecyclerView.Adapter<Recycl
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return when (viewType) {
+            R.layout.item_chat_user -> {
+                val view = layoutInflater.inflate(R.layout.item_chat_user, parent, false)
+                UserViewHolder(view, layoutInflater)
+            }
             R.layout.item_chip_choice -> {
                 val view = layoutInflater.inflate(R.layout.item_chip_choice, parent, false)
                 ChoiceChatViewHolder(view, layoutInflater)
@@ -47,13 +52,27 @@ class UserChatAdapter(private val context: Context): RecyclerView.Adapter<Recycl
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (holder is UserViewHolder) {
+            holder.bind(userChatList[position].content)
+            holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
+        }
+
         if (holder is ChoiceChatViewHolder) {
-            holder.bind(choiceChatList[position].content)
+            holder.bind(userChatList[position].content)
             holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
         }
 
         if (holder is UserInputViewHolder) {
 
+        }
+    }
+
+    inner class UserViewHolder(itemView: View, inflater: LayoutInflater) : RecyclerView.ViewHolder(itemView) {
+        private val content = itemView.findViewById<TextView>(R.id.user_chat_content)
+        fun bind(chatDataList: MutableList<String>) {
+            chatDataList.forEach {
+                content.text = it
+            }
         }
     }
 
@@ -89,17 +108,17 @@ class UserChatAdapter(private val context: Context): RecyclerView.Adapter<Recycl
     }
 
     override fun getItemCount(): Int {
-        return choiceChatList.size
+        return userChatList.size
     }
 
     fun addChat(chatDataItem: ChatData) {
-        choiceChatList.add(chatDataItem)
-        notifyItemInserted(choiceChatList.size)
+        userChatList.add(chatDataItem)
+        notifyItemInserted(userChatList.size)
     }
 
     fun removeChat() {
-        choiceChatList.removeAt(choiceChatList.size-1)
-        notifyItemRemoved(choiceChatList.size)
+        userChatList.removeAt(userChatList.size-1)
+        notifyItemRemoved(userChatList.size)
     }
 
     /* chip click listener */

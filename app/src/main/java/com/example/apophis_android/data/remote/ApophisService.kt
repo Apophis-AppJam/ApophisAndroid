@@ -18,6 +18,13 @@ interface ApophisService {
         @Path("chatDetailsIdx") chatDetailsIdx: Int
     ): Call<BaseResponse<AponymousChatResponse>>
 
+    @GET("/choice/{chatDetailsIdx}")
+    fun requestChoiceChat(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("jwt") jwt: String,
+        @Path("chatDetailsIdx") chatDetailsIdx: Int
+    ): Call<BaseResponse<ChoiceChatResponse>>
+
     companion object {
         const val BASE_URL = "http://52.78.210.107:3000"
 

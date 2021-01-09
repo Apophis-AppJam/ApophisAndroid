@@ -20,8 +20,8 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
 
     override fun getItemViewType(position: Int): Int {
         return when (chatDataList[position].tag) {
-            0 -> R.layout.item_chat_left
-            1 -> R.layout.item_chat_right
+            0 -> R.layout.item_chat_aponymous
+            1 -> R.layout.item_chat_user
             else -> R.layout.item_chip_choice
         }
     }
@@ -29,12 +29,12 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return when (viewType) {
-            R.layout.item_chat_left -> {
-                val view = layoutInflater.inflate(R.layout.item_chat_left, parent, false)
+            R.layout.item_chat_aponymous -> {
+                val view = layoutInflater.inflate(R.layout.item_chat_aponymous, parent, false)
                 ChatViewHolder(view)
             }
-            R.layout.item_chat_right -> {
-                val view = layoutInflater.inflate(R.layout.item_chat_right, parent, false)
+            R.layout.item_chat_user -> {
+                val view = layoutInflater.inflate(R.layout.item_chat_user, parent, false)
                 ChatViewHolder(view)
             }
             R.layout.item_chip_choice -> {
