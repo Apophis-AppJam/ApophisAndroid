@@ -62,6 +62,7 @@ class SecondDayChatActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         if (response.body()!!.success) {
                             for (i in response.body()!!.data.chat.indices) {
+                                Log.d("다혜", response.body()!!.data.chat[i].text)
                                 val chatData =
                                     ChatData(mutableListOf(response.body()!!.data.chat[i].text), 0)
                                 aponymousChatAdapter.addChat(chatData)

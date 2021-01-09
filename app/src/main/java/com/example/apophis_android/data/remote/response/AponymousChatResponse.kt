@@ -9,5 +9,10 @@ import com.example.apophis_android.data.entity.AponymousChat
  
 data class AponymousChatResponse(
     val chat: ArrayList<AponymousChat>,
-    val info: String
-)
+    val postInfo: PostInfo
+) {
+    data class PostInfo(
+        val info: String,
+        val replyType: String
+    )
+}
