@@ -43,16 +43,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/img_clock_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="168dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintStart_toStartOf="@+id/img_timepicker_background"
-        app:layout_constraintTop_toBottomOf="@+id/tv_timepicker_header"
-        app:srcCompat="@drawable/ic_time_unact" />
-
-    <ImageView
         android:id="@+id/img_clock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -61,6 +51,17 @@
         android:src="@drawable/img_clock_unact"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_timepicker_header" />
+
+    <View
+        android:id="@+id/view_clock_act"
+        android:layout_width="326dp"
+        android:layout_height="326dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="54dp"
+        android:background="@drawable/circle"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/img_timepicker_background" />
 
     <TextView
         android:id="@+id/tv_clock_time"
