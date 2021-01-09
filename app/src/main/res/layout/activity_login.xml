@@ -21,34 +21,34 @@
         android:id="@+id/login_kakao_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/btn_login_kakao"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_line1"
         android:layout_marginTop="43dp"
-        android:layout_marginStart="111dp"/>
+        android:background="@drawable/btn_login_kakao"
+        android:layout_marginStart="95dp"
+        app:layout_constraintStart_toStartOf="@+id/login_line1"
+        app:layout_constraintTop_toBottomOf="@id/login_line1" />
 
     <ImageView
         android:id="@+id/login_google_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/btn_login_google"
+        android:layout_marginEnd="95dp"
         app:layout_constraintBottom_toBottomOf="@+id/login_kakao_btn"
-        app:layout_constraintStart_toEndOf="@+id/login_kakao_btn"
-        app:layout_constraintTop_toTopOf="@+id/login_kakao_btn"
-        android:layout_marginStart="50dp"/>
+        app:layout_constraintEnd_toEndOf="@+id/login_line2"
+        app:layout_constraintTop_toTopOf="@+id/login_kakao_btn" />
 
     <TextView
         android:id="@+id/login_text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="100dp"
         android:fontFamily="@font/gmarket_sans_medium"
         android:text="미리 맞이 해보는"
         android:textColor="@color/whiteB3FF"
         android:textSize="14sp"
-        android:layout_marginStart="73dp"
-        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/login_logo"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/login_logo" />
 
     <TextView
         android:id="@+id/login_text2"
@@ -58,9 +58,9 @@
         android:text="당신의 이른 죽음"
         android:textColor="@color/purpleAB70f5"
         android:textSize="14sp"
-        android:layout_marginEnd="77dp"
+        android:layout_marginStart="100dp"
         app:layout_constraintBottom_toBottomOf="@id/login_text1"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/login_logo"
         app:layout_constraintTop_toTopOf="@+id/login_text1" />
 
     <TextView
