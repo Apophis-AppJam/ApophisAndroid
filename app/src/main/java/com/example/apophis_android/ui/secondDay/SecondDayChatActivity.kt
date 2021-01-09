@@ -44,7 +44,7 @@ class SecondDayChatActivity : AppCompatActivity() {
     private fun getAponymousChatFromServer(chatDetailsIdx: Int) {
         apophisService.getInstance()
             .requestAponymousChat(
-                jwt = "sehwa",
+                jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw",
                 chatDetailsIdx = chatDetailsIdx
             ).enqueue(object : Callback<BaseResponse<AponymousChatResponse>> {
                 override fun onFailure(
