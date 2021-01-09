@@ -40,8 +40,8 @@
         <activity android:name=".ui.firstDay.CompassActivity" />
         <activity android:name=".ui.firstDay.FirstDayChatActivity" />
 
-        <activity android:name=".ui.secondDay.SecondDayTimepickerActivity" />
         <activity android:name=".ui.secondDay.SecondDayChatActivity" />
+        <activity android:name=".ui.secondDay.SecondDayTimepickerActivity" />
         <activity android:name=".ui.secondDay.SecondDayFindLightMeActivity" />
         <activity android:name=".ui.secondDay.SecondDayFindDarkMeActivity" />
     </application>

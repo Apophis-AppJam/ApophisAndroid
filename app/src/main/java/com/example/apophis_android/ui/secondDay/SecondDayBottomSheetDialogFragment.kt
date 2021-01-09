@@ -36,8 +36,12 @@ class SecondDayBottomSheetDialogFragment : BottomSheetDialogFragment() {
             cal.set(Calendar.HOUR_OF_DAY, timePicker.hour)
             cal.set(Calendar.MINUTE, timePicker.minute)
 
+            val hour = SimpleDateFormat("kk").format(cal.time).toInt()
+            val text: String = makeText(hour)
+
             val intent = Intent(requireContext(), SecondDayTimepickerActivity::class.java)
             intent.putExtra("time", SimpleDateFormat("kk시 mm분").format(cal.time))
+            intent.putExtra("text", text)
             intent.putExtra("tag", 1000)
             startActivity(intent)
 
@@ -47,6 +51,33 @@ class SecondDayBottomSheetDialogFragment : BottomSheetDialogFragment() {
                 ?.commit()
 
         }
+    }
+
+    private fun makeText(hour: Int): String {
+        Log.d("dahye", hour.toString())
+        var text = ""
+        if (hour in 1..3) {
+            text = "차분하고 적막한 새벽에 떠나고 싶어."
+        } else if (hour in 4..5) {
+            text = "동 트기 전 가장 추운 새벽에 떠나고 싶어."
+        } else if (hour == 6) {
+            text = "아직 아무도 일어나지 않은 아침에 떠나고 싶어."
+        } else if (hour in 7..9) {
+            text = "활기찬 아침에 떠나고 싶어."
+        } else if (hour in 10..11) {
+            text = "포근한 햇살이 쬐는 낮에 떠나고 싶어."
+        } else if (hour in 12..16) {
+            text = "여유로운 낮에 떠나고 싶어."
+        } else if (hour in 17..18) {
+            text = "노을을 볼 수 있는 저녁에 떠나고 싶어."
+        } else if (hour in 19..21) {
+            text = "아직 열기가 식지 않은 저녁에 떠나고 싶어."
+        } else if (hour in 22..23) {
+            text = "고요한 어둠이 깔린 밤에 떠나고 싶어."
+        } else {
+            text = "고요한 어둠이 깔린 밤에 떠나고 싶어."
+        }
+        return text
     }
 
 }

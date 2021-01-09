@@ -7,5 +7,6 @@ package com.example.apophis_android.data.entity
 
 /* 서버 통신을 위한 data class */
 data class AponymousChat(
-    val text: String
+    val text: String,
+    val nextAction: String
 )
