@@ -59,7 +59,7 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
     }
 
     inner class ChatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val content = itemView.findViewById<TextView>(R.id.aponymous_chat_content)
+        private val content = itemView.findViewById<TextView>(R.id.tv_aponymous_chat)
         fun bind(chatDataList: MutableList<String>) {
             chatDataList.forEach {
                 content.text = it

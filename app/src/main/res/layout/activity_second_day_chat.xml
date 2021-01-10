@@ -82,7 +82,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/btn_second_send"
+            android:id="@+id/btn_chat_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
@@ -108,8 +108,9 @@
             android:hint="@string/chat_message_hint"
             android:includeFontPadding="false"
             android:textColorHint="@color/gray70"
+            android:textColor="@color/white"
             android:fontFamily="@font/gmarket_sans_medium"
-            app:layout_constraintEnd_toStartOf="@+id/btn_second_send"
+            app:layout_constraintEnd_toStartOf="@+id/btn_chat_send"
             app:layout_constraintBottom_toBottomOf="@+id/view_second_chat_keyboard"
             app:layout_constraintStart_toStartOf="@+id/view_second_chat_keyboard"
             app:layout_constraintTop_toTopOf="@+id/view_second_chat_keyboard"

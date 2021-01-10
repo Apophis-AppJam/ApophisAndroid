@@ -59,7 +59,7 @@ class AponymousChatAdapter(private val context: Context): RecyclerView.Adapter<R
     }
 
     inner class AnonymousViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val content = itemView.findViewById<TextView>(R.id.aponymous_chat_content)
+        private val content = itemView.findViewById<TextView>(R.id.tv_aponymous_chat)
         fun bind(text: String) {
             content.text = text
         }

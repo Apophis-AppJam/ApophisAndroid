@@ -4,6 +4,8 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.MergeAdapter
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
@@ -34,10 +36,19 @@ class SecondDayChatActivity : AppCompatActivity() {
 
         initRcv()
 
-        getAponymousChatFromServer(jwt, 32)
+        getAponymousChatFromServer(jwt, 5)
+        getChoiceChatFromServer(jwt, 5, 1)
         /* replyType 별로 tag 값 달리 지정해서 inflate 되는 뷰 지정하는 작업 해야해 */
-        getChoiceChatFromServer(jwt, 32)
 
+        et_second_chat_message.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                btn_chat_send.setImageResource(R.drawable.btn_send_act)
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
 
         /* chip click listener 재정의 */
         userChatAdapter.setOnItemClickListener(object : UserChatAdapter.OnItemClickListener {
@@ -45,13 +56,13 @@ class SecondDayChatActivity : AppCompatActivity() {
                 for (i in dataList.indices) {
                     et_second_chat_message.setText(dataList[i])
                     et_second_chat_message.setTextColor(Color.parseColor("#FFFFFF"))
-                    btn_second_send.setImageResource(R.drawable.btn_send_act)
+                    btn_chat_send.setImageResource(R.drawable.btn_send_act)
                 }
             }
         })
 
         /* 메세지 전송 버튼 클릭 시 */
-        btn_second_send.setOnClickListener {
+        btn_chat_send.setOnClickListener {
             userChatAdapter.removeChat()
             val userChoice = et_second_chat_message.text.toString()
             val chatRight = OurUserChat(mutableListOf(userChoice), 0)
@@ -70,7 +81,7 @@ class SecondDayChatActivity : AppCompatActivity() {
     }
 
     private fun getAponymousChatFromServer(jwt: String, chatDetailsIdx: Int) {
-        var replyType: String = ""
+        //서버한테 받은 replyType 값 tag로 바꿔서 return 해주기
         apophisService.getInstance()
             .requestAponymousChat(
                 jwt = jwt,
@@ -90,7 +101,7 @@ class SecondDayChatActivity : AppCompatActivity() {
                     //통신 성공
                     if (response.isSuccessful) {
                         if (response.body()!!.success) {
-                            replyType = response.body()!!.data.postInfo.replyType
+                            val replyType = response.body()!!.data.postInfo.replyType
                             for (i in response.body()!!.data.chat.indices) {
                                 val nextAction = response.body()!!.data.chat[i].nextAction
                                 val aponymousChatData = OurAponymousChat(response.body()!!.data.chat[i].text, 0)
@@ -106,7 +117,7 @@ class SecondDayChatActivity : AppCompatActivity() {
             })
     }
 
-    private fun getChoiceChatFromServer(jwt: String, chatDetailsIdx: Int) {
+    private fun getChoiceChatFromServer(jwt: String, chatDetailsIdx: Int, tag: Int) {
         apophisService.getInstance()
             .requestChoiceChat(
                 jwt = jwt,
@@ -132,7 +143,7 @@ class SecondDayChatActivity : AppCompatActivity() {
                             for (i in response.body()!!.data.choiceWords.indices) {
                                 list.add(response.body()!!.data.choiceWords[i].choiceWords)
                             }
-                            val choiceChatData = OurUserChat(list, 2)
+                            val choiceChatData = OurUserChat(list, tag)
                             userChatAdapter.addChat(choiceChatData)
                         }
                     }

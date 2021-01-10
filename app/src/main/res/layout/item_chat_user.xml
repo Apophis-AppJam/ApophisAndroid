@@ -10,37 +10,52 @@
         android:id="@+id/img_chat_right_tail"
         android:layout_width="22dp"
         android:layout_height="22dp"
-        android:layout_marginEnd="7dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="8dp"
         android:src="@drawable/img_textbox_right"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/view_chat_right"
+        android:id="@+id/view_user_chat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="12dp"
+        android:background="@drawable/round_rectangle_purple_17dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/round_rectangle_purple_17dp">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/user_chat_content"
+            android:id="@+id/tv_user_chat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="textView"
-            android:textSize="14dp"
-            android:textColor="@color/white"
-            android:fontFamily="@font/gmarket_sans_medium"
             android:layout_marginStart="12dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="12dp"
             android:layout_marginBottom="12dp"
+            android:fontFamily="@font/gmarket_sans_medium"
+            android:text="textView"
+            android:textColor="@color/white"
+            android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/btn_long_answer_complete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:text="완료하기"
+        android:textSize="14dp"
+        android:textColor="@color/purpleAB70f5"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_user_chat" />
 </androidx.constraintlayout.widget.ConstraintLayout>

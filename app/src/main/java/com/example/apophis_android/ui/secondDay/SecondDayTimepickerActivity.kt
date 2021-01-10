@@ -5,6 +5,7 @@ import android.graphics.Paint
 import android.graphics.RectF
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.view.marginTop
 import com.example.apophis_android.R
@@ -24,6 +25,8 @@ class SecondDayTimepickerActivity : AppCompatActivity() {
             bottomSheetDialogFragment = SecondDayBottomSheetDialogFragment()
             bottomSheetDialogFragment.show(supportFragmentManager, "tag")
         }
+
+        btn_time_setting_complete.setOnClickListener { finish() }
 
         val intent = intent
         val tag = intent.getIntExtra("tag", 0)

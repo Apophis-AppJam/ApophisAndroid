@@ -1,17 +1,21 @@
 package com.example.apophis_android.ui.secondDay.adpater
 
 import android.content.Context
-import android.util.Log
+import android.content.Intent
+import android.graphics.Color
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
-import com.example.apophis_android.data.entity.UserInputChat
 import com.example.apophis_android.ui.ChipFactory
+import com.example.apophis_android.ui.secondDay.SecondDayTimepickerActivity
 import com.google.android.material.chip.ChipGroup
 import java.lang.IllegalArgumentException
 
@@ -19,7 +23,7 @@ import java.lang.IllegalArgumentException
  * Created By kimdahyee
  * on 01월 07일, 2020
  */
- 
+
 class UserChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val userChatList: MutableList<OurUserChat> = mutableListOf()
@@ -29,7 +33,8 @@ class UserChatAdapter(private val context: Context): RecyclerView.Adapter<Recycl
             0 -> R.layout.item_chat_user
             1 -> R.layout.item_chip_choice
             2 -> R.layout.item_chat_short_answer
-            else -> R.layout.item_chat_long_answer //3
+            3 -> R.layout.item_chat_time
+            else -> R.layout.item_chat_find_me
         }
     }
 
@@ -47,6 +52,10 @@ class UserChatAdapter(private val context: Context): RecyclerView.Adapter<Recycl
             R.layout.item_chat_short_answer -> {
                 val view = layoutInflater.inflate(R.layout.item_chat_short_answer, parent, false)
                 UserInputViewHolder(view)
+            }
+            R.layout.item_chat_time -> {
+                val view = layoutInflater.inflate(R.layout.item_chat_time, parent, false)
+                ActionViewHolder(view)
             }
             else ->
                 throw IllegalArgumentException("ViewType [$viewType] is unexpected")
@@ -68,10 +77,15 @@ class UserChatAdapter(private val context: Context): RecyclerView.Adapter<Recycl
             holder.bind()
             holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
         }
+
+        if (holder is ActionViewHolder) {
+            holder.bind()
+            holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
+        }
     }
 
     inner class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val content = itemView.findViewById<TextView>(R.id.user_chat_content)
+        private val content = itemView.findViewById<TextView>(R.id.tv_user_chat)
         fun bind(chatDataList: MutableList<String>) {
             chatDataList.forEach {
                 content.text = it
@@ -101,20 +115,49 @@ class UserChatAdapter(private val context: Context): RecyclerView.Adapter<Recycl
     }
 
     inner class UserInputViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private var num1: TextView = itemView.findViewById(R.id.tv_user_input_1)
+        private var num2: TextView = itemView.findViewById(R.id.tv_user_input_2)
+        private var num3: TextView = itemView.findViewById(R.id.tv_user_input_3)
+
         private var input: TextView = itemView.findViewById(R.id.tv_user_input)
         private var input1: TextView = itemView.findViewById(R.id.et_user_input_1)
         private var input2: TextView = itemView.findViewById(R.id.et_user_input_2)
         private var input3: TextView = itemView.findViewById(R.id.et_user_input_3)
-        private var btnComplete: TextView = itemView.findViewById(R.id.tv_user_input_complete)
+
+        private var btnComplete: TextView = itemView.findViewById(R.id.btn_user_input_complete)
         private val inputTextList: MutableList<String> = mutableListOf()
 
         fun bind() {
+            input1.addTextChangedListener(object: TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    num1.setTextColor(Color.parseColor("#AB70F5"))
+                }
+                override fun afterTextChanged(s: Editable?) {}
+            })
+
+            input2.addTextChangedListener(object: TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    num2.setTextColor(Color.parseColor("#AB70F5"))
+                }
+                override fun afterTextChanged(s: Editable?) {}
+            })
+
+            input3.addTextChangedListener(object: TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    num3.setTextColor(Color.parseColor("#AB70F5"))
+                }
+                override fun afterTextChanged(s: Editable?) {}
+            })
+
             btnComplete.setOnClickListener {
                 removeChat()
                 inputTextList.add(input.text.toString())
-                inputTextList.add(input1.text.toString())
-                inputTextList.add(input2.text.toString())
-                inputTextList.add(input3.text.toString())
+                inputTextList.add("첫 번째는 " + input1.text.toString())
+                inputTextList.add("두 번째는 " + input2.text.toString())
+                inputTextList.add("세 번째는 " + input3.text.toString())
 
                 for (i in inputTextList.indices) {
                     val chatRight = OurUserChat(mutableListOf(inputTextList[i]), 0)
@@ -122,6 +165,17 @@ class UserChatAdapter(private val context: Context): RecyclerView.Adapter<Recycl
                 }
             }
 
+        }
+    }
+
+    inner class ActionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val btnAction = itemView.findViewById<ImageView>(R.id.btn_timper)
+
+        fun bind() {
+            btnAction.setOnClickListener {
+                val intent = Intent(context, SecondDayTimepickerActivity::class.java)
+                context.startActivity(intent)
+            }
         }
     }
 
