@@ -9,17 +9,17 @@ import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.apophis_android.R
-import com.example.apophis_android.data.entity.ChatData
+import com.example.apophis_android.data.entity.OurUserChat
 import com.example.apophis_android.ui.ChipFactory
 import com.google.android.material.chip.ChipGroup
 import java.lang.IllegalArgumentException
 
 class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val chatDataList: MutableList<ChatData> = mutableListOf()
+    private val ourUserChatList: MutableList<OurUserChat> = mutableListOf()
 
     override fun getItemViewType(position: Int): Int {
-        return when (chatDataList[position].tag) {
+        return when (ourUserChatList[position].tag) {
             0 -> R.layout.item_chat_aponymous
             1 -> R.layout.item_chat_user
             else -> R.layout.item_chip_choice
@@ -49,11 +49,11 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ChatViewHolder) {
-            holder.bind(chatDataList[position].content)
+            holder.bind(ourUserChatList[position].content)
             holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
         }
         if (holder is ChoiceViewHolder) {
-            holder.bind(chatDataList[position].content)
+            holder.bind(ourUserChatList[position].content)
             holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
         }
     }
@@ -96,17 +96,17 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
     }
 
     override fun getItemCount(): Int {
-        return chatDataList.size
+        return ourUserChatList.size
     }
 
-    fun addChat(chatDataItem: ChatData) {
-        chatDataList.add(chatDataItem)
-        notifyItemInserted(chatDataList.size)
+    fun addChat(ourUserChatItem: OurUserChat) {
+        ourUserChatList.add(ourUserChatItem)
+        notifyItemInserted(ourUserChatList.size)
     }
 
     fun removeChat() {
-        chatDataList.removeAt(chatDataList.size-2)
-        notifyItemRemoved(chatDataList.size-1)
+        ourUserChatList.removeAt(ourUserChatList.size-2)
+        notifyItemRemoved(ourUserChatList.size-1)
     }
 
     /* chip click listener */

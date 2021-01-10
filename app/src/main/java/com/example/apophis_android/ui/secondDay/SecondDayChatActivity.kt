@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.MergeAdapter
 import android.os.Bundle
 import android.util.Log
 import com.example.apophis_android.R
-import com.example.apophis_android.data.entity.ChatData
+import com.example.apophis_android.data.entity.OurUserChat
 import com.example.apophis_android.data.entity.OurAponymousChat
 import com.example.apophis_android.data.remote.ApophisService
 import com.example.apophis_android.data.remote.response.AponymousChatResponse
@@ -27,7 +27,6 @@ class SecondDayChatActivity : AppCompatActivity() {
 
     private val apophisService = ApophisService
     private val jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
-    private var replyType: String =""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,16 +34,19 @@ class SecondDayChatActivity : AppCompatActivity() {
 
         initRcv()
 
-        replyType = getAponymousChatFromServer(jwt, 1)
+        getAponymousChatFromServer(jwt, 32)
         /* replyType 별로 tag 값 달리 지정해서 inflate 되는 뷰 지정하는 작업 해야해 */
-        getChoiceChatFromServer(jwt, 1)
+        getChoiceChatFromServer(jwt, 32)
+
 
         /* chip click listener 재정의 */
-        userChatAdapter.setOnChipItemClickListener(object : UserChatAdapter.OnChipClickListener {
-            override fun onChipClick(data: String) {
-                et_second_chat_message.setText(data)
-                et_second_chat_message.setTextColor(Color.parseColor("#FFFFFF"))
-                btn_second_send.setImageResource(R.drawable.btn_send_act)
+        userChatAdapter.setOnItemClickListener(object : UserChatAdapter.OnItemClickListener {
+            override fun onItemClick(dataList: MutableList<String>) {
+                for (i in dataList.indices) {
+                    et_second_chat_message.setText(dataList[i])
+                    et_second_chat_message.setTextColor(Color.parseColor("#FFFFFF"))
+                    btn_second_send.setImageResource(R.drawable.btn_send_act)
+                }
             }
         })
 
@@ -52,7 +54,7 @@ class SecondDayChatActivity : AppCompatActivity() {
         btn_second_send.setOnClickListener {
             userChatAdapter.removeChat()
             val userChoice = et_second_chat_message.text.toString()
-            val chatRight = ChatData(mutableListOf(userChoice), 0)
+            val chatRight = OurUserChat(mutableListOf(userChoice), 0)
             /* tag == 0 -> user가 보내는 보라색 말풍선 */
             userChatAdapter.addChat(chatRight)
             et_second_chat_message.setText("")
@@ -67,7 +69,8 @@ class SecondDayChatActivity : AppCompatActivity() {
         rcv_second_chat.adapter = mergeAdpater
     }
 
-    private fun getAponymousChatFromServer(jwt: String, chatDetailsIdx: Int): String {
+    private fun getAponymousChatFromServer(jwt: String, chatDetailsIdx: Int) {
+        var replyType: String = ""
         apophisService.getInstance()
             .requestAponymousChat(
                 jwt = jwt,
@@ -101,7 +104,6 @@ class SecondDayChatActivity : AppCompatActivity() {
                     }
                 }
             })
-        return replyType
     }
 
     private fun getChoiceChatFromServer(jwt: String, chatDetailsIdx: Int) {
@@ -130,7 +132,7 @@ class SecondDayChatActivity : AppCompatActivity() {
                             for (i in response.body()!!.data.choiceWords.indices) {
                                 list.add(response.body()!!.data.choiceWords[i].choiceWords)
                             }
-                            val choiceChatData = ChatData(list, 1)
+                            val choiceChatData = OurUserChat(list, 2)
                             userChatAdapter.addChat(choiceChatData)
                         }
                     }

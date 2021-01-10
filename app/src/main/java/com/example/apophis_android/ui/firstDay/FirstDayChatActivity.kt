@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.apophis_android.R
-import com.example.apophis_android.data.entity.ChatData
+import com.example.apophis_android.data.entity.OurUserChat
 import kotlinx.android.synthetic.main.activity_first_day_chat.*
 
 class FirstDayChatActivity : AppCompatActivity() {
@@ -27,7 +27,7 @@ class FirstDayChatActivity : AppCompatActivity() {
 
         aponymous.forEach {
             //Log.d("아포니스가 무슨 말을 할지 보자", it)
-            val chatLeft = ChatData(mutableListOf(it), 0)
+            val chatLeft = OurUserChat(mutableListOf(it), 0)
             chatAdapter.addChat(chatLeft)
         }
 
@@ -42,7 +42,7 @@ class FirstDayChatActivity : AppCompatActivity() {
 //            chatAdapter.addChat(chatLeft)
 //        }
 
-        val choice = ChatData(data, 2) //선택지
+        val choice = OurUserChat(data, 2) //선택지
         chatAdapter.addChat(choice)
 
         chatAdapter.setOnChipItemClickListener(object : FirstDayChatAdapter.OnChipClickListener {
@@ -55,7 +55,7 @@ class FirstDayChatActivity : AppCompatActivity() {
         btn_first_send.setOnClickListener {
             val userChoice = et_first_chat_message.text.toString()
 
-            val chatRight = ChatData(mutableListOf(userChoice), 1)
+            val chatRight = OurUserChat(mutableListOf(userChoice), 1)
             chatAdapter.addChat(chatRight)
             chatAdapter.removeChat()
             Toast.makeText(this,"hi",Toast.LENGTH_SHORT).show()
@@ -68,10 +68,10 @@ class FirstDayChatActivity : AppCompatActivity() {
         val compass = mutableListOf("카메라")
 
         aponymous1.forEach {
-            val chatLeft = ChatData(mutableListOf(it), 0)
+            val chatLeft = OurUserChat(mutableListOf(it), 0)
             chatAdapter.addChat(chatLeft)
         }
-        val compass_btn = ChatData(compass, 2) //선택지
+        val compass_btn = OurUserChat(compass, 2) //선택지
         chatAdapter.addChat(compass_btn)
     }
 //    private fun initRcv() {
