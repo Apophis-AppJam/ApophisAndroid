@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,7 +34,7 @@ class UserChatAdapter(private val context: Context): RecyclerView.Adapter<Recycl
             0 -> R.layout.item_chat_user
             1 -> R.layout.item_chip_choice
             2 -> R.layout.item_chat_short_answer
-            3 -> R.layout.item_chat_time
+            3 -> R.layout.item_chat_action
             else -> R.layout.item_chat_find_me
         }
     }
@@ -50,11 +51,12 @@ class UserChatAdapter(private val context: Context): RecyclerView.Adapter<Recycl
                 ChoiceChatViewHolder(view, layoutInflater)
             }
             R.layout.item_chat_short_answer -> {
+                Log.d("다혜 여기는 채팅", "ㅇㅇ")
                 val view = layoutInflater.inflate(R.layout.item_chat_short_answer, parent, false)
                 UserInputViewHolder(view)
             }
-            R.layout.item_chat_time -> {
-                val view = layoutInflater.inflate(R.layout.item_chat_time, parent, false)
+            R.layout.item_chat_action -> {
+                val view = layoutInflater.inflate(R.layout.item_chat_action, parent, false)
                 ActionViewHolder(view)
             }
             else ->
@@ -169,7 +171,7 @@ class UserChatAdapter(private val context: Context): RecyclerView.Adapter<Recycl
     }
 
     inner class ActionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val btnAction = itemView.findViewById<ImageView>(R.id.btn_timper)
+        private val btnAction = itemView.findViewById<ImageView>(R.id.btn_action)
 
         fun bind() {
             btnAction.setOnClickListener {
@@ -184,6 +186,7 @@ class UserChatAdapter(private val context: Context): RecyclerView.Adapter<Recycl
     }
 
     fun addChat(ourUserChatItem: OurUserChat) {
+        Log.d("다혜 응 나 유저어댑터 들아옴", "응응응")
         userChatList.add(ourUserChatItem)
         notifyItemInserted(userChatList.size)
     }
