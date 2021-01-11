@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_valueselect"
+    tools:context=".ui.secondDay.SecondDayValueActivity">
+
+    <ImageView
+        android:id="@+id/value_btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="26dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/slice_2" />
+
+    <TextView
+        android:id="@+id/value_tv_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:text="삶에서 가장 중요한 것?"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/value_tv_times"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="30dp"
+        android:text="남은 눈송이"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:textColor="@color/gray70"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/value_tv_header"
+        app:layout_constraintTop_toBottomOf="@+id/value_tv_header" />
+
+    <TextView
+        android:id="@+id/value_tv_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:textSize="14sp"
+        android:textColor="@color/purpleAB70f5"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/value_tv_times"
+        app:layout_constraintStart_toEndOf="@+id/value_tv_times"
+        app:layout_constraintTop_toTopOf="@+id/value_tv_times" />
+
+    <ImageView
+        android:id="@+id/value_btn_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="19dp"
+        app:layout_constraintStart_toEndOf="@+id/value_tv_number"
+        app:layout_constraintTop_toBottomOf="@+id/value_tv_header"
+        app:srcCompat="@drawable/btn_valueselect_reset" />
+
+    <ImageView
+        android:id="@+id/value_iv_love"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="6dp"
+        android:src="@drawable/value_circle"
+        app:layout_constraintEnd_toStartOf="@+id/value_iv_relation"
+        app:layout_constraintTop_toBottomOf="@+id/value_tv_times" />
+
+    <ImageView
+        android:id="@+id/value_iv_relation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
+        app:layout_constraintStart_toStartOf="@+id/value_tv_header"
+        app:layout_constraintTop_toTopOf="@+id/value_iv_love"
+        app:srcCompat="@drawable/value_circle" />
+
+    <ImageView
+        android:id="@+id/value_iv_achievement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toStartOf="@+id/value_iv_love"
+        app:layout_constraintTop_toBottomOf="@+id/value_iv_love"
+        app:srcCompat="@drawable/value_circle" />
+
+    <ImageView
+        android:id="@+id/value_iv_satisfaction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        app:layout_constraintEnd_toEndOf="@+id/value_iv_relation"
+        app:layout_constraintTop_toBottomOf="@+id/value_iv_relation"
+        app:srcCompat="@drawable/value_circle" />
+
+    <ImageView
+        android:id="@+id/value_iv_joy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toStartOf="@+id/value_iv_achievement"
+        app:layout_constraintTop_toBottomOf="@+id/value_iv_achievement"
+        app:srcCompat="@drawable/value_circle" />
+
+    <ImageView
+        android:id="@+id/value_iv_stability"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        app:layout_constraintEnd_toEndOf="@+id/value_iv_satisfaction"
+        app:layout_constraintTop_toBottomOf="@+id/value_iv_satisfaction"
+        app:srcCompat="@drawable/value_circle" />
+
+    <TextView
+        android:id="@+id/value_tv_love"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:text="사랑"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        app:layout_constraintEnd_toEndOf="@+id/value_iv_love"
+        app:layout_constraintStart_toStartOf="@+id/value_iv_love"
+        app:layout_constraintTop_toTopOf="@+id/value_iv_love" />
+
+    <TextView
+        android:id="@+id/value_tv_relation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:text="관계"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        app:layout_constraintEnd_toEndOf="@+id/value_iv_relation"
+        app:layout_constraintStart_toStartOf="@+id/value_iv_relation"
+        app:layout_constraintTop_toTopOf="@+id/value_iv_relation" />
+
+    <TextView
+        android:id="@+id/value_tv_achievement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:text="성취"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        app:layout_constraintEnd_toEndOf="@+id/value_iv_achievement"
+        app:layout_constraintStart_toStartOf="@+id/value_iv_achievement"
+        app:layout_constraintTop_toTopOf="@+id/value_iv_achievement" />
+
+    <TextView
+        android:id="@+id/value_tv_satisfaction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:text="만족"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        app:layout_constraintEnd_toEndOf="@+id/value_iv_satisfaction"
+        app:layout_constraintStart_toStartOf="@+id/value_iv_satisfaction"
+        app:layout_constraintTop_toTopOf="@+id/value_iv_satisfaction" />
+
+    <TextView
+        android:id="@+id/value_tv_joy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:text="즐거움"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        app:layout_constraintEnd_toEndOf="@+id/value_iv_joy"
+        app:layout_constraintStart_toStartOf="@+id/value_iv_joy"
+        app:layout_constraintTop_toTopOf="@+id/value_iv_joy" />
+
+    <TextView
+        android:id="@+id/value_tv_stability"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:text="안정"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        app:layout_constraintEnd_toEndOf="@+id/value_iv_stability"
+        app:layout_constraintStart_toStartOf="@+id/value_iv_stability"
+        app:layout_constraintTop_toTopOf="@+id/value_iv_stability" />
+
+    <TextView
+        android:id="@+id/value_tv_love_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="42dp"
+        android:text="0회"
+        android:textColor="@android:color/white"
+        android:textSize="10sp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        app:layout_constraintEnd_toEndOf="@+id/value_iv_love"
+        app:layout_constraintStart_toStartOf="@+id/value_iv_love"
+        app:layout_constraintBottom_toBottomOf="@+id/value_iv_love" />
+
+    <TextView
+        android:id="@+id/value_tv_relation_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="42dp"
+        android:text="0회"
+        android:textColor="@android:color/white"
+        android:textSize="10sp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        app:layout_constraintEnd_toEndOf="@+id/value_iv_relation"
+        app:layout_constraintStart_toStartOf="@+id/value_iv_relation"
+        app:layout_constraintBottom_toBottomOf="@+id/value_iv_relation" />
+
+    <TextView
+        android:id="@+id/value_tv_achievement_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="42dp"
+        android:text="0회"
+        android:textColor="@android:color/white"
+        android:textSize="10sp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        app:layout_constraintEnd_toEndOf="@+id/value_iv_achievement"
+        app:layout_constraintStart_toStartOf="@+id/value_iv_achievement"
+        app:layout_constraintBottom_toBottomOf="@+id/value_iv_achievement" />
+
+    <TextView
+        android:id="@+id/value_tv_satisfaction_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="42dp"
+        android:text="0회"
+        android:textColor="@android:color/white"
+        android:textSize="10sp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        app:layout_constraintEnd_toEndOf="@+id/value_iv_satisfaction"
+        app:layout_constraintStart_toStartOf="@+id/value_iv_satisfaction"
+        app:layout_constraintBottom_toBottomOf="@+id/value_iv_satisfaction" />
+
+    <TextView
+        android:id="@+id/value_tv_joy_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="42dp"
+        android:text="0회"
+        android:textColor="@android:color/white"
+        android:textSize="10sp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        app:layout_constraintEnd_toEndOf="@+id/value_iv_joy"
+        app:layout_constraintStart_toStartOf="@+id/value_iv_joy"
+        app:layout_constraintBottom_toBottomOf="@+id/value_iv_joy" />
+
+    <TextView
+        android:id="@+id/value_tv_stability_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="42dp"
+        android:text="0회"
+        android:textColor="@android:color/white"
+        android:textSize="10sp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        app:layout_constraintEnd_toEndOf="@+id/value_iv_stability"
+        app:layout_constraintStart_toStartOf="@+id/value_iv_stability"
+        app:layout_constraintBottom_toBottomOf="@+id/value_iv_stability" />
+
+    <ImageView
+        android:id="@+id/value_btn_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/value_next_btn_yet"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:clickable="false"/>
+
+    <TextView
+        android:id="@+id/value_tv_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:text="다음"
+        android:textColor="@color/purple5A4F63"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/value_btn_next"
+        app:layout_constraintEnd_toEndOf="@+id/value_btn_next"
+        app:layout_constraintStart_toStartOf="@+id/value_btn_next"
+        app:layout_constraintTop_toTopOf="@+id/value_btn_next" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

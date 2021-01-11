@@ -44,6 +44,8 @@
         <activity android:name=".ui.secondDay.SecondDayTimepickerActivity" />
         <activity android:name=".ui.secondDay.SecondDayFindLightMeActivity" />
         <activity android:name=".ui.secondDay.SecondDayFindDarkMeActivity" />
+        <activity android:name=".ui.secondDay.SecondDayValueActivity" />
+        <activity android:name=".ui.secondDay.SecondDayValueResultActivity" />
     </application>
 
 </manifest>
