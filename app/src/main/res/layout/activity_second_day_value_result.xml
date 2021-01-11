@@ -77,7 +77,7 @@
         app:layout_constraintEnd_toEndOf="@+id/value_result_iv_circle"
         app:layout_constraintStart_toStartOf="@+id/value_result_iv_circle"
         app:layout_constraintTop_toTopOf="@+id/value_result_iv_circle"
-        app:layout_constraintVertical_bias="0.641" />
+        app:layout_constraintVertical_bias="0.413" />
 
     <ImageView
         android:id="@+id/value_result_btn_complete"

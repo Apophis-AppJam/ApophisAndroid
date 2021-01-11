@@ -40,12 +40,12 @@ class SecondDayValueActivity : AppCompatActivity() {
 
         value_btn_next.setOnClickListener {
             maxNum = maxOf(loveNum, relationNum, achievementNum, satisfactionNum, joyNum, stabilityNum)
-            if (maxNum == loveNum) { loveString = "사랑\n" }
-            if (maxNum == relationNum) { relationString = "관계\n" }
-            if (maxNum == achievementNum) { achievementString = "성취\n" }
-            if (maxNum == satisfactionNum) { satisfactionString = "만족\n" }
-            if (maxNum == joyNum) { joyString = "즐거움\n" }
-            if (maxNum == stabilityNum) { stabilityString = "안정" }
+            if (maxNum == loveNum) { loveString = "\n사랑" }
+            if (maxNum == relationNum) { relationString = "\n관계" }
+            if (maxNum == achievementNum) { achievementString = "\n성취" }
+            if (maxNum == satisfactionNum) { satisfactionString = "\n만족" }
+            if (maxNum == joyNum) { joyString = "\n즐거움" }
+            if (maxNum == stabilityNum) { stabilityString = "\n안정" }
             selectedValue = "$loveString$relationString$achievementString$satisfactionString$joyString$stabilityString"
             val intent = Intent(this, SecondDayValueResultActivity::class.java)
             intent.putExtra("printingValue",selectedValue)
@@ -132,6 +132,7 @@ class SecondDayValueActivity : AppCompatActivity() {
     private fun choiceLove(): Int {
         loveNum++
         value_tv_love_number.text = "${loveNum}회"
+        value_iv_love.setImageResource(R.drawable.value_circle_clicked)
         when (loveNum) {
             1 -> value_iv_love.setBackgroundResource(R.drawable.img_value_1)
             2 -> value_iv_love.setBackgroundResource(R.drawable.img_value_2)
@@ -152,6 +153,7 @@ class SecondDayValueActivity : AppCompatActivity() {
     private fun choiceRelation(): Int {
         relationNum++
         value_tv_relation_number.text = "${relationNum}회"
+        value_iv_relation.setImageResource(R.drawable.value_circle_clicked)
         when (relationNum) {
             1 -> value_iv_relation.setBackgroundResource(R.drawable.img_value_1)
             2 -> value_iv_relation.setBackgroundResource(R.drawable.img_value_2)
@@ -172,6 +174,7 @@ class SecondDayValueActivity : AppCompatActivity() {
     private fun choiceAchievement(): Int {
         achievementNum++
         value_tv_achievement_number.text = "${achievementNum}회"
+        value_iv_achievement.setImageResource(R.drawable.value_circle_clicked)
         when (achievementNum) {
             1 -> value_iv_achievement.setBackgroundResource(R.drawable.img_value_1)
             2 -> value_iv_achievement.setBackgroundResource(R.drawable.img_value_2)
@@ -192,6 +195,7 @@ class SecondDayValueActivity : AppCompatActivity() {
     private fun choiceSatisfaction(): Int {
         satisfactionNum++
         value_tv_satisfaction_number.text = "${satisfactionNum}회"
+        value_iv_satisfaction.setImageResource(R.drawable.value_circle_clicked)
         when (satisfactionNum) {
             1 -> value_iv_satisfaction.setBackgroundResource(R.drawable.img_value_1)
             2 -> value_iv_satisfaction.setBackgroundResource(R.drawable.img_value_2)
@@ -212,6 +216,7 @@ class SecondDayValueActivity : AppCompatActivity() {
     private fun choiceJoy(): Int {
         joyNum++
         value_tv_joy_number.text = "${joyNum}회"
+        value_iv_joy.setImageResource(R.drawable.value_circle_clicked)
         when (joyNum) {
             1 -> value_iv_joy.setBackgroundResource(R.drawable.img_value_1)
             2 -> value_iv_joy.setBackgroundResource(R.drawable.img_value_2)
@@ -232,6 +237,7 @@ class SecondDayValueActivity : AppCompatActivity() {
     private fun choiceStability(): Int {
         stabilityNum++
         value_tv_stability_number.text = "${stabilityNum}회"
+        value_iv_stability.setImageResource(R.drawable.value_circle_clicked)
         when (stabilityNum) {
             1 -> value_iv_stability.setBackgroundResource(R.drawable.img_value_1)
             2 -> value_iv_stability.setBackgroundResource(R.drawable.img_value_2)
@@ -284,6 +290,13 @@ class SecondDayValueActivity : AppCompatActivity() {
         value_iv_satisfaction.setBackgroundResource(0)
         value_iv_joy.setBackgroundResource(0)
         value_iv_stability.setBackgroundResource(0)
+
+        value_iv_love.setImageResource(R.drawable.value_circle)
+        value_iv_relation.setImageResource(R.drawable.value_circle)
+        value_iv_achievement.setImageResource(R.drawable.value_circle)
+        value_iv_satisfaction.setImageResource(R.drawable.value_circle)
+        value_iv_joy.setImageResource(R.drawable.value_circle)
+        value_iv_stability.setImageResource(R.drawable.value_circle)
     }
 
     private fun activeNextBtn() {
