@@ -3,9 +3,7 @@
     package="com.example.apophis_android">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-    <!-- Request camera permissions -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Request camera permissions -->
     <uses-feature android:name="android.hardware.type.watch" />
     <uses-feature android:name="android.hardware.camera.any" />
 
@@ -36,14 +34,16 @@
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
+
         <activity android:name=".ui.firstDay.CameraActivity" />
         <activity android:name=".ui.firstDay.CompassActivity" />
         <activity android:name=".ui.firstDay.FirstDayChatActivity" />
-
         <activity android:name=".ui.secondDay.SecondDayChatActivity" />
         <activity android:name=".ui.secondDay.SecondDayTimepickerActivity" />
         <activity android:name=".ui.secondDay.SecondDayFindLightMeActivity" />
         <activity android:name=".ui.secondDay.SecondDayFindDarkMeActivity" />
+        <activity android:name=".ui.secondDay.SecondDayValueActivity"/>
+        <activity android:name=".ui.secondDay.SecondDayValueResultActivity"></activity>
     </application>
 
 </manifest>

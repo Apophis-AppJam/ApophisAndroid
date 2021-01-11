@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_2_value"
+    tools:context=".ui.secondDay.SecondDayValueResultActivity">
+
+    <ImageView
+        android:id="@+id/value_result_btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="26dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/slice_2" />
+
+    <TextView
+        android:id="@+id/value_result_tv_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:text="삶에서 가장 중요한 것?"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/value_result_tv_semi_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:text="나에게 가장 중요한 가치는"
+        android:textColor="@color/purpleAB70f5"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/value_result_tv_header" />
+
+    <ImageView
+        android:id="@+id/value_result_iv_bg_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/value_result_tv_semi_header"
+        app:srcCompat="@drawable/img_valueselect_circle" />
+
+    <ImageView
+        android:id="@+id/value_result_iv_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/value_result_iv_bg_circle"
+        app:layout_constraintEnd_toEndOf="@+id/value_result_iv_bg_circle"
+        app:layout_constraintStart_toStartOf="@+id/value_result_iv_bg_circle"
+        app:layout_constraintTop_toTopOf="@+id/value_result_iv_bg_circle"
+        app:srcCompat="@drawable/value_result_circle" />
+
+    <TextView
+        android:id="@+id/value_result_tv_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:gravity="center"
+        android:lineSpacingExtra="10dp"
+        android:text="사랑\n즐거움"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/value_result_iv_circle"
+        app:layout_constraintEnd_toEndOf="@+id/value_result_iv_circle"
+        app:layout_constraintStart_toStartOf="@+id/value_result_iv_circle"
+        app:layout_constraintTop_toTopOf="@+id/value_result_iv_circle"
+        app:layout_constraintVertical_bias="0.641" />
+
+    <ImageView
+        android:id="@+id/value_result_btn_complete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/btn_complete_act"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/value_result_tv_complete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/value_result_tv_complete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="완료"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
