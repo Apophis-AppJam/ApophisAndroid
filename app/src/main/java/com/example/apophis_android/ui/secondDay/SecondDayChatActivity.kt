@@ -36,9 +36,10 @@ class SecondDayChatActivity : AppCompatActivity() {
 
         initRcv()
 
-        getAponymousChatFromServer(jwt, 5)
-        getChoiceChatFromServer(jwt, 5, 1)
-        /* replyType 별로 tag 값 달리 지정해서 inflate 되는 뷰 지정하는 작업 해야해 */
+        getAponymousChatFromServer(jwt, 1)
+        //getChoiceChatFromServer(jwt, 1, 0)
+
+        /* replyType 별로 tag 값 달리 지정하는 작업 해야해 */
 
         et_second_chat_message.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -101,16 +102,18 @@ class SecondDayChatActivity : AppCompatActivity() {
                     //통신 성공
                     if (response.isSuccessful) {
                         if (response.body()!!.success) {
-                            val replyType = response.body()!!.data.postInfo.replyType
+                            Log.d("다혜 아포니머스 들어옴", chatDetailsIdx.toString())
+                            //rp = response.body()!!.data.postInfo.replyType
                             for (i in response.body()!!.data.chat.indices) {
                                 val nextAction = response.body()!!.data.chat[i].nextAction
                                 val aponymousChatData = OurAponymousChat(response.body()!!.data.chat[i].text, 0)
-
                                 if (nextAction == "채팅 이미지") {
                                     aponymousChatData.tag = 1
                                 }
                                 aponymousChatAdapter.addChat(aponymousChatData)
                             }
+                            Log.d("다혜 아포니머스 인덱스", chatDetailsIdx.toString())
+                            getChoiceChatFromServer(jwt, chatDetailsIdx, 2)
                         }
                     }
                 }
@@ -137,6 +140,7 @@ class SecondDayChatActivity : AppCompatActivity() {
                     //통신 성공
                     if (response.isSuccessful) {
                         if (response.body()!!.success) {
+                            Log.d("다혜 채팅 들어옴", chatDetailsIdx.toString())
                             val replyNum = response.body()!!.data.replyNum
                             /* replyNum에 따라 칩 선택 개수 제한 걸어주는 작업 해야해 */
                             val list = mutableListOf<String>()
@@ -145,7 +149,13 @@ class SecondDayChatActivity : AppCompatActivity() {
                             }
                             val choiceChatData = OurUserChat(list, tag)
                             userChatAdapter.addChat(choiceChatData)
+
+                            if ((chatDetailsIdx+1) != 3) {
+                                Log.d("다혜 채팅 인덱스", chatDetailsIdx.toString())
+                                getAponymousChatFromServer(jwt, chatDetailsIdx+1)
+                            }
                         }
+
                     }
                 }
             })

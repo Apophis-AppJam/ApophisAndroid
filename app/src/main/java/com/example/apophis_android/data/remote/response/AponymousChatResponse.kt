@@ -12,7 +12,7 @@ data class AponymousChatResponse(
     val postInfo: PostInfo
 ) {
     data class PostInfo(
-        val info: String,
+        val replyNum: String,
         val replyType: String
     )
 }

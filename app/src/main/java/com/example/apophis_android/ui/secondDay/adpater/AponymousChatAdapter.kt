@@ -1,6 +1,7 @@
 package com.example.apophis_android.ui.secondDay.adpater
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,10 +35,12 @@ class AponymousChatAdapter(private val context: Context): RecyclerView.Adapter<R
         val layoutInflater = LayoutInflater.from(parent.context)
         return when (viewType) {
             R.layout.item_chat_aponymous -> {
+                Log.d("다혜 여기는 아포", "ㅇㅇ")
                 val view = layoutInflater.inflate(R.layout.item_chat_aponymous, parent, false)
                 AnonymousViewHolder(view)
             }
             R.layout.item_chat_aponymous_image -> {
+                Log.d("다혜 여기는 아포", "ㅇㅇ")
                 val view = layoutInflater.inflate(R.layout.item_chat_aponymous_image, parent, false)
                 AponymousImageViewHolder(view)
             }
@@ -77,6 +80,7 @@ class AponymousChatAdapter(private val context: Context): RecyclerView.Adapter<R
     }
 
     fun addChat(chatDataItem: OurAponymousChat) {
+        Log.d("다혜 응 나 아포어댑터 들아옴", "응응응")
         aponymousChatList.add(chatDataItem)
         notifyItemInserted(aponymousChatList.size)
     }
