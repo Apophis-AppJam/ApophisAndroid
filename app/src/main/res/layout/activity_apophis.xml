@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_apophis_dday"
+    tools:context=".ui.ApophisActivity">
+
+    <ImageView
+        android:id="@+id/apo_btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/btn_back_main"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/apo_iv_apo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img_apophis_dday" />
+
+    <TextView
+        android:id="@+id/apo_tv_day_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:layout_marginStart="32dp"
+        android:fontFamily="@font/gmarket_sans_light"
+        android:text="6"
+        android:textColor="@color/white"
+        android:textSize="50sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/apo_tv_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gmarket_sans_light"
+        android:text="일"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="@+id/apo_tv_day_number"
+        app:layout_constraintTop_toTopOf="@+id/apo_tv_day_number" />
+
+    <TextView
+        android:id="@+id/apo_tv_hour_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gmarket_sans_light"
+        android:text="13"
+        android:textColor="@color/white"
+        android:textSize="50sp"
+        android:layout_marginTop="191dp"
+        app:layout_constraintStart_toStartOf="@+id/apo_tv_day"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/apo_tv_hour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gmarket_sans_light"
+        android:text="시간"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="@+id/apo_tv_hour_number"
+        app:layout_constraintTop_toTopOf="@+id/apo_tv_hour_number" />
+
+    <TextView
+        android:id="@+id/apo_tv_min_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gmarket_sans_light"
+        android:text="42"
+        android:textColor="@color/white"
+        android:textSize="50sp"
+        android:layout_marginTop="292dp"
+        app:layout_constraintStart_toStartOf="@+id/apo_tv_hour"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/apo_tv_min"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gmarket_sans_light"
+        android:text="분"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="@+id/apo_tv_min_number"
+        app:layout_constraintTop_toTopOf="@+id/apo_tv_min_number" />
+
+    <TextView
+        android:id="@+id/apo_tv_sec_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gmarket_sans_light"
+        android:text="28"
+        android:textColor="@color/white"
+        android:textSize="50sp"
+        android:layout_marginTop="393dp"
+        app:layout_constraintStart_toStartOf="@+id/apo_tv_min"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/apo_tv_sec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gmarket_sans_light"
+        android:text="초"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="@+id/apo_tv_sec_number"
+        app:layout_constraintTop_toTopOf="@+id/apo_tv_sec_number" />
+
+    <TextView
+        android:id="@+id/apo_tv_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="거리"
+        android:fontFamily="@font/gmarket_sans_light"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/apo_tv_sec" />
+
+    <TextView
+        android:id="@+id/apo_tv_distance_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="129,201.213"
+        android:fontFamily="@font/gmarket_sans_light"
+        android:textSize="32sp"
+        android:textColor="@color/white"
+        android:layout_marginEnd="9dp"
+        app:layout_constraintBottom_toBottomOf="@+id/apo_tv_km"
+        app:layout_constraintEnd_toStartOf="@+id/apo_tv_km" />
+
+    <TextView
+        android:id="@+id/apo_tv_km"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="KM"
+        android:fontFamily="@font/gmarket_sans_light"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="25dp"
+        android:layout_marginEnd="13dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/apo_iv_distance"
+        android:layout_marginBottom="73dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/apo_tv_distance"
+        app:srcCompat="@drawable/img_apodistance_07" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

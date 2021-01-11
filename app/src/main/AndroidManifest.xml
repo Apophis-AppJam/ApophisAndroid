@@ -41,6 +41,7 @@
         <activity android:name=".ui.firstDay.FirstDayChatActivity" />
 
         <activity android:name=".MainActivity" />
+        <activity android:name=".ui.ApophisActivity" />
         <activity android:name=".ui.secondDay.SecondDayTimepickerActivity" />
         <activity android:name=".ui.secondDay.SecondDayFindLightMeActivity" />
         <activity android:name=".ui.secondDay.SecondDayFindDarkMeActivity" />
