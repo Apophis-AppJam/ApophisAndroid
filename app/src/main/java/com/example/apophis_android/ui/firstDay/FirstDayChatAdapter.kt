@@ -1,7 +1,10 @@
 package com.example.apophis_android.ui.firstDay
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.text.Editable
 import android.text.TextWatcher
@@ -38,6 +41,7 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
             4 -> R.layout.item_chat_user_image_landscape
             5 -> R.layout.item_chip_choice
             6 -> R.layout.item_chat_compass
+            7 -> R.layout.item_chat_short_answer
             else -> R.layout.item_chat_camera
         }
     }
@@ -135,10 +139,13 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
 
     inner class AponymousImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val image = itemView.findViewById<ImageView>(R.id.img_chat_aponymous)
+        @SuppressLint("UseCompatLoadingForDrawables")
         fun bind(imageUrl: MutableList<String>) {
             imageUrl.forEach {
                 Glide.with(itemView).load(it).into(image)
             }
+            image.background = context.getDrawable(R.drawable.round_rectangle_black_23dp)
+            image.clipToOutline = true
         }
     }
 
@@ -153,19 +160,25 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
 
     inner class UserImagePortraitViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val image = itemView.findViewById<ImageView>(R.id.img_chat_user_portrait)
+        @SuppressLint("UseCompatLoadingForDrawables")
         fun bind(imageUrl: MutableList<String>) {
             imageUrl.forEach {
                 Glide.with(itemView).load(it).into(image)
             }
+            image.background = context.getDrawable(R.drawable.round_rectangle_black_23dp)
+            image.clipToOutline = true
         }
     }
 
     inner class UserImageLandscapeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val image = itemView.findViewById<ImageView>(R.id.img_chat_user_landscape)
+        @SuppressLint("UseCompatLoadingForDrawables")
         fun bind(imageUrl: MutableList<String>) {
             imageUrl.forEach {
                 Glide.with(itemView).load(it).into(image)
             }
+            image.background = context.getDrawable(R.drawable.round_rectangle_black_23dp)
+            image.clipToOutline = true
         }
     }
 

@@ -28,7 +28,8 @@ class FirstDayChatActivity : AppCompatActivity() {
     private lateinit var userChatAdapter: FirstDayChatAdapter
 
     private val apophisService = ApophisService
-    private val jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
+    private val jwt =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
     private var chatDetailsIdx = 7
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +41,7 @@ class FirstDayChatActivity : AppCompatActivity() {
         // 1일차 chatDetailsIdx : 1 ~ 22
         getAponymousChatFromServer(jwt, chatDetailsIdx)
 
-        et_first_chat_message.addTextChangedListener(object: TextWatcher {
+        et_first_chat_message.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -97,13 +98,17 @@ class FirstDayChatActivity : AppCompatActivity() {
                             var tag = 0
                             Log.d("다다 아포가 받은 idx", chatDetailsIdx.toString())
                             for (i in response.body()!!.data.chat.indices) {
-
+                                tag = 0
                                 val nextAction = response.body()!!.data.chat[i].nextAction
                                 if (nextAction == "채팅 이미지") {
                                     tag = 1
                                 }
 
-                                val aponymousChatData = OurUserChat(mutableListOf(response.body()!!.data.chat[i].text), tag)
+                                Log.d("tag", tag.toString())
+                                val aponymousChatData = OurUserChat(
+                                    mutableListOf(response.body()!!.data.chat[i].text),
+                                    tag
+                                )
                                 userChatAdapter.addChat(aponymousChatData)
                             }
 
@@ -113,7 +118,7 @@ class FirstDayChatActivity : AppCompatActivity() {
                             getChoiceChatFromServer(jwt, chatDetailsIdx, tag)
 
                             when (tag) {
-                                0, 1, 2, 3 -> {
+                                0, 1, 2, 5 -> {
                                     /* 메세지 전송 버튼 클릭 시 */
                                     btn_first_send.setOnClickListener {
                                         userChatAdapter.removeChat()
@@ -183,14 +188,19 @@ class FirstDayChatActivity : AppCompatActivity() {
             })
     }
 
-    private fun postReplyToServer(jwt: String, chatDetailsIdx: Int, replyNum: Int, replyString: String) {
+    private fun postReplyToServer(
+        jwt: String,
+        chatDetailsIdx: Int,
+        replyNum: Int,
+        replyString: String
+    ) {
         apophisService.getInstance()
             .requestReply(
                 jwt = jwt,
                 chatDetailsIdx = chatDetailsIdx,
                 replyNum = replyNum,
                 body = ReplyOneRequest(replyString)
-            ) .enqueue(object : Callback<BaseResponse<Unit>> {
+            ).enqueue(object : Callback<BaseResponse<Unit>> {
                 override fun onFailure(
                     call: Call<BaseResponse<Unit>>,
                     t: Throwable
@@ -206,22 +216,22 @@ class FirstDayChatActivity : AppCompatActivity() {
                         if (response.body()!!.success) {
                             Log.d("다다 reply에 들어온 idx", chatDetailsIdx.toString())
                             getAponymousChatFromServer(jwt, chatDetailsIdx + 1)
-                            Log.d("다다 reply에서 보내는 idx", (chatDetailsIdx+1).toString())
+                            Log.d("다다 reply에서 보내는 idx", (chatDetailsIdx + 1).toString())
                         }
                     }
                 }
             })
     }
 
-    private fun tagClassification(replyType: String): Int{
+    private fun tagClassification(replyType: String): Int {
         if (replyType == "단일 보기 선택" || replyType == "다중 보기 선택" || replyType == "카테고리 선택") {
-            return 3
-        } else if (replyType == "단답형 텍스트 입력") {
-            return 4
-        } else if (replyType == "기능 액션 버튼 - 시간대 설정") {
             return 5
-        } else if (replyType == "기능 액션 버튼 - 두개의 나 ") {
+        } else if (replyType == "단답형 텍스트 입력") {
+            return 7
+        } else if (replyType == "기능 액션 버튼 - 나침반") {
             return 6
+        } else if (replyType == "기능 액션 버튼 - 카메라") {
+            return 8
         } else {
             return 2
         }

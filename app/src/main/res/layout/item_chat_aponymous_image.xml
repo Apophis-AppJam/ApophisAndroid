@@ -19,13 +19,14 @@
 
         <ImageView
             android:id="@+id/img_chat_aponymous"
+            android:scaleType="centerCrop"
             android:layout_width="136dp"
             android:layout_height="191dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            android:background="@drawable/round_rectangle_black_23dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

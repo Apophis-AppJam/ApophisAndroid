@@ -32,7 +32,7 @@
         <activity android:name=".ui.firstDay.CameraActivity"
             android:configChanges="orientation|keyboardHidden"/>
         <activity android:name=".ui.firstDay.CompassActivity" />
-        <activity android:name=".ui.firstDay.FirstDayChatActivity" />
+        <activity android:name=".ui.firstDay.FirstDayChatActivity"/>
 
         <activity android:name=".MainActivity" >
             <intent-filter>
@@ -44,7 +44,7 @@
 
         <activity android:name=".ui.ApophisActivity" />
         <activity android:name=".ui.secondDay.SecondDayChatActivity"/>
-        <activity android:name=".ui.secondDay.SecondDayTimepickerActivity" />
+        <activity android:name=".ui.secondDay.SecondDayTimepickerActivity"  />
         <activity android:name=".ui.secondDay.SecondDayFindLightMeActivity" />
         <activity android:name=".ui.secondDay.SecondDayFindDarkMeActivity" />
         <activity android:name=".ui.secondDay.SecondDayValueActivity"/>
