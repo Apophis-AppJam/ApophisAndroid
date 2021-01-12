@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/black262627">
+    android:background="@color/transparency00FF">
 
     <ImageView
         android:id="@+id/btn_find_me"

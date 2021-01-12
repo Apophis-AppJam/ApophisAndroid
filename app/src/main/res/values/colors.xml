@@ -6,6 +6,7 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+    <color name="transparency00FF">#00FFFFFF</color>
 
     <color name="black00">#000000</color>
     <color name="black262627">#262627</color>
@@ -19,7 +20,7 @@
     <color name="grayB324">#B3242424</color>
 
     <color name="purple5A4F63">#5A4F63</color>
-    <color name="purpleAB70f5">#AB70F5</color>
+    <color name="purpleAB70F5">#AB70F5</color>
 
     <color name="white">#FFFFFFFF</color>
     <color name="white4DFF">#4DFFFFFF</color>

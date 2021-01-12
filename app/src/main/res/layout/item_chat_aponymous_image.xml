@@ -4,36 +4,25 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/black262627">
-
-    <ImageView
-        android:id="@+id/img_chat_left_tail"
-        android:layout_width="22dp"
-        android:layout_height="22dp"
-        android:layout_marginStart="7dp"
-        android:background="@drawable/img_textbox_left"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    android:background="@color/transparency00FF">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/view_chat_aponymous_image"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="212dp"
         android:background="@drawable/round_rectangle_black_23dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/img_chat_aponymous"
-            android:layout_width="150dp"
-            android:layout_height="200dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginBottom="12dp"
+            android:layout_width="136dp"
+            android:layout_height="191dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

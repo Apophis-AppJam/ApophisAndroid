@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black262627">
+    android:background="@color/transparency00FF">
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chipgroup_choice"

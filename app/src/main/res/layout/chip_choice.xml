@@ -16,5 +16,5 @@
     app:chipMinTouchTargetSize="2dp"
     app:chipCornerRadius="17dp"
     app:chipStrokeWidth="1dp"
-    app:chipStrokeColor="@color/purpleAB70f5"
+    app:chipStrokeColor="@color/purpleAB70F5"
     app:chipBackgroundColor="@color/selector_chip_background" />
