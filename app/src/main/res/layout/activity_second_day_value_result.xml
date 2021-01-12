@@ -37,7 +37,7 @@
         android:layout_marginTop="30dp"
         android:fontFamily="@font/gmarket_sans_medium"
         android:text="나에게 가장 중요한 가치는"
-        android:textColor="@color/purpleAB70f5"
+        android:textColor="@color/purpleAB70F5"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

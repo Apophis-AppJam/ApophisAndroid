@@ -50,7 +50,7 @@
         android:text="10"
         android:fontFamily="@font/gmarket_sans_medium"
         android:textSize="14sp"
-        android:textColor="@color/purpleAB70f5"
+        android:textColor="@color/purpleAB70F5"
         android:layout_marginStart="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/value_tv_times"
         app:layout_constraintStart_toEndOf="@+id/value_tv_times"

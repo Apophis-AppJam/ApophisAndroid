@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/gmarket_sans_medium"
         android:text="당신의 이른 죽음"
-        android:textColor="@color/purpleAB70f5"
+        android:textColor="@color/purpleAB70F5"
         android:textSize="14sp"
         android:layout_marginStart="100dp"
         app:layout_constraintBottom_toBottomOf="@id/login_text1"

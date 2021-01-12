@@ -34,10 +34,11 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
             0 -> R.layout.item_chat_aponymous
             1 -> R.layout.item_chat_aponymous_image
             2 -> R.layout.item_chat_user
-            3 -> R.layout.item_chip_choice
-            4 -> R.layout.item_chat_compass
-            5 -> R.layout.item_chat_camera
-            else -> R.layout.item_chat_find_me
+            3 -> R.layout.item_chat_user_image_portrait
+            4 -> R.layout.item_chat_user_image_landscape
+            5 -> R.layout.item_chip_choice
+            6 -> R.layout.item_chat_compass
+            else -> R.layout.item_chat_camera
         }
     }
 
@@ -56,17 +57,25 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
                 val view = layoutInflater.inflate(R.layout.item_chat_user, parent, false)
                 UserViewHolder(view)
             }
+            R.layout.item_chat_user_image_portrait -> {
+                val view = layoutInflater.inflate(R.layout.item_chat_user_image_portrait, parent, false)
+                UserImagePortraitViewHolder(view)
+            }
+            R.layout.item_chat_user_image_landscape -> {
+                val view = layoutInflater.inflate(R.layout.item_chat_user_image_landscape, parent, false)
+                UserImageLandscapeViewHolder(view)
+            }
             R.layout.item_chip_choice -> {
                 val view = layoutInflater.inflate(R.layout.item_chip_choice, parent, false)
                 ChoiceChatViewHolder(view, layoutInflater)
             }
-            R.layout.item_chat_short_answer -> {
-                val view = layoutInflater.inflate(R.layout.item_chat_short_answer, parent, false)
-                UserInputViewHolder(view)
+            R.layout.item_chat_compass -> {
+                val view = layoutInflater.inflate(R.layout.item_chat_compass, parent, false)
+                CompassViewHolder(view)
             }
-            R.layout.item_chat_action -> {
-                val view = layoutInflater.inflate(R.layout.item_chat_action, parent, false)
-                ActionViewHolder(view)
+            R.layout.item_chat_camera -> {
+                val view = layoutInflater.inflate(R.layout.item_chat_camera, parent, false)
+                CameraViewHolder(view)
             }
             else ->
                 throw IllegalArgumentException("ViewType [$viewType] is unexpected")
@@ -89,17 +98,27 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
             holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
         }
 
+        if (holder is UserImagePortraitViewHolder) {
+            holder.bind(userChatList[position].content)
+            holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
+        }
+
+        if (holder is UserImageLandscapeViewHolder) {
+            holder.bind(userChatList[position].content)
+            holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
+        }
+
         if (holder is ChoiceChatViewHolder) {
             holder.bind(userChatList[position].content)
             holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
         }
 
-        if (holder is UserInputViewHolder) {
+        if (holder is CompassViewHolder) {
             holder.bind()
             holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
         }
 
-        if (holder is ActionViewHolder) {
+        if (holder is CameraViewHolder) {
             holder.bind()
             holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
         }
@@ -132,6 +151,24 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
         }
     }
 
+    inner class UserImagePortraitViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val image = itemView.findViewById<ImageView>(R.id.img_chat_user_portrait)
+        fun bind(imageUrl: MutableList<String>) {
+            imageUrl.forEach {
+                Glide.with(itemView).load(it).into(image)
+            }
+        }
+    }
+
+    inner class UserImageLandscapeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val image = itemView.findViewById<ImageView>(R.id.img_chat_user_landscape)
+        fun bind(imageUrl: MutableList<String>) {
+            imageUrl.forEach {
+                Glide.with(itemView).load(it).into(image)
+            }
+        }
+    }
+
     inner class ChoiceChatViewHolder(itemView: View, inflater: LayoutInflater) : RecyclerView.ViewHolder(itemView) {
         private var chipGroup: ChipGroup = itemView.findViewById(R.id.chipgroup_choice)
         private val chipTextList: MutableList<String> = mutableListOf()
@@ -155,66 +192,23 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
         }
     }
 
-    inner class UserInputViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private var num1: TextView = itemView.findViewById(R.id.tv_user_input_1)
-        private var num2: TextView = itemView.findViewById(R.id.tv_user_input_2)
-        private var num3: TextView = itemView.findViewById(R.id.tv_user_input_3)
-
-        private var input: TextView = itemView.findViewById(R.id.tv_user_input)
-        private var input1: TextView = itemView.findViewById(R.id.et_user_input_1)
-        private var input2: TextView = itemView.findViewById(R.id.et_user_input_2)
-        private var input3: TextView = itemView.findViewById(R.id.et_user_input_3)
-
-        private var btnComplete: TextView = itemView.findViewById(R.id.btn_user_input_complete)
-        private val inputTextList: MutableList<String> = mutableListOf()
+    inner class CompassViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val btnCompass = itemView.findViewById<ImageView>(R.id.iv_chat_compass)
 
         fun bind() {
-            input1.addTextChangedListener(object: TextWatcher {
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    num1.setTextColor(Color.parseColor("#AB70F5"))
-                }
-                override fun afterTextChanged(s: Editable?) {}
-            })
-
-            input2.addTextChangedListener(object: TextWatcher {
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    num2.setTextColor(Color.parseColor("#AB70F5"))
-                }
-                override fun afterTextChanged(s: Editable?) {}
-            })
-
-            input3.addTextChangedListener(object: TextWatcher {
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    num3.setTextColor(Color.parseColor("#AB70F5"))
-                }
-                override fun afterTextChanged(s: Editable?) {}
-            })
-
-            btnComplete.setOnClickListener {
-                removeChat()
-                inputTextList.add(input.text.toString())
-                inputTextList.add("첫 번째는 " + input1.text.toString())
-                inputTextList.add("두 번째는 " + input2.text.toString())
-                inputTextList.add("세 번째는 " + input3.text.toString())
-
-                for (i in inputTextList.indices) {
-                    val chatRight = OurUserChat(mutableListOf(inputTextList[i]), 2)
-                    addChat(chatRight)
-                }
+            btnCompass.setOnClickListener {
+                val intent = Intent(context, CompassActivity::class.java)
+                context.startActivity(intent)
             }
-
         }
     }
 
-    inner class ActionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val btnAction = itemView.findViewById<ImageView>(R.id.btn_action)
+    inner class CameraViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val btnCamera = itemView.findViewById<ImageView>(R.id.iv_chat_camera)
 
         fun bind() {
-            btnAction.setOnClickListener {
-                val intent = Intent(context, SecondDayTimepickerActivity::class.java)
+            btnCamera.setOnClickListener {
+                val intent = Intent(context, CameraActivity::class.java)
                 context.startActivity(intent)
             }
         }

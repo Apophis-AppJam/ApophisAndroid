@@ -25,7 +25,7 @@
         android:layout_marginTop="35dp"
         android:text="@string/find_dark_me_title"
         android:textSize="14dp"
-        android:textColor="@color/purpleAB70f5"
+        android:textColor="@color/purpleAB70F5"
         android:fontFamily="@font/gmarket_sans_medium"
         app:layout_constraintStart_toEndOf="@+id/btn_back"
         app:layout_constraintTop_toTopOf="parent" />

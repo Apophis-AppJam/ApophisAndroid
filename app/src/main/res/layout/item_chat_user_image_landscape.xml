@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/img_chat_user_portrait_landscape"
+            android:id="@+id/img_chat_user_landscape"
             android:layout_width="191dp"
             android:layout_height="132dp"
             app:layout_constraintBottom_toBottomOf="parent"

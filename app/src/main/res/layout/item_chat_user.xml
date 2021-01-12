@@ -54,7 +54,7 @@
         android:fontFamily="@font/gmarket_sans_medium"
         android:text="완료하기"
         android:textSize="14dp"
-        android:textColor="@color/purpleAB70f5"
+        android:textColor="@color/purpleAB70F5"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view_user_chat" />
