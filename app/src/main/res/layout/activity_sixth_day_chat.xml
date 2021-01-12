@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black262627"
+    tools:context=".ui.secondDay.SecondDayChatActivity">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/sixth_lottie_shutter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/sixth_cl_chat_header"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/black2C2C2D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/sixth_btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="13dp"
+            android:src="@drawable/btn_back_main"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/sixth_tv_chat_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="39dp"
+            android:layout_marginTop="27dp"
+            android:layout_marginBottom="25dp"
+            android:fontFamily="@font/gmarket_sans_medium"
+            android:text="@string/chat_title"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/sixth_btn_back"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/sixth_rcv_chat"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layoutAnimation="@anim/layout_animation_bottom_to_top"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/sixth_cl_chat_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sixth_cl_chat_header" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/sixth_cl_chat_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:background="@color/black2C2C2D"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <View
+            android:id="@+id/sixth_view_chat_keyboard"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/round_rectangle_black_23dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/sixth_btn_chat_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="3dp"
+            app:layout_constraintBottom_toBottomOf="@+id/sixth_view_chat_keyboard"
+            app:layout_constraintEnd_toEndOf="@+id/sixth_view_chat_keyboard"
+            app:layout_constraintTop_toTopOf="@+id/sixth_view_chat_keyboard"
+            app:srcCompat="@drawable/btn_send_unact" />
+
+        <EditText
+            android:id="@+id/sixth_et_chat_message"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="0dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:background="@null"
+            android:textSize="14dp"
+            android:hint="@string/chat_message_hint"
+            android:includeFontPadding="false"
+            android:textColorHint="@color/gray70"
+            android:textColor="@color/white"
+            android:fontFamily="@font/gmarket_sans_medium"
+            app:layout_constraintEnd_toStartOf="@+id/sixth_btn_chat_send"
+            app:layout_constraintBottom_toBottomOf="@+id/sixth_view_chat_keyboard"
+            app:layout_constraintStart_toStartOf="@+id/sixth_view_chat_keyboard"
+            app:layout_constraintTop_toTopOf="@+id/sixth_view_chat_keyboard"
+            android:inputType="text" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
