@@ -11,6 +11,8 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:name=".ui.login.GlobalApplication"
         android:allowBackup="true"
@@ -32,7 +34,7 @@
         <activity android:name=".ui.firstDay.CameraActivity"
             android:configChanges="orientation|keyboardHidden"/>
         <activity android:name=".ui.firstDay.CompassActivity" />
-        <activity android:name=".ui.firstDay.FirstDayChatActivity" />
+        <activity android:name=".ui.firstDay.FirstDayChatActivity"/>
 
         <activity android:name=".MainActivity" >
             <intent-filter>
@@ -44,11 +46,13 @@
 
         <activity android:name=".ui.ApophisActivity" />
         <activity android:name=".ui.secondDay.SecondDayChatActivity"/>
-        <activity android:name=".ui.secondDay.SecondDayTimepickerActivity" />
+        <activity android:name=".ui.secondDay.SecondDayTimepickerActivity"  />
         <activity android:name=".ui.secondDay.SecondDayFindLightMeActivity" />
         <activity android:name=".ui.secondDay.SecondDayFindDarkMeActivity" />
         <activity android:name=".ui.secondDay.SecondDayValueActivity"/>
         <activity android:name=".ui.secondDay.SecondDayValueResultActivity" />
+        <activity android:name=".ui.sixthDay.SixthDayChatActivity" />
+        <activity android:name=".ui.sixthDay.SixthDayDirtActivity" />
     </application>
 
 </manifest>
