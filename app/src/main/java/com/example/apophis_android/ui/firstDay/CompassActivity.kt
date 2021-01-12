@@ -16,6 +16,10 @@ import java.util.*
 import kotlin.concurrent.schedule
 import kotlin.concurrent.timer
 
+/**
+ * Created By hanjaehyeon
+ */
+
 class CompassActivity : AppCompatActivity(), SensorEventListener {
     var manager: SensorManager? = null
     var currentDegree: Int = 0

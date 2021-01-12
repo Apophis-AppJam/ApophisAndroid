@@ -14,6 +14,10 @@ import com.example.apophis_android.ui.ChipFactory
 import com.google.android.material.chip.ChipGroup
 import java.lang.IllegalArgumentException
 
+/**
+ * Created By hanjaehyeon
+ */
+
 class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val ourUserChatList: MutableList<OurUserChat> = mutableListOf()

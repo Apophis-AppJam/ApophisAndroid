@@ -7,6 +7,10 @@ import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
 import kotlinx.android.synthetic.main.activity_first_day_chat.*
 
+/**
+ * Created By hanjaehyeon
+ */
+
 class FirstDayChatActivity : AppCompatActivity() {
 
     private lateinit var chatAdapter: FirstDayChatAdapter

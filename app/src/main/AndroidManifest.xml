@@ -25,23 +25,25 @@
             android:name="com.google.android.wearable.standalone"
             android:value="true" />
 
-        <activity android:name=".ui.secondDay.SecondDayChatActivity">
+        <activity android:name=".ui.login.LoginActivity" />
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakao_app_key" />
+        <activity android:name=".ui.firstDay.CameraActivity"
+            android:configChanges="orientation|keyboardHidden"/>
+        <activity android:name=".ui.firstDay.CompassActivity" />
+        <activity android:name=".ui.firstDay.FirstDayChatActivity" />
+
+        <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.login.LoginActivity" />
-        <meta-data
-            android:name="com.kakao.sdk.AppKey"
-            android:value="@string/kakao_app_key" />
-        <activity android:name=".ui.firstDay.CameraActivity" />
-        <activity android:name=".ui.firstDay.CompassActivity" />
-        <activity android:name=".ui.firstDay.FirstDayChatActivity" />
 
-        <activity android:name=".MainActivity" />
         <activity android:name=".ui.ApophisActivity" />
+        <activity android:name=".ui.secondDay.SecondDayChatActivity"/>
         <activity android:name=".ui.secondDay.SecondDayTimepickerActivity" />
         <activity android:name=".ui.secondDay.SecondDayFindLightMeActivity" />
         <activity android:name=".ui.secondDay.SecondDayFindDarkMeActivity" />

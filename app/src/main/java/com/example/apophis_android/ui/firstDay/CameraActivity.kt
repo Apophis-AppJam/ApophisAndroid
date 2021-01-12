@@ -3,6 +3,7 @@ package com.example.apophis_android.ui.firstDay
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -27,6 +28,10 @@ import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
+/**
+ * Created By hanjaehyeon
+ */
+
 class CameraActivity : AppCompatActivity() {
     private var imageCapture: ImageCapture? = null
 
@@ -35,11 +40,14 @@ class CameraActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR) // 가로,세로 전환 설정
         setContentView(R.layout.activity_camera)
 
-        tv_camera_retake_button.setVisibility(View.INVISIBLE)
-        tv_camera_send_button.setVisibility(View.INVISIBLE)
-        iv_camera_capture.setVisibility(View.INVISIBLE)
+        // 몰입모드(전체화면)
+        hideUpperStateExpression()
+        hideBottomSoftKey()
+
+        cameraMode()
 
         // Request camera permissions
         if (allPermissionsGranted()) {
@@ -62,11 +70,7 @@ class CameraActivity : AppCompatActivity() {
         }
 
         tv_camera_retake_button.setOnClickListener {
-            iv_camera_button.setVisibility(View.VISIBLE)
-            pv_camera_display.setVisibility(View.VISIBLE)
-            tv_camera_retake_button.setVisibility(View.INVISIBLE)
-            tv_camera_send_button.setVisibility(View.INVISIBLE)
-            iv_camera_capture.setVisibility(View.INVISIBLE)
+            cameraMode()
         }
 
         outputDirectory = getOutputDirectory()
@@ -99,11 +103,7 @@ class CameraActivity : AppCompatActivity() {
 
                         iv_camera_capture.setImageBitmap(bitmap)
                         super.onCaptureSuccess(imageProxy)
-                        iv_camera_button.setVisibility(View.INVISIBLE)
-                        pv_camera_display.setVisibility(View.INVISIBLE)
-                        tv_camera_retake_button.setVisibility(View.VISIBLE)
-                        tv_camera_send_button.setVisibility(View.VISIBLE)
-                        iv_camera_capture.setVisibility(View.VISIBLE)
+                        previewMode()
                     }
                 }
 
@@ -127,9 +127,9 @@ class CameraActivity : AppCompatActivity() {
 //                    val msg = "Photo capture succeeded: $savedUri"
 //                    Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
 //                    Log.d(TAG, msg)
-                        val intent = Intent(this@CameraActivity, CameraActivity::class.java)
-                        intent.putExtra("picture", savedUri)
-                        startActivity(intent)
+//                        val intent = Intent(this@CameraActivity, CameraActivity::class.java)
+//                        intent.putExtra("picture", savedUri)
+//                        startActivity(intent)
                     }
                 })
         }
@@ -223,5 +223,45 @@ class CameraActivity : AppCompatActivity() {
                 finish()
             }
         }
+    }
+
+    private fun hideUpperStateExpression() {
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
+    }
+
+    private fun hideBottomSoftKey() {
+        val uiOptions = window.decorView.systemUiVisibility
+        var newUiOptions = uiOptions
+        val isImmersiveModeEnabled =
+            uiOptions or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY == uiOptions
+        if (isImmersiveModeEnabled) {
+            Log.i("Is on?", "Turning immersive mode mode off. ")
+        } else {
+            Log.i("Is on?", "Turning immersive mode mode on.")
+        }
+        // 몰입 모드를 꼭 적용해야 한다면 아래의 3가지 속성을 모두 적용시켜야 합니다
+        newUiOptions = newUiOptions xor View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+        newUiOptions = newUiOptions xor View.SYSTEM_UI_FLAG_FULLSCREEN
+        newUiOptions = newUiOptions xor View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+        window.decorView.systemUiVisibility = newUiOptions
+    }
+
+    private fun cameraMode(){
+        iv_camera_button.setVisibility(View.VISIBLE)
+        pv_camera_display.setVisibility(View.VISIBLE)
+        tv_camera_retake_button.setVisibility(View.INVISIBLE)
+        tv_camera_send_button.setVisibility(View.INVISIBLE)
+        iv_camera_capture.setVisibility(View.INVISIBLE)
+    }
+
+    private fun previewMode(){
+        iv_camera_button.setVisibility(View.INVISIBLE)
+        pv_camera_display.setVisibility(View.INVISIBLE)
+        tv_camera_retake_button.setVisibility(View.VISIBLE)
+        tv_camera_send_button.setVisibility(View.VISIBLE)
+        iv_camera_capture.setVisibility(View.VISIBLE)
     }
 }
