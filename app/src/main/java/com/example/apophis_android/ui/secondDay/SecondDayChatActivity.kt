@@ -2,7 +2,6 @@ package com.example.apophis_android.ui.secondDay
 
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.MergeAdapter
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -14,7 +13,6 @@ import com.example.apophis_android.data.remote.request.ReplyOneRequest
 import com.example.apophis_android.data.remote.response.AponymousChatResponse
 import com.example.apophis_android.data.remote.response.BaseResponse
 import com.example.apophis_android.data.remote.response.ChoiceChatResponse
-import com.example.apophis_android.ui.secondDay.adpater.AponymousChatAdapter
 import com.example.apophis_android.ui.secondDay.adpater.ChatAdapter
 import kotlinx.android.synthetic.main.activity_second_day_chat.*
 import retrofit2.Call
@@ -23,9 +21,7 @@ import retrofit2.Response
 
 class SecondDayChatActivity : AppCompatActivity() {
 
-    private lateinit var aponymousChatAdapter: AponymousChatAdapter
     private lateinit var userChatAdapter: ChatAdapter
-    private var mergeAdpater: MergeAdapter ?= null
 
     private val apophisService = ApophisService
     private val jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
@@ -70,10 +66,8 @@ class SecondDayChatActivity : AppCompatActivity() {
     }
 
     private fun initRcv() {
-        aponymousChatAdapter = AponymousChatAdapter(this)
         userChatAdapter = ChatAdapter(this)
-        mergeAdpater = MergeAdapter(aponymousChatAdapter, userChatAdapter)
-        rcv_second_chat.adapter = mergeAdpater
+        rcv_second_chat.adapter = userChatAdapter
     }
 
     private fun getAponymousChatFromServer(jwt: String, chatDetailsIdx: Int) {
@@ -124,17 +118,35 @@ class SecondDayChatActivity : AppCompatActivity() {
                             Log.d("다다 아포에서 보내는 idx", chatDetailsIdx.toString())
                             getChoiceChatFromServer(jwt, chatDetailsIdx, tag)
 
-                            /* 메세지 전송 버튼 클릭 시 */
-                            btn_chat_send.setOnClickListener {
-                                userChatAdapter.removeChat()
-                                val userChoice = et_second_chat_message.text.toString()
-                                val chatRight = OurUserChat(mutableListOf(userChoice), 2)
-                                /* tag == 2 -> user가 보내는 보라색 말풍선 */
-                                userChatAdapter.addChat(chatRight)
-                                et_second_chat_message.setText("")
-
-                                Log.d("다다 reply로 보내는 idx", chatDetailsIdx.toString())
-                                postReplyToServer(jwt, chatDetailsIdx, 1, userChoice)
+                            when (tag) {
+                                0, 1, 2, 3 -> {
+                                    /* 메세지 전송 버튼 클릭 시 */
+                                    btn_chat_send.setOnClickListener {
+                                        userChatAdapter.removeChat()
+                                        val userChoice = et_second_chat_message.text.toString()
+                                        val chatRight = OurUserChat(mutableListOf(userChoice), 2)
+                                        /* tag == 2 -> user가 보내는 보라색 말풍선 */
+                                        userChatAdapter.addChat(chatRight)
+                                        et_second_chat_message.setText("")
+                                        Log.d("다다 여기로 잘 들어왔어", "클릭 리스너")
+                                        Log.d("다다 reply로 보내는 idx", chatDetailsIdx.toString())
+                                        postReplyToServer(jwt, chatDetailsIdx, 1, userChoice)
+                                    }
+                                }
+                                else -> {
+                                    /* 메세지 전송 버튼 클릭 시 */
+                                    btn_chat_send.setOnClickListener {
+                                        userChatAdapter.removeChat()
+                                        val userChoice = et_second_chat_message.text.toString()
+                                        val chatRight = OurUserChat(mutableListOf(userChoice), 2)
+                                        /* tag == 2 -> user가 보내는 보라색 말풍선 */
+                                        userChatAdapter.addChat(chatRight)
+                                        et_second_chat_message.setText("")
+                                        Log.d("다다 이제 여기서 어쩔거야", "클릭 리스너")
+                                        Log.d("다다 reply로 보내는 idx", chatDetailsIdx.toString())
+                                        postReplyToServer(jwt, chatDetailsIdx, 1, userChoice)
+                                    }
+                                }
                             }
                         }
                     }
