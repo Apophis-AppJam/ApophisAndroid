@@ -9,13 +9,13 @@ import android.text.TextWatcher
 import android.util.Log
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
-import com.example.apophis_android.data.entity.OurAponymousChat
 import com.example.apophis_android.data.remote.ApophisService
+import com.example.apophis_android.data.remote.request.ReplyOneRequest
 import com.example.apophis_android.data.remote.response.AponymousChatResponse
 import com.example.apophis_android.data.remote.response.BaseResponse
 import com.example.apophis_android.data.remote.response.ChoiceChatResponse
 import com.example.apophis_android.ui.secondDay.adpater.AponymousChatAdapter
-import com.example.apophis_android.ui.secondDay.adpater.UserChatAdapter
+import com.example.apophis_android.ui.secondDay.adpater.ChatAdapter
 import kotlinx.android.synthetic.main.activity_second_day_chat.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,11 +24,12 @@ import retrofit2.Response
 class SecondDayChatActivity : AppCompatActivity() {
 
     private lateinit var aponymousChatAdapter: AponymousChatAdapter
-    private lateinit var userChatAdapter: UserChatAdapter
+    private lateinit var userChatAdapter: ChatAdapter
     private var mergeAdpater: MergeAdapter ?= null
 
     private val apophisService = ApophisService
     private val jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
+    private var chatDetailsIdx = 25
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,10 +37,8 @@ class SecondDayChatActivity : AppCompatActivity() {
 
         initRcv()
 
-        getAponymousChatFromServer(jwt, 1)
-        //getChoiceChatFromServer(jwt, 1, 0)
-
-        /* replyType 별로 tag 값 달리 지정하는 작업 해야해 */
+        // 2일차 시작 인덱스 23
+        getAponymousChatFromServer(jwt, chatDetailsIdx)
 
         et_second_chat_message.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -52,37 +51,32 @@ class SecondDayChatActivity : AppCompatActivity() {
         })
 
         /* chip click listener 재정의 */
-        userChatAdapter.setOnItemClickListener(object : UserChatAdapter.OnItemClickListener {
-            override fun onItemClick(dataList: MutableList<String>) {
-                for (i in dataList.indices) {
+        userChatAdapter.setOnItemClickListener(object : ChatAdapter.OnItemClickListener {
+            override fun onItemClick(data: String) {
+                // override fun onItemClick(data: MutableList<String>) {
+
+                et_second_chat_message.setText(data)
+                et_second_chat_message.setTextColor(Color.parseColor("#FFFFFF"))
+                btn_chat_send.setImageResource(R.drawable.btn_send_act)
+
+                /*for (i in dataList.indices) {
                     et_second_chat_message.setText(dataList[i])
                     et_second_chat_message.setTextColor(Color.parseColor("#FFFFFF"))
                     btn_chat_send.setImageResource(R.drawable.btn_send_act)
-                }
+                }*/
             }
         })
-
-        /* 메세지 전송 버튼 클릭 시 */
-        btn_chat_send.setOnClickListener {
-            userChatAdapter.removeChat()
-            val userChoice = et_second_chat_message.text.toString()
-            val chatRight = OurUserChat(mutableListOf(userChoice), 0)
-            /* tag == 0 -> user가 보내는 보라색 말풍선 */
-            userChatAdapter.addChat(chatRight)
-            et_second_chat_message.setText("")
-        }
 
     }
 
     private fun initRcv() {
         aponymousChatAdapter = AponymousChatAdapter(this)
-        userChatAdapter = UserChatAdapter(this)
+        userChatAdapter = ChatAdapter(this)
         mergeAdpater = MergeAdapter(aponymousChatAdapter, userChatAdapter)
         rcv_second_chat.adapter = mergeAdpater
     }
 
     private fun getAponymousChatFromServer(jwt: String, chatDetailsIdx: Int) {
-        //서버한테 받은 replyType 값 tag로 바꿔서 return 해주기
         apophisService.getInstance()
             .requestAponymousChat(
                 jwt = jwt,
@@ -102,18 +96,46 @@ class SecondDayChatActivity : AppCompatActivity() {
                     //통신 성공
                     if (response.isSuccessful) {
                         if (response.body()!!.success) {
-                            Log.d("다혜 아포니머스 들어옴", chatDetailsIdx.toString())
-                            //rp = response.body()!!.data.postInfo.replyType
+                            var tag = 0
+                            Log.d("다다 아포가 받은 idx", chatDetailsIdx.toString())
                             for (i in response.body()!!.data.chat.indices) {
+
                                 val nextAction = response.body()!!.data.chat[i].nextAction
-                                val aponymousChatData = OurAponymousChat(response.body()!!.data.chat[i].text, 0)
                                 if (nextAction == "채팅 이미지") {
-                                    aponymousChatData.tag = 1
+                                    tag = 1
                                 }
-                                aponymousChatAdapter.addChat(aponymousChatData)
+
+                                val aponymousChatData = OurUserChat(mutableListOf(response.body()!!.data.chat[i].text), tag)
+                                userChatAdapter.addChat(aponymousChatData)
                             }
-                            Log.d("다혜 아포니머스 인덱스", chatDetailsIdx.toString())
-                            getChoiceChatFromServer(jwt, chatDetailsIdx, 2)
+
+                            val replyType = response.body()!!.data.postInfo.replyType
+                            tag = if (replyType == "단일 보기 선택" || replyType == "다중 보기 선택" || replyType == "카테고리 선택") {
+                                3
+                            } else if (replyType == "단답형 텍스트 입력") {
+                                4
+                            } else if (replyType == "기능 액션 버튼 - 시간대 설정") {
+                                5
+                            } else if (replyType == "기능 액션 버튼 - 두개의 나 ") {
+                                6
+                            } else {
+                                2
+                            }
+                            Log.d("다다 아포에서 보내는 idx", chatDetailsIdx.toString())
+                            getChoiceChatFromServer(jwt, chatDetailsIdx, tag)
+
+                            /* 메세지 전송 버튼 클릭 시 */
+                            btn_chat_send.setOnClickListener {
+                                userChatAdapter.removeChat()
+                                val userChoice = et_second_chat_message.text.toString()
+                                val chatRight = OurUserChat(mutableListOf(userChoice), 2)
+                                /* tag == 2 -> user가 보내는 보라색 말풍선 */
+                                userChatAdapter.addChat(chatRight)
+                                et_second_chat_message.setText("")
+
+                                Log.d("다다 reply로 보내는 idx", chatDetailsIdx.toString())
+                                postReplyToServer(jwt, chatDetailsIdx, 1, userChoice)
+                            }
                         }
                     }
                 }
@@ -140,22 +162,46 @@ class SecondDayChatActivity : AppCompatActivity() {
                     //통신 성공
                     if (response.isSuccessful) {
                         if (response.body()!!.success) {
-                            Log.d("다혜 채팅 들어옴", chatDetailsIdx.toString())
+                            Log.d("다다 choice가 받은 idx", chatDetailsIdx.toString())
                             val replyNum = response.body()!!.data.replyNum
-                            /* replyNum에 따라 칩 선택 개수 제한 걸어주는 작업 해야해 */
                             val list = mutableListOf<String>()
                             for (i in response.body()!!.data.choiceWords.indices) {
                                 list.add(response.body()!!.data.choiceWords[i].choiceWords)
                             }
                             val choiceChatData = OurUserChat(list, tag)
                             userChatAdapter.addChat(choiceChatData)
-
-                            if ((chatDetailsIdx+1) != 3) {
-                                Log.d("다혜 채팅 인덱스", chatDetailsIdx.toString())
-                                getAponymousChatFromServer(jwt, chatDetailsIdx+1)
-                            }
                         }
 
+                    }
+                }
+            })
+    }
+
+    private fun postReplyToServer(jwt: String, chatDetailsIdx: Int, replyNum: Int, replyString: String) {
+        apophisService.getInstance()
+            .requestReply(
+                jwt = jwt,
+                chatDetailsIdx = chatDetailsIdx,
+                replyNum = replyNum,
+                body = ReplyOneRequest(replyString)
+            ) .enqueue(object : Callback<BaseResponse<Unit>> {
+                override fun onFailure(
+                    call: Call<BaseResponse<Unit>>,
+                    t: Throwable
+                ) { //통신 실패
+                    Log.d("fail", t.message)
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponse<Unit>>,
+                    response: Response<BaseResponse<Unit>>
+                ) {
+                    if (response.isSuccessful) {
+                        if (response.body()!!.success) {
+                            Log.d("다다 reply에 들어온 idx", chatDetailsIdx.toString())
+                            getAponymousChatFromServer(jwt, chatDetailsIdx + 1)
+                            Log.d("다다 reply에서 보내는 idx", (chatDetailsIdx+1).toString())
+                        }
                     }
                 }
             })

@@ -13,6 +13,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
 import com.example.apophis_android.ui.ChipFactory
@@ -25,16 +26,18 @@ import java.lang.IllegalArgumentException
  * on 01월 07일, 2020
  */
 
-class UserChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val userChatList: MutableList<OurUserChat> = mutableListOf()
 
     override fun getItemViewType(position: Int): Int {
         return when (userChatList[position].tag) {
-            0 -> R.layout.item_chat_user
-            1 -> R.layout.item_chip_choice
-            2 -> R.layout.item_chat_short_answer
-            3 -> R.layout.item_chat_action
+            0 -> R.layout.item_chat_aponymous
+            1 -> R.layout.item_chat_aponymous_image
+            2 -> R.layout.item_chat_user
+            3 -> R.layout.item_chip_choice
+            4 -> R.layout.item_chat_short_answer
+            5 -> R.layout.item_chat_action
             else -> R.layout.item_chat_find_me
         }
     }
@@ -42,6 +45,14 @@ class UserChatAdapter(private val context: Context): RecyclerView.Adapter<Recycl
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return when (viewType) {
+            R.layout.item_chat_aponymous -> {
+                val view = layoutInflater.inflate(R.layout.item_chat_aponymous, parent, false)
+                AponymousViewHolder(view)
+            }
+            R.layout.item_chat_aponymous_image -> {
+                val view = layoutInflater.inflate(R.layout.item_chat_aponymous_image, parent, false)
+                AponymousImageViewHolder(view)
+            }
             R.layout.item_chat_user -> {
                 val view = layoutInflater.inflate(R.layout.item_chat_user, parent, false)
                 UserViewHolder(view)
@@ -51,7 +62,6 @@ class UserChatAdapter(private val context: Context): RecyclerView.Adapter<Recycl
                 ChoiceChatViewHolder(view, layoutInflater)
             }
             R.layout.item_chat_short_answer -> {
-                Log.d("다혜 여기는 채팅", "ㅇㅇ")
                 val view = layoutInflater.inflate(R.layout.item_chat_short_answer, parent, false)
                 UserInputViewHolder(view)
             }
@@ -65,6 +75,16 @@ class UserChatAdapter(private val context: Context): RecyclerView.Adapter<Recycl
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (holder is AponymousViewHolder) {
+            holder.bind(userChatList[position].content)
+            holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
+        }
+
+        if (holder is AponymousImageViewHolder) {
+            holder.bind(userChatList[position].content)
+            holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
+        }
+
         if (holder is UserViewHolder) {
             holder.bind(userChatList[position].content)
             holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
@@ -86,6 +106,24 @@ class UserChatAdapter(private val context: Context): RecyclerView.Adapter<Recycl
         }
     }
 
+    inner class AponymousViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val content = itemView.findViewById<TextView>(R.id.tv_aponymous_chat)
+        fun bind(text: MutableList<String>) {
+            text.forEach {
+                content.text = it
+            }
+        }
+    }
+
+    inner class AponymousImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val image = itemView.findViewById<ImageView>(R.id.img_chat_aponymous)
+        fun bind(imageUrl: MutableList<String>) {
+            imageUrl.forEach {
+                Glide.with(itemView).load(it).into(image)
+            }
+        }
+    }
+
     inner class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val content = itemView.findViewById<TextView>(R.id.tv_user_chat)
         fun bind(chatDataList: MutableList<String>) {
@@ -102,6 +140,7 @@ class UserChatAdapter(private val context: Context): RecyclerView.Adapter<Recycl
 
         fun bind(chipItem: MutableList<String>) {
             chipGroup.removeAllViews()
+            chipTextList.clear()
             chipItem.forEach {
                 val chip = ChipFactory.newInstance(inflater)
                 chip.text = it
@@ -110,7 +149,8 @@ class UserChatAdapter(private val context: Context): RecyclerView.Adapter<Recycl
                 chipTextList.add(it)
 
                 chip.setOnClickListener {
-                    itemClickListener.onItemClick(chipTextList)
+                    itemClickListener.onItemClick(chip.text.toString())
+                    // itemClickListener.onItemClick(chipTextList)
                 }
             }
         }
@@ -162,7 +202,7 @@ class UserChatAdapter(private val context: Context): RecyclerView.Adapter<Recycl
                 inputTextList.add("세 번째는 " + input3.text.toString())
 
                 for (i in inputTextList.indices) {
-                    val chatRight = OurUserChat(mutableListOf(inputTextList[i]), 0)
+                    val chatRight = OurUserChat(mutableListOf(inputTextList[i]), 2)
                     addChat(chatRight)
                 }
             }
@@ -185,9 +225,8 @@ class UserChatAdapter(private val context: Context): RecyclerView.Adapter<Recycl
         return userChatList.size
     }
 
-    fun addChat(ourUserChatItem: OurUserChat) {
-        Log.d("다혜 응 나 유저어댑터 들아옴", "응응응")
-        userChatList.add(ourUserChatItem)
+    fun addChat(userChatItem: OurUserChat) {
+        userChatList.add(userChatItem)
         notifyItemInserted(userChatList.size)
     }
 
@@ -198,7 +237,8 @@ class UserChatAdapter(private val context: Context): RecyclerView.Adapter<Recycl
 
     /* chip click listener */
     interface OnItemClickListener {
-        fun onItemClick(dataList: MutableList<String>)
+        fun onItemClick(data: String)
+        // fun onItemClick(dataList: MutableList<String>)
     }
 
     private lateinit var itemClickListener: OnItemClickListener

@@ -1,5 +1,6 @@
 package com.example.apophis_android.data.remote
 
+import com.example.apophis_android.data.remote.request.ReplyOneRequest
 import com.example.apophis_android.data.remote.response.*
 import retrofit2.Call
 import retrofit2.http.*
@@ -24,6 +25,15 @@ interface ApophisService {
         @Header("jwt") jwt: String,
         @Path("chatDetailsIdx") chatDetailsIdx: Int
     ): Call<BaseResponse<ChoiceChatResponse>>
+
+    @POST("/reply/{chatDetailsIdx}/{replyNum}")
+    fun requestReply(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("jwt") jwt: String,
+        @Path("chatDetailsIdx") chatDetailsIdx: Int,
+        @Path("replyNum") replyNum: Int,
+        @Body body: ReplyOneRequest
+    ): Call<BaseResponse<Unit>>
 
     companion object {
         const val BASE_URL = "http://52.78.210.107:3000"

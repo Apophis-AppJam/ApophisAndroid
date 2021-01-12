@@ -8,5 +8,5 @@ package com.example.apophis_android.data.entity
 /* 리팩토링을 위한 data class */
 data class OurUserChat(
     val content: MutableList<String>,
-    val tag: Int
+    var tag: Int
 )
