@@ -20,6 +20,7 @@ import com.example.apophis_android.ui.secondDay.SecondDayFindLightMeActivity
 import com.example.apophis_android.ui.secondDay.SecondDayTimepickerActivity
 import com.example.apophis_android.ui.secondDay.SecondDayValueActivity
 import com.google.android.material.chip.ChipGroup
+import org.w3c.dom.Text
 import java.lang.IllegalArgumentException
 
 /**
@@ -70,7 +71,7 @@ class ChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVi
             }
             R.layout.item_chat_short_answer -> {
                 val view = layoutInflater.inflate(R.layout.item_chat_short_answer, parent, false)
-                UserInputViewHolder(view)
+                UserShortAnswerViewHolder(view, callbackListener)
             }
             R.layout.item_chat_time -> {
                 val view = layoutInflater.inflate(R.layout.item_chat_time, parent, false)
@@ -110,8 +111,9 @@ class ChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVi
             holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
         }
 
-        if (holder is UserInputViewHolder) {
-            holder.bind()
+        if (holder is UserShortAnswerViewHolder) {
+            holder.bind(callbackListener)
+            //콜백리스너를 바인드 된 뷰홀더에 전달
             holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
         }
 
@@ -135,12 +137,6 @@ class ChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVi
         }
     }
 
-    inner class AponymousSoundViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(text: MutableList<String>) {
-
-        }
-    }
-
     inner class AponymousImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val image = itemView.findViewById<ImageView>(R.id.img_chat_aponymous)
         fun bind(imageUrl: MutableList<String>) {
@@ -149,6 +145,12 @@ class ChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVi
             }
             image.background = context.getDrawable(R.drawable.round_rectangle_black_23dp)
             image.clipToOutline = true
+        }
+    }
+
+    inner class AponymousSoundViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind(text: MutableList<String>) {
+
         }
     }
 
@@ -184,7 +186,7 @@ class ChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVi
         }
     }
 
-    inner class UserInputViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class UserShortAnswerViewHolder(itemView: View, callbackListener: CallbackListener) : RecyclerView.ViewHolder(itemView) {
         private var num1: TextView = itemView.findViewById(R.id.tv_user_input_1)
         private var num2: TextView = itemView.findViewById(R.id.tv_user_input_2)
         private var num3: TextView = itemView.findViewById(R.id.tv_user_input_3)
@@ -197,7 +199,9 @@ class ChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVi
         private var btnComplete: TextView = itemView.findViewById(R.id.btn_user_input_complete)
         private val inputTextList: MutableList<String> = mutableListOf()
 
-        fun bind() {
+        private val callbackListener = callbackListener
+
+        fun bind(callbackListener: CallbackListener) {
             input1.addTextChangedListener(object: TextWatcher {
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -233,8 +237,8 @@ class ChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVi
                     val chatRight = OurUserChat(mutableListOf(inputTextList[i]), 3)
                     addChat(chatRight)
                 }
+                callbackListener.callBack(inputTextList)
             }
-
         }
     }
 
@@ -292,6 +296,18 @@ class ChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVi
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
         this.itemClickListener = listener
+    }
+
+    /* callback listener */
+    interface CallbackListener {
+        fun callBack(inputTextList: MutableList<String>)
+    }
+
+    private lateinit var callbackListener: CallbackListener
+
+    //액티비티에서 전달 받은 콜백메소드를 설정하는 메소드
+    fun setCallbackListener(callbackListener: CallbackListener) {
+        this.callbackListener = callbackListener
     }
 
 }

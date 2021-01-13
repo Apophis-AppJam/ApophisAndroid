@@ -196,7 +196,7 @@ class SeventhDayChatActivity : AppCompatActivity() {
 
     private fun postReplyToServer(jwt: String, chatDetailsIdx: Int, replyNum: Int, replyString: String) {
         apophisService.getInstance()
-                .requestReply(
+                .requestOneReply(
                         jwt = jwt,
                         chatDetailsIdx = chatDetailsIdx,
                         replyNum = replyNum,
