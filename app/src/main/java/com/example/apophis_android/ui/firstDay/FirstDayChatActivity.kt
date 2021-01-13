@@ -33,7 +33,7 @@ class FirstDayChatActivity : AppCompatActivity() {
     private val apophisService = ApophisService
     private val jwt =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
-    private var chatDetailsIdx = 17
+    private var chatDetailsIdx = 9
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,7 +99,6 @@ class FirstDayChatActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         if (response.body()!!.success) {
                             var tag = 0
-                            Log.d("다다 아포가 받은 idx", chatDetailsIdx.toString())
                             for (i in response.body()!!.data.chat.indices) {
                                 tag = 0
                                 val nextAction = response.body()!!.data.chat[i].nextAction
@@ -117,7 +116,6 @@ class FirstDayChatActivity : AppCompatActivity() {
 
                             val replyType = response.body()!!.data.postInfo.replyType
                             tag = tagClassification(replyType)
-                            Log.d("다다 아포에서 보내는 idx", chatDetailsIdx.toString())
                             getChoiceChatFromServer(jwt, chatDetailsIdx, tag)
 
                             when (tag) {
@@ -130,9 +128,7 @@ class FirstDayChatActivity : AppCompatActivity() {
                                         /* tag == 2 -> user가 보내는 보라색 말풍선 */
                                         userChatAdapter.addChat(chatRight)
                                         et_first_chat_message.setText("")
-                                        Log.d("다다 여기로 잘 들어왔어", "클릭 리스너")
-                                        Log.d("다다 reply로 보내는 idx", chatDetailsIdx.toString())
-                                        postReplyToServer(jwt, chatDetailsIdx, 1, userChoice)
+                                        postReplyToServer(jwt, chatDetailsIdx, 1, userChoice, tag)
                                     }
                                 }
                                 else -> {
@@ -144,9 +140,7 @@ class FirstDayChatActivity : AppCompatActivity() {
                                         /* tag == 2 -> user가 보내는 보라색 말풍선 */
                                         userChatAdapter.addChat(chatRight)
                                         et_first_chat_message.setText("")
-                                        Log.d("다다 이제 여기서 어쩔거야", "클릭 리스너")
-                                        Log.d("다다 reply로 보내는 idx", chatDetailsIdx.toString())
-                                        postReplyToServer(jwt, chatDetailsIdx, 1, userChoice)
+                                        postReplyToServer(jwt, chatDetailsIdx, 1, userChoice, tag)
                                     }
                                 }
                             }
@@ -176,7 +170,6 @@ class FirstDayChatActivity : AppCompatActivity() {
                     //통신 성공
                     if (response.isSuccessful) {
                         if (response.body()!!.success) {
-                            Log.d("다다 choice가 받은 idx", chatDetailsIdx.toString())
                             val replyNum = response.body()!!.data.replyNum
                             val list = mutableListOf<String>()
                             for (i in response.body()!!.data.choiceWords.indices) {
@@ -195,35 +188,41 @@ class FirstDayChatActivity : AppCompatActivity() {
         jwt: String,
         chatDetailsIdx: Int,
         replyNum: Int,
-        replyString: String
+        replyString: String,
+        tag: Int
     ) {
-        apophisService.getInstance()
-            .requestReply(
-                jwt = jwt,
-                chatDetailsIdx = chatDetailsIdx,
-                replyNum = replyNum,
-                body = ReplyOneRequest(replyString)
-            ).enqueue(object : Callback<BaseResponse<Unit>> {
-                override fun onFailure(
-                    call: Call<BaseResponse<Unit>>,
-                    t: Throwable
-                ) { //통신 실패
-                    Log.d("fail", t.message)
-                }
+        if (tag == 6) {
+            getAponymousChatFromServer(jwt, chatDetailsIdx + 1)
+            Toast.makeText(this,"나침반",Toast.LENGTH_SHORT).show()
+        }
+        else {
+            apophisService.getInstance()
+                .requestReply(
+                    jwt = jwt,
+                    chatDetailsIdx = chatDetailsIdx,
+                    replyNum = replyNum,
+                    body = ReplyOneRequest(replyString)
+                ).enqueue(object : Callback<BaseResponse<Unit>> {
+                    override fun onFailure(
+                        call: Call<BaseResponse<Unit>>,
+                        t: Throwable
+                    ) { //통신 실패
+                        Log.d("fail", t.message)
+                    }
 
-                override fun onResponse(
-                    call: Call<BaseResponse<Unit>>,
-                    response: Response<BaseResponse<Unit>>
-                ) {
-                    if (response.isSuccessful) {
-                        if (response.body()!!.success) {
-                            Log.d("다다 reply에 들어온 idx", chatDetailsIdx.toString())
-                            getAponymousChatFromServer(jwt, chatDetailsIdx + 1)
-                            Log.d("다다 reply에서 보내는 idx", (chatDetailsIdx + 1).toString())
+                    override fun onResponse(
+                        call: Call<BaseResponse<Unit>>,
+                        response: Response<BaseResponse<Unit>>
+                    ) {
+                        if (response.isSuccessful) {
+                            if (response.body()!!.success) {
+                                getAponymousChatFromServer(jwt, chatDetailsIdx + 1)
+                                Toast.makeText(this@FirstDayChatActivity,"ss",Toast.LENGTH_SHORT).show()
+                            }
                         }
                     }
-                }
-            })
+                })
+        }
     }
 
     private fun tagClassification(replyType: String): Int {
@@ -246,14 +245,14 @@ class FirstDayChatActivity : AppCompatActivity() {
         // Check that it is the SecondActivity with an OK result
         if (requestCode == FirstDayChatAdapter.CAMERA_ACTIVITY_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
-                val uri : Uri? = data?.getParcelableExtra("savedUri")
+                val uri: Uri? = data?.getParcelableExtra("savedUri")
                 userChatAdapter.removeChat()
                 val aponymousChatData = OurUserChat(
                     mutableListOf(uri.toString()),
                     3
                 )
                 userChatAdapter.addChat(aponymousChatData)
-                postReplyToServer(jwt, chatDetailsIdx, 1, uri.toString())
+                postReplyToServer(jwt, chatDetailsIdx, 1, uri.toString(), 3)
             }
         }
     }

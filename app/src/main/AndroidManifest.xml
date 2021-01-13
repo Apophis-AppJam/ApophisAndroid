@@ -34,7 +34,7 @@
         <activity android:name=".ui.firstDay.CameraActivity"
             android:configChanges="orientation|keyboardHidden"/>
         <activity android:name=".ui.firstDay.CompassActivity" />
-        <activity android:name=".ui.firstDay.FirstDayChatActivity"/>
+        <activity android:name=".ui.firstDay.FirstDayChatActivity" />
 
         <activity android:name=".ui.secondDay.SecondDayChatActivity" >
             <intent-filter>
