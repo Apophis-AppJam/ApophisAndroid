@@ -1,6 +1,9 @@
 package com.example.apophis_android.ui.firstDay
 
+import android.app.Activity
+import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -30,7 +33,7 @@ class FirstDayChatActivity : AppCompatActivity() {
     private val apophisService = ApophisService
     private val jwt =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
-    private var chatDetailsIdx = 7
+    private var chatDetailsIdx = 17
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -118,7 +121,7 @@ class FirstDayChatActivity : AppCompatActivity() {
                             getChoiceChatFromServer(jwt, chatDetailsIdx, tag)
 
                             when (tag) {
-                                0, 1, 2, 5 -> {
+                                0, 1, 2, 5, 6 -> {
                                     /* 메세지 전송 버튼 클릭 시 */
                                     btn_first_send.setOnClickListener {
                                         userChatAdapter.removeChat()
@@ -234,6 +237,24 @@ class FirstDayChatActivity : AppCompatActivity() {
             return 8
         } else {
             return 2
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        // Check that it is the SecondActivity with an OK result
+        if (requestCode == FirstDayChatAdapter.CAMERA_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                val uri : Uri? = data?.getParcelableExtra("savedUri")
+                userChatAdapter.removeChat()
+                val aponymousChatData = OurUserChat(
+                    mutableListOf(uri.toString()),
+                    3
+                )
+                userChatAdapter.addChat(aponymousChatData)
+                postReplyToServer(jwt, chatDetailsIdx, 1, uri.toString())
+            }
         }
     }
 }

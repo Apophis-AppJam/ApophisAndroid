@@ -21,6 +21,7 @@
             android:id="@+id/img_chat_user_landscape"
             android:layout_width="191dp"
             android:layout_height="132dp"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

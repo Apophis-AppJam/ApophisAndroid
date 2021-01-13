@@ -2,6 +2,7 @@ package com.example.apophis_android.ui.firstDay
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
@@ -124,12 +125,10 @@ class CameraActivity : AppCompatActivity() {
 
                     override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                         val savedUri = Uri.fromFile(photoFile)
-//                    val msg = "Photo capture succeeded: $savedUri"
-//                    Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-//                    Log.d(TAG, msg)
-//                        val intent = Intent(this@CameraActivity, CameraActivity::class.java)
-//                        intent.putExtra("picture", savedUri)
-//                        startActivity(intent)
+                        val intent = Intent()
+                        intent.putExtra("savedUri", savedUri)
+                        setResult(Activity.RESULT_OK, intent)
+                        finish()
                     }
                 })
         }

@@ -1,13 +1,11 @@
 package com.example.apophis_android.ui.firstDay
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Color
-import android.text.Editable
-import android.text.TextWatcher
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,10 +17,8 @@ import com.bumptech.glide.Glide
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
 import com.example.apophis_android.ui.ChipFactory
-import com.example.apophis_android.ui.secondDay.SecondDayTimepickerActivity
-import com.example.apophis_android.ui.secondDay.adpater.ChatAdapter
 import com.google.android.material.chip.ChipGroup
-import java.lang.IllegalArgumentException
+
 
 /**
  * Created By hanjaehyeon
@@ -31,6 +27,7 @@ import java.lang.IllegalArgumentException
 class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val userChatList: MutableList<OurUserChat> = mutableListOf()
+    private var uri: Uri? = null
 
     override fun getItemViewType(position: Int): Int {
         return when (userChatList[position].tag) {
@@ -210,6 +207,7 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
 
         fun bind() {
             btnCompass.setOnClickListener {
+                itemClickListener.onItemClick("여긴가?")
                 val intent = Intent(context, CompassActivity::class.java)
                 context.startActivity(intent)
             }
@@ -222,7 +220,7 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
         fun bind() {
             btnCamera.setOnClickListener {
                 val intent = Intent(context, CameraActivity::class.java)
-                context.startActivity(intent)
+                (context as Activity).startActivityForResult(intent, CAMERA_ACTIVITY_REQUEST_CODE)
             }
         }
     }
@@ -253,4 +251,9 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
         this.itemClickListener = listener
     }
 
+    companion object { // companion object를 사용하면 자바에서 정적 변수/메서드를 사용했던 것과 동일하게 사용할 수 있다.
+        const val CAMERA_ACTIVITY_REQUEST_CODE = 0
+    }
 }
+
+

@@ -21,6 +21,7 @@
             android:id="@+id/img_chat_user_portrait"
             android:layout_width="136dp"
             android:layout_height="191dp"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
