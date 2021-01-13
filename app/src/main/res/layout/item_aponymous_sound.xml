@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/transparency00FF">
 
-    <ImageView
-        android:id="@+id/img_chat_left_tail"
-        android:layout_width="22dp"
-        android:layout_height="22dp"
-        android:layout_marginStart="7dp"
-        android:background="@drawable/img_textbox_left"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/view_aponymous_chat"
-        android:layout_width="wrap_content"
+        android:id="@+id/view_chat_sound"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/round_rectangle_black3a_17dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/round_rectangle_purple_17dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/img_sound"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
         <TextView
-            android:id="@+id/tv_aponymous_chat"
+            android:id="@+id/tv_sound_long"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
@@ -35,15 +38,15 @@
             android:layout_marginEnd="12dp"
             android:layout_marginBottom="12dp"
             android:fontFamily="@font/gmarket_sans_medium"
-            android:lineSpacingExtra="6dp"
-            android:maxWidth="260dp"
-            android:text="textView"
+            android:text="0:59"
             android:textColor="@color/white"
             android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_sound"
             app:layout_constraintTop_toTopOf="parent" />
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

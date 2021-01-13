@@ -42,7 +42,7 @@ class SecondDayBottomSheetDialogFragment : BottomSheetDialogFragment() {
             val text: String = makeText(hour)
 
             tv_timepicker_complete.setOnClickListener {
-                (activity as SecondDayTimepickerActivity).getFragmentData(time,text)
+                (activity as SecondDayTimepickerActivity).getFragmentData(time, text)
                 activity?.supportFragmentManager
                     ?.beginTransaction()
                     ?.remove(this)

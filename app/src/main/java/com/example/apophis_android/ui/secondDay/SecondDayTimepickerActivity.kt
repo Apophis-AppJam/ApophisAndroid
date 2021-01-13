@@ -25,19 +25,6 @@ class SecondDayTimepickerActivity : AppCompatActivity() {
         }
 
         btn_time_setting_complete.setOnClickListener { finish() }
-
-
-        val intent = intent
-        val tag = intent.getIntExtra("tag", 0)
-
-//        if (tag == 1000) {
-//            tv_clock_time.text = intent.getStringExtra("time")
-//            view_clock_act.visibility = View.VISIBLE
-//            tv_timepiker_final_ment.visibility = View.VISIBLE
-//            tv_timepiker_final_ment.text = intent.getStringExtra("text")
-//            btn_time_setting_complete.setImageResource(R.drawable.btn_complete_act)
-//            tv_time_setting_complete.setTextColor(Color.parseColor("#FFFFFF"))
-//        }
     }
 
     fun getFragmentData(time: String, text: String) {
