@@ -15,6 +15,10 @@ class SecondDayFindDarkMeActivity : AppCompatActivity() {
 
         btn_back.setOnClickListener { onBackPressed() }
 
+        btn_find_me_complete.setOnClickListener {
+            finish()
+        }
+
         et_find_dark_me_content.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 

@@ -1,5 +1,7 @@
 package com.example.apophis_android.ui.secondDay
 
+import android.app.Activity
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
@@ -23,18 +25,24 @@ class SecondDayTimepickerActivity : AppCompatActivity() {
             bottomSheetDialogFragment = SecondDayBottomSheetDialogFragment()
             bottomSheetDialogFragment.show(supportFragmentManager, "tag")
         }
-
-        btn_time_setting_complete.setOnClickListener { finish() }
     }
 
     fun getFragmentData(time: String, text: String) {
         this.time = time
         this.text = text
+
         tv_clock_time.text = time
         view_clock_act.visibility = View.VISIBLE
         tv_timepiker_final_ment.visibility = View.VISIBLE
         tv_timepiker_final_ment.text = text
         btn_time_setting_complete.setImageResource(R.drawable.btn_complete_act)
         tv_time_setting_complete.setTextColor(Color.parseColor("#FFFFFF"))
+
+        btn_time_setting_complete.setOnClickListener {
+            val intent = Intent()
+            intent.putExtra("text", text)
+            setResult(Activity.RESULT_OK, intent)
+            finish()
+        }
     }
 }

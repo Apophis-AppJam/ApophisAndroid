@@ -1,5 +1,7 @@
 package com.example.apophis_android.ui.secondDay
 
+import android.app.Activity
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,7 +16,7 @@ import com.example.apophis_android.data.remote.request.ReplyOneRequest
 import com.example.apophis_android.data.remote.response.AponymousChatResponse
 import com.example.apophis_android.data.remote.response.BaseResponse
 import com.example.apophis_android.data.remote.response.ChoiceChatResponse
-import com.example.apophis_android.ui.secondDay.adpater.ChatAdapter
+import com.example.apophis_android.ui.secondDay.adpater.SecondDayChatAdapter
 import kotlinx.android.synthetic.main.activity_second_day_chat.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,11 +24,11 @@ import retrofit2.Response
 
 class SecondDayChatActivity : AppCompatActivity() {
 
-    private lateinit var chatAdapter: ChatAdapter
+    private lateinit var chatAdapter: SecondDayChatAdapter
 
     private val apophisService = ApophisService
     private val jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
-    private var chatDetailsIdx = 30
+    private var chatDetailsIdx = 27
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +50,7 @@ class SecondDayChatActivity : AppCompatActivity() {
         })
 
         /* chip click listener 재정의 */
-        chatAdapter.setOnItemClickListener(object : ChatAdapter.OnItemClickListener {
+        chatAdapter.setOnItemClickListener(object : SecondDayChatAdapter.OnItemClickListener {
             override fun onItemClick(data: String) {
                 // override fun onItemClick(data: MutableList<String>) {
 
@@ -67,8 +69,19 @@ class SecondDayChatActivity : AppCompatActivity() {
     }
 
     private fun initRcv() {
-        chatAdapter = ChatAdapter(this)
+        chatAdapter = SecondDayChatAdapter(this)
         rcv_second_chat.adapter = chatAdapter
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == SecondDayChatAdapter.TIMER_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                val text = data?.getStringExtra("text")
+                et_second_chat_message.setText(text)
+            }
+        }
     }
 
     private fun getAponymousChatFromServer(jwt: String, chatDetailsIdx: Int) {
@@ -94,9 +107,14 @@ class SecondDayChatActivity : AppCompatActivity() {
                             var tag = 0
                             for (i in response.body()!!.data.chat.indices) {
 
-                                when (response.body()!!.data.chat[i].nextAction) {
+                                tag = when (response.body()!!.data.chat[i].nextAction) {
                                     "채팅 이미지" -> {
-                                        tag = 1
+                                        1
+                                    }
+                                    "음성송출1" -> {
+                                        2
+                                    } else -> {
+                                        0
                                     }
                                 }
 
@@ -115,14 +133,15 @@ class SecondDayChatActivity : AppCompatActivity() {
                                 7
                             } else if (replyType == "기능 액션 버튼 - 가치 선택") {
                                 8
+                            } else if(replyType == "장문형 텍스트 입력") {
+                                9
                             } else {
                                 3
                             }
-                            Log.d("다다 아포에서 보내는 idx", chatDetailsIdx.toString())
-                            getChoiceChatFromServer(jwt, chatDetailsIdx, tag)
 
                             when (tag) {
                                 0, 1, 3, 4 -> {
+                                    getChoiceChatFromServer(jwt, chatDetailsIdx, tag)
                                     /* 메세지 전송 버튼 클릭 시 */
                                     btn_chat_send.setOnClickListener {
                                         chatAdapter.removeChat()
@@ -134,14 +153,26 @@ class SecondDayChatActivity : AppCompatActivity() {
                                     }
                                 }
                                 5 -> { //short answer
-                                    chatAdapter.setCallbackListener(object : ChatAdapter.CallbackListener{
+                                    getChoiceChatFromServer(jwt, chatDetailsIdx, tag)
+                                    chatAdapter.setCallbackListener(object : SecondDayChatAdapter.CallbackListener{
                                         override fun callBack(inputTextList: MutableList<String>) {
                                             postReplyFourToServer(jwt, chatDetailsIdx, 4, inputTextList)
                                         }
-
                                     })
                                 }
+                                9 -> {
+                                    /* 메세지 전송 버튼 클릭 시 */
+                                    btn_chat_send.setOnClickListener {
+                                        chatAdapter.removeChat()
+                                        val userChoice = et_second_chat_message.text.toString()
+                                        val chatRight = OurUserChat(mutableListOf(userChoice), 3)
+                                        chatAdapter.addChat(chatRight)
+                                        et_second_chat_message.setText("")
+                                        postReplyOneToServer(jwt, chatDetailsIdx, 1, userChoice)
+                                    }
+                                }
                                 else -> {
+                                    getChoiceChatFromServer(jwt, chatDetailsIdx, tag)
                                     /* 메세지 전송 버튼 클릭 시 */
                                     btn_chat_send.setOnClickListener {
                                         chatAdapter.removeChat()
@@ -179,7 +210,6 @@ class SecondDayChatActivity : AppCompatActivity() {
                     //통신 성공
                     if (response.isSuccessful) {
                         if (response.body()!!.success) {
-                            Log.d("다다 choice가 받은 idx", chatDetailsIdx.toString())
                             val replyNum = response.body()!!.data.replyNum
                             val list = mutableListOf<String>()
                             for (i in response.body()!!.data.choiceWords.indices) {

@@ -50,6 +50,7 @@ class SecondDayValueActivity : AppCompatActivity() {
             val intent = Intent(this, SecondDayValueResultActivity::class.java)
             intent.putExtra("printingValue",selectedValue)
             startActivity(intent)
+            finish()
         }
 
         value_iv_love.setOnClickListener {
