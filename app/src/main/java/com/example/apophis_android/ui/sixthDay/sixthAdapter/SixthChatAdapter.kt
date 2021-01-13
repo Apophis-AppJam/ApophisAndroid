@@ -211,6 +211,7 @@ class SixthChatAdapter(private val context: Context): RecyclerView.Adapter<Recyc
 
         fun bind() {
             btnDirt.setOnClickListener {
+                itemClickListener.onItemClick("다 안지워지는 것 같은데.")
                 val intent = Intent(context, SixthDayDirtActivity::class.java)
                 context.startActivity(intent)
             }
