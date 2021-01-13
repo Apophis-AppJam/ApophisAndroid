@@ -13,8 +13,10 @@ class SecondDayValueResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second_day_value_result)
 
-        value_result_btn_back.setOnClickListener {
-            onBackPressed()
+        value_result_btn_back.setOnClickListener { onBackPressed() }
+
+        value_result_btn_complete.setOnClickListener {
+            finish()
         }
 
         var printingValue = intent.getStringExtra("printingValue")

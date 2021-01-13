@@ -1,5 +1,6 @@
 package com.example.apophis_android.ui.secondDay.adpater
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -20,7 +21,6 @@ import com.example.apophis_android.ui.secondDay.SecondDayFindLightMeActivity
 import com.example.apophis_android.ui.secondDay.SecondDayTimepickerActivity
 import com.example.apophis_android.ui.secondDay.SecondDayValueActivity
 import com.google.android.material.chip.ChipGroup
-import org.w3c.dom.Text
 import java.lang.IllegalArgumentException
 
 /**
@@ -28,7 +28,7 @@ import java.lang.IllegalArgumentException
  * on 01월 07일, 2020
  */
 
-class ChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class SecondDayChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val userChatList: MutableList<OurUserChat> = mutableListOf()
 
@@ -37,7 +37,7 @@ class ChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVi
             0 -> R.layout.item_chat_aponymous
             1 -> R.layout.item_chat_aponymous_image
             2 -> R.layout.item_aponymous_sound
-            3 -> R.layout.item_chat_user
+            3, 9 -> R.layout.item_chat_user //9 장문형
             4 -> R.layout.item_chip_choice
             5 -> R.layout.item_chat_short_answer
             6 -> R.layout.item_chat_time
@@ -113,7 +113,6 @@ class ChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVi
 
         if (holder is UserShortAnswerViewHolder) {
             holder.bind(callbackListener)
-            //콜백리스너를 바인드 된 뷰홀더에 전달
             holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
         }
 
@@ -123,6 +122,11 @@ class ChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVi
         }
 
         if (holder is FindMeActionViewHolder) {
+            holder.bind()
+            holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
+        }
+
+        if (holder is ValueActionViewHolder) {
             holder.bind()
             holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
         }
@@ -199,8 +203,6 @@ class ChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVi
         private var btnComplete: TextView = itemView.findViewById(R.id.btn_user_input_complete)
         private val inputTextList: MutableList<String> = mutableListOf()
 
-        private val callbackListener = callbackListener
-
         fun bind(callbackListener: CallbackListener) {
             input1.addTextChangedListener(object: TextWatcher {
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -247,7 +249,8 @@ class ChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVi
         fun bind() {
             btnAction.setOnClickListener {
                 val intent = Intent(context, SecondDayTimepickerActivity::class.java)
-                context.startActivity(intent)
+                (context as Activity).startActivityForResult(intent, TIMER_ACTIVITY_REQUEST_CODE
+                )
             }
         }
     }
@@ -256,6 +259,7 @@ class ChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVi
         private val btnAction = itemView.findViewById<ImageView>(R.id.btn_find_me)
         fun bind() {
             btnAction.setOnClickListener {
+                itemClickListener.onItemClick("이런 모습들이 있는 것 같아.")
                 val intent = Intent(context, SecondDayFindLightMeActivity::class.java)
                 context.startActivity(intent)
             }
@@ -266,6 +270,7 @@ class ChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVi
         private val btnAction = itemView.findViewById<ImageView>(R.id.btn_value)
         fun bind() {
             btnAction.setOnClickListener {
+                itemClickListener.onItemClick("했어.")
                 val intent = Intent(context, SecondDayValueActivity::class.java)
                 context.startActivity(intent)
             }
@@ -305,9 +310,15 @@ class ChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVi
 
     private lateinit var callbackListener: CallbackListener
 
-    //액티비티에서 전달 받은 콜백메소드를 설정하는 메소드
     fun setCallbackListener(callbackListener: CallbackListener) {
         this.callbackListener = callbackListener
+    }
+
+    companion object {
+        const val TIMER_ACTIVITY_REQUEST_CODE = 26
+        // 26 = 2일차 viewType 6
+        const val FIND_ME_ACTIVITY_REQUEST_CODE = 27
+        const val VALUE_ACTIVITY_REQUEST_CODE = 28
     }
 
 }

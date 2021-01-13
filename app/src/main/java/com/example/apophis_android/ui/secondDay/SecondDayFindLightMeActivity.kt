@@ -20,8 +20,10 @@ class SecondDayFindLightMeActivity : AppCompatActivity() {
 
         btn_find_me_next.setOnClickListener {
             val intent = Intent(this, SecondDayFindDarkMeActivity::class.java)
+            intent.putExtra("light", et_find_light_me_content.text)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+            finish()
         }
 
         et_find_light_me_content.addTextChangedListener (object: TextWatcher {
