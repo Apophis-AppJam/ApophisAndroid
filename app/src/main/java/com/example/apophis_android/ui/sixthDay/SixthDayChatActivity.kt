@@ -10,6 +10,7 @@ import android.os.Vibrator
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import com.airbnb.lottie.LottieAnimationView
 //import com.airbnb.lottie.LottieAnimationView
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
@@ -30,7 +31,7 @@ class SixthDayChatActivity : AppCompatActivity() {
 
     private val apophisService = ApophisService
     private val jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
-    private var chatDetailsIdx = 111
+    private var chatDetailsIdx = 110
 
     private var vibrator: Vibrator? = null
 
@@ -118,27 +119,29 @@ class SixthDayChatActivity : AppCompatActivity() {
                                     Handler().postDelayed({
                                         vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
                                         vibrator?.vibrate(500)
+                                    }, 1500)
 
-                                        var shutterPlayer = MediaPlayer.create(this@SixthDayChatActivity, R.raw.sound_shutter)
+                                    Handler().postDelayed({
+                                        var shutterPlayer = MediaPlayer.create(this@SixthDayChatActivity, R.raw.shutter)
                                         shutterPlayer.start()
-                                    }, 2000)
+                                    }, 1000)
                                 }
 
                                 if (nextAction == "진동, 찰칵 음성, 애니메이션-카메라 조리개") {
                                     Handler().postDelayed({
                                         vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
                                         vibrator?.vibrate(500)
-
-                                        /*val sixthLottieShutter: LottieAnimationView = findViewById(R.id.sixth_lottie_shutter)
-                                        sixthLottieShutter.bringToFront()
-                                        sixthLottieShutter.setAnimation(R.raw.day6_shutter)
-                                        sixthLottieShutter.playAnimation()*/
-                                    }, 2000)
+                                    }, 1500)
 
                                     Handler().postDelayed({
-                                        var shutterPlayer = MediaPlayer.create(this@SixthDayChatActivity, R.raw.sound_shutter)
+                                        var shutterPlayer = MediaPlayer.create(this@SixthDayChatActivity, R.raw.shutter)
                                         shutterPlayer.start()
-                                    }, 2500)
+
+//                                        val sixthLottieShutter: LottieAnimationView = findViewById(R.id.sixth_lottie_shutter)
+//                                        sixthLottieShutter.bringToFront()
+//                                        sixthLottieShutter.setAnimation(R.raw.day6_shutter)
+//                                        sixthLottieShutter.playAnimation()
+                                    }, 1000)
                                 }
 
                                 val aponymousChatData = OurUserChat(mutableListOf(response.body()!!.data.chat[i].text), tag)

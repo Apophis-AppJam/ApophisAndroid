@@ -78,7 +78,6 @@ dependencies {
     implementation "androidx.camera:camera-lifecycle:$camerax_version"
     implementation "androidx.camera:camera-view:1.0.0-alpha14"
 
-    /* lottie
-    *  */
+    /* lottie */
     implementation 'com.airbnb.android:lottie:3.0.7'
 }
