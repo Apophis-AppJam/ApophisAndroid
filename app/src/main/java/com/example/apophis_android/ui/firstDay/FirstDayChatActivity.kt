@@ -198,7 +198,7 @@ class FirstDayChatActivity : AppCompatActivity() {
         replyString: String
     ) {
         apophisService.getInstance()
-            .requestReply(
+            .requestOneReply(
                 jwt = jwt,
                 chatDetailsIdx = chatDetailsIdx,
                 replyNum = replyNum,

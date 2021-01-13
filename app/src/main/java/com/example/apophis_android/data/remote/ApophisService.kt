@@ -1,5 +1,6 @@
 package com.example.apophis_android.data.remote
 
+import com.example.apophis_android.data.remote.request.ReplyFourRequest
 import com.example.apophis_android.data.remote.request.ReplyOneRequest
 import com.example.apophis_android.data.remote.response.*
 import retrofit2.Call
@@ -27,12 +28,21 @@ interface ApophisService {
     ): Call<BaseResponse<ChoiceChatResponse>>
 
     @POST("/reply/{chatDetailsIdx}/{replyNum}")
-    fun requestReply(
+    fun requestOneReply(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("jwt") jwt: String,
         @Path("chatDetailsIdx") chatDetailsIdx: Int,
         @Path("replyNum") replyNum: Int,
         @Body body: ReplyOneRequest
+    ): Call<BaseResponse<Unit>>
+
+    @POST("/reply/{chatDetailsIdx}/{replyNum}")
+    fun requestFourReply(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("jwt") jwt: String,
+        @Path("chatDetailsIdx") chatDetailsIdx: Int,
+        @Path("replyNum") replyNum: Int,
+        @Body body: ReplyFourRequest
     ): Call<BaseResponse<Unit>>
 
     companion object {

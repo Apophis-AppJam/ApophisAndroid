@@ -9,6 +9,7 @@ import android.util.Log
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
 import com.example.apophis_android.data.remote.ApophisService
+import com.example.apophis_android.data.remote.request.ReplyFourRequest
 import com.example.apophis_android.data.remote.request.ReplyOneRequest
 import com.example.apophis_android.data.remote.response.AponymousChatResponse
 import com.example.apophis_android.data.remote.response.BaseResponse
@@ -21,11 +22,11 @@ import retrofit2.Response
 
 class SecondDayChatActivity : AppCompatActivity() {
 
-    private lateinit var userChatAdapter: ChatAdapter
+    private lateinit var chatAdapter: ChatAdapter
 
     private val apophisService = ApophisService
     private val jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
-    private var chatDetailsIdx = 23
+    private var chatDetailsIdx = 30
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +48,7 @@ class SecondDayChatActivity : AppCompatActivity() {
         })
 
         /* chip click listener 재정의 */
-        userChatAdapter.setOnItemClickListener(object : ChatAdapter.OnItemClickListener {
+        chatAdapter.setOnItemClickListener(object : ChatAdapter.OnItemClickListener {
             override fun onItemClick(data: String) {
                 // override fun onItemClick(data: MutableList<String>) {
 
@@ -66,8 +67,8 @@ class SecondDayChatActivity : AppCompatActivity() {
     }
 
     private fun initRcv() {
-        userChatAdapter = ChatAdapter(this)
-        rcv_second_chat.adapter = userChatAdapter
+        chatAdapter = ChatAdapter(this)
+        rcv_second_chat.adapter = chatAdapter
     }
 
     private fun getAponymousChatFromServer(jwt: String, chatDetailsIdx: Int) {
@@ -91,7 +92,6 @@ class SecondDayChatActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         if (response.body()!!.success) {
                             var tag = 0
-                            Log.d("다다 아포가 받은 idx", chatDetailsIdx.toString())
                             for (i in response.body()!!.data.chat.indices) {
 
                                 when (response.body()!!.data.chat[i].nextAction) {
@@ -101,7 +101,7 @@ class SecondDayChatActivity : AppCompatActivity() {
                                 }
 
                                 val aponymousChatData = OurUserChat(mutableListOf(response.body()!!.data.chat[i].text), tag)
-                                userChatAdapter.addChat(aponymousChatData)
+                                chatAdapter.addChat(aponymousChatData)
                             }
 
                             val replyType = response.body()!!.data.postInfo.replyType
@@ -111,7 +111,7 @@ class SecondDayChatActivity : AppCompatActivity() {
                                 5
                             } else if (replyType == "기능 액션 버튼 - 시간대 설정") {
                                 6
-                            } else if (replyType == "기능 액션 버튼 - 두개의 나") {
+                            } else if (replyType == "기능 액션 버튼 - 두개의 나 ") {
                                 7
                             } else if (replyType == "기능 액션 버튼 - 가치 선택") {
                                 8
@@ -125,29 +125,31 @@ class SecondDayChatActivity : AppCompatActivity() {
                                 0, 1, 3, 4 -> {
                                     /* 메세지 전송 버튼 클릭 시 */
                                     btn_chat_send.setOnClickListener {
-                                        userChatAdapter.removeChat()
+                                        chatAdapter.removeChat()
                                         val userChoice = et_second_chat_message.text.toString()
                                         val chatRight = OurUserChat(mutableListOf(userChoice), 3)
-                                        /* tag == 3 -> user가 보내는 보라색 말풍선 */
-                                        userChatAdapter.addChat(chatRight)
+                                        chatAdapter.addChat(chatRight)
                                         et_second_chat_message.setText("")
-                                        Log.d("다다 여기로 잘 들어왔어", "클릭 리스너")
-                                        Log.d("다다 reply로 보내는 idx", chatDetailsIdx.toString())
-                                        postReplyToServer(jwt, chatDetailsIdx, 1, userChoice)
+                                        postReplyOneToServer(jwt, chatDetailsIdx, 1, userChoice)
                                     }
+                                }
+                                5 -> { //short answer
+                                    chatAdapter.setCallbackListener(object : ChatAdapter.CallbackListener{
+                                        override fun callBack(inputTextList: MutableList<String>) {
+                                            postReplyFourToServer(jwt, chatDetailsIdx, 4, inputTextList)
+                                        }
+
+                                    })
                                 }
                                 else -> {
                                     /* 메세지 전송 버튼 클릭 시 */
                                     btn_chat_send.setOnClickListener {
-                                        userChatAdapter.removeChat()
+                                        chatAdapter.removeChat()
                                         val userChoice = et_second_chat_message.text.toString()
                                         val chatRight = OurUserChat(mutableListOf(userChoice), 3)
-                                        /* tag == 3 -> user가 보내는 보라색 말풍선 */
-                                        userChatAdapter.addChat(chatRight)
+                                        chatAdapter.addChat(chatRight)
                                         et_second_chat_message.setText("")
-                                        Log.d("다다 이제 여기서 어쩔거야", "클릭 리스너")
-                                        Log.d("다다 reply로 보내는 idx", chatDetailsIdx.toString())
-                                        postReplyToServer(jwt, chatDetailsIdx, 1, userChoice)
+                                        postReplyOneToServer(jwt, chatDetailsIdx, 1, userChoice)
                                     }
                                 }
                             }
@@ -184,7 +186,7 @@ class SecondDayChatActivity : AppCompatActivity() {
                                 list.add(response.body()!!.data.choiceWords[i].choiceWords)
                             }
                             val choiceChatData = OurUserChat(list, tag)
-                            userChatAdapter.addChat(choiceChatData)
+                            chatAdapter.addChat(choiceChatData)
                         }
 
                     }
@@ -192,9 +194,9 @@ class SecondDayChatActivity : AppCompatActivity() {
             })
     }
 
-    private fun postReplyToServer(jwt: String, chatDetailsIdx: Int, replyNum: Int, replyString: String) {
+    private fun postReplyOneToServer(jwt: String, chatDetailsIdx: Int, replyNum: Int, replyString: String) {
         apophisService.getInstance()
-            .requestReply(
+            .requestOneReply(
                 jwt = jwt,
                 chatDetailsIdx = chatDetailsIdx,
                 replyNum = replyNum,
@@ -213,9 +215,37 @@ class SecondDayChatActivity : AppCompatActivity() {
                 ) {
                     if (response.isSuccessful) {
                         if (response.body()!!.success) {
-                            Log.d("다다 reply에 들어온 idx", chatDetailsIdx.toString())
                             getAponymousChatFromServer(jwt, chatDetailsIdx + 1)
-                            Log.d("다다 reply에서 보내는 idx", (chatDetailsIdx+1).toString())
+                            btn_chat_send.setImageResource(R.drawable.btn_send_unact)
+                        }
+                    }
+                }
+            })
+    }
+
+    private fun postReplyFourToServer(jwt: String, chatDetailsIdx: Int, replyNum: Int, reply: MutableList<String>) {
+        apophisService.getInstance()
+            .requestFourReply(
+                jwt = jwt,
+                chatDetailsIdx = chatDetailsIdx,
+                replyNum = replyNum,
+                body = ReplyFourRequest(reply[0], reply[1], reply[2], reply[3])
+            ) .enqueue(object : Callback<BaseResponse<Unit>> {
+                override fun onFailure(
+                    call: Call<BaseResponse<Unit>>,
+                    t: Throwable
+                ) { //통신 실패
+                    Log.d("fail", t.message)
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponse<Unit>>,
+                    response: Response<BaseResponse<Unit>>
+                ) {
+                    if (response.isSuccessful) {
+                        if (response.body()!!.success) {
+                            getAponymousChatFromServer(jwt, chatDetailsIdx + 1)
+                            btn_chat_send.setImageResource(R.drawable.btn_send_unact)
                         }
                     }
                 }

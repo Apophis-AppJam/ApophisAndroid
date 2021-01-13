@@ -10,8 +10,7 @@ import android.os.Vibrator
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.airbnb.lottie.LottieAnimationView
+//import com.airbnb.lottie.LottieAnimationView
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
 import com.example.apophis_android.data.remote.ApophisService
@@ -130,10 +129,10 @@ class SixthDayChatActivity : AppCompatActivity() {
                                         vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
                                         vibrator?.vibrate(500)
 
-                                        val sixthLottieShutter: LottieAnimationView = findViewById(R.id.sixth_lottie_shutter)
+                                        /*val sixthLottieShutter: LottieAnimationView = findViewById(R.id.sixth_lottie_shutter)
                                         sixthLottieShutter.bringToFront()
                                         sixthLottieShutter.setAnimation(R.raw.day6_shutter)
-                                        sixthLottieShutter.playAnimation()
+                                        sixthLottieShutter.playAnimation()*/
                                     }, 2000)
 
                                     Handler().postDelayed({
@@ -236,7 +235,7 @@ class SixthDayChatActivity : AppCompatActivity() {
 
     private fun postReplyToServer(jwt: String, chatDetailsIdx: Int, replyNum: Int, replyString: String) {
         apophisService.getInstance()
-            .requestReply(
+            .requestOneReply(
                 jwt = jwt,
                 chatDetailsIdx = chatDetailsIdx,
                 replyNum = replyNum,
