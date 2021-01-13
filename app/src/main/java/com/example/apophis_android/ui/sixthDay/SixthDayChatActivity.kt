@@ -2,6 +2,7 @@ package com.example.apophis_android.ui.sixthDay
 
 import android.content.Context
 import android.graphics.Color
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -30,7 +31,7 @@ class SixthDayChatActivity : AppCompatActivity() {
 
     private val apophisService = ApophisService
     private val jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
-    private var chatDetailsIdx = 101
+    private var chatDetailsIdx = 111
 
     private var vibrator: Vibrator? = null
 
@@ -118,6 +119,9 @@ class SixthDayChatActivity : AppCompatActivity() {
                                     Handler().postDelayed({
                                         vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
                                         vibrator?.vibrate(500)
+
+                                        var shutterPlayer = MediaPlayer.create(this@SixthDayChatActivity, R.raw.sound_shutter)
+                                        shutterPlayer.start()
                                     }, 2000)
                                 }
 
@@ -127,9 +131,15 @@ class SixthDayChatActivity : AppCompatActivity() {
                                         vibrator?.vibrate(500)
 
                                         val sixthLottieShutter: LottieAnimationView = findViewById(R.id.sixth_lottie_shutter)
+                                        sixthLottieShutter.bringToFront()
                                         sixthLottieShutter.setAnimation(R.raw.day6_shutter)
                                         sixthLottieShutter.playAnimation()
                                     }, 2000)
+
+                                    Handler().postDelayed({
+                                        var shutterPlayer = MediaPlayer.create(this@SixthDayChatActivity, R.raw.sound_shutter)
+                                        shutterPlayer.start()
+                                    }, 2500)
                                 }
 
                                 val aponymousChatData = OurUserChat(mutableListOf(response.body()!!.data.chat[i].text), tag)
@@ -163,7 +173,7 @@ class SixthDayChatActivity : AppCompatActivity() {
                                         sixthUserChatAdapter.addChat(chatRight)
                                         sixth_rcv_chat.smoothScrollToPosition(sixthUserChatAdapter.itemCount - 1)
                                         sixth_et_chat_message.setText("")
-                                        Log.d("다다 여기로 잘 들어왔어", "클릭 리스너")
+                                        Log.d("다다 여기로 잘 들어왔어", "클릭 리스너, $chatRight")
                                         Log.d("다다 reply로 보내는 idx", chatDetailsIdx.toString())
                                         postReplyToServer(jwt, chatDetailsIdx, 1, userChoice)
                                     }
@@ -178,7 +188,7 @@ class SixthDayChatActivity : AppCompatActivity() {
                                         sixthUserChatAdapter.addChat(chatRight)
                                         sixth_rcv_chat.smoothScrollToPosition(sixthUserChatAdapter.itemCount - 1)
                                         sixth_et_chat_message.setText("")
-                                        Log.d("다다 이제 여기서 어쩔거야", "클릭 리스너")
+                                        Log.d("다다 이제 여기서 어쩔거야", "클릭 리스너, $chatRight")
                                         Log.d("다다 reply로 보내는 idx", chatDetailsIdx.toString())
                                         postReplyToServer(jwt, chatDetailsIdx, 1, userChoice)
                                     }
