@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +16,9 @@ import com.bumptech.glide.Glide
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
 import com.example.apophis_android.ui.ChipFactory
+import com.example.apophis_android.ui.secondDay.SecondDayFindLightMeActivity
 import com.example.apophis_android.ui.secondDay.SecondDayTimepickerActivity
+import com.example.apophis_android.ui.secondDay.SecondDayValueActivity
 import com.google.android.material.chip.ChipGroup
 import java.lang.IllegalArgumentException
 
@@ -34,11 +35,13 @@ class ChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVi
         return when (userChatList[position].tag) {
             0 -> R.layout.item_chat_aponymous
             1 -> R.layout.item_chat_aponymous_image
-            2 -> R.layout.item_chat_user
-            3 -> R.layout.item_chip_choice
-            4 -> R.layout.item_chat_short_answer
-            5 -> R.layout.item_chat_action
-            else -> R.layout.item_chat_find_me
+            2 -> R.layout.item_aponymous_sound
+            3 -> R.layout.item_chat_user
+            4 -> R.layout.item_chip_choice
+            5 -> R.layout.item_chat_short_answer
+            6 -> R.layout.item_chat_time
+            7 -> R.layout.item_chat_find_me
+            else -> R.layout.item_chat_value
         }
     }
 
@@ -53,6 +56,10 @@ class ChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVi
                 val view = layoutInflater.inflate(R.layout.item_chat_aponymous_image, parent, false)
                 AponymousImageViewHolder(view)
             }
+            R.layout.item_aponymous_sound -> {
+                val view = layoutInflater.inflate(R.layout.item_aponymous_sound, parent, false)
+                AponymousSoundViewHolder(view)
+            }
             R.layout.item_chat_user -> {
                 val view = layoutInflater.inflate(R.layout.item_chat_user, parent, false)
                 UserViewHolder(view)
@@ -65,9 +72,17 @@ class ChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVi
                 val view = layoutInflater.inflate(R.layout.item_chat_short_answer, parent, false)
                 UserInputViewHolder(view)
             }
-            R.layout.item_chat_action -> {
-                val view = layoutInflater.inflate(R.layout.item_chat_action, parent, false)
-                ActionViewHolder(view)
+            R.layout.item_chat_time -> {
+                val view = layoutInflater.inflate(R.layout.item_chat_time, parent, false)
+                TimerActionViewHolder(view)
+            }
+            R.layout.item_chat_find_me -> {
+                val view = layoutInflater.inflate(R.layout.item_chat_find_me, parent, false)
+                FindMeActionViewHolder(view)
+            }
+            R.layout.item_chat_value -> {
+                val view = layoutInflater.inflate(R.layout.item_chat_value, parent, false)
+                ValueActionViewHolder(view)
             }
             else ->
                 throw IllegalArgumentException("ViewType [$viewType] is unexpected")
@@ -100,7 +115,12 @@ class ChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVi
             holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
         }
 
-        if (holder is ActionViewHolder) {
+        if (holder is TimerActionViewHolder) {
+            holder.bind()
+            holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
+        }
+
+        if (holder is FindMeActionViewHolder) {
             holder.bind()
             holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
         }
@@ -115,12 +135,20 @@ class ChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVi
         }
     }
 
+    inner class AponymousSoundViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind(text: MutableList<String>) {
+
+        }
+    }
+
     inner class AponymousImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val image = itemView.findViewById<ImageView>(R.id.img_chat_aponymous)
         fun bind(imageUrl: MutableList<String>) {
             imageUrl.forEach {
                 Glide.with(itemView).load(it).into(image)
             }
+            image.background = context.getDrawable(R.drawable.round_rectangle_black_23dp)
+            image.clipToOutline = true
         }
     }
 
@@ -202,7 +230,7 @@ class ChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVi
                 inputTextList.add("세 번째는 " + input3.text.toString())
 
                 for (i in inputTextList.indices) {
-                    val chatRight = OurUserChat(mutableListOf(inputTextList[i]), 2)
+                    val chatRight = OurUserChat(mutableListOf(inputTextList[i]), 3)
                     addChat(chatRight)
                 }
             }
@@ -210,12 +238,31 @@ class ChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVi
         }
     }
 
-    inner class ActionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val btnAction = itemView.findViewById<ImageView>(R.id.btn_action)
-
+    inner class TimerActionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val btnAction = itemView.findViewById<ImageView>(R.id.btn_timer)
         fun bind() {
             btnAction.setOnClickListener {
                 val intent = Intent(context, SecondDayTimepickerActivity::class.java)
+                context.startActivity(intent)
+            }
+        }
+    }
+
+    inner class FindMeActionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val btnAction = itemView.findViewById<ImageView>(R.id.btn_find_me)
+        fun bind() {
+            btnAction.setOnClickListener {
+                val intent = Intent(context, SecondDayFindLightMeActivity::class.java)
+                context.startActivity(intent)
+            }
+        }
+    }
+
+    inner class ValueActionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val btnAction = itemView.findViewById<ImageView>(R.id.btn_value)
+        fun bind() {
+            btnAction.setOnClickListener {
+                val intent = Intent(context, SecondDayValueActivity::class.java)
                 context.startActivity(intent)
             }
         }

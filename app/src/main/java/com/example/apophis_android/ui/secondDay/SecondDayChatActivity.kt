@@ -25,7 +25,7 @@ class SecondDayChatActivity : AppCompatActivity() {
 
     private val apophisService = ApophisService
     private val jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
-    private var chatDetailsIdx = 7
+    private var chatDetailsIdx = 23
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,9 +94,10 @@ class SecondDayChatActivity : AppCompatActivity() {
                             Log.d("다다 아포가 받은 idx", chatDetailsIdx.toString())
                             for (i in response.body()!!.data.chat.indices) {
 
-                                val nextAction = response.body()!!.data.chat[i].nextAction
-                                if (nextAction == "채팅 이미지") {
-                                    tag = 1
+                                when (response.body()!!.data.chat[i].nextAction) {
+                                    "채팅 이미지" -> {
+                                        tag = 1
+                                    }
                                 }
 
                                 val aponymousChatData = OurUserChat(mutableListOf(response.body()!!.data.chat[i].text), tag)
@@ -105,27 +106,29 @@ class SecondDayChatActivity : AppCompatActivity() {
 
                             val replyType = response.body()!!.data.postInfo.replyType
                             tag = if (replyType == "단일 보기 선택" || replyType == "다중 보기 선택" || replyType == "카테고리 선택") {
-                                3
-                            } else if (replyType == "단답형 텍스트 입력") {
                                 4
-                            } else if (replyType == "기능 액션 버튼 - 시간대 설정") {
+                            } else if (replyType == "단답형 텍스트 입력") {
                                 5
-                            } else if (replyType == "기능 액션 버튼 - 두개의 나 ") {
+                            } else if (replyType == "기능 액션 버튼 - 시간대 설정") {
                                 6
+                            } else if (replyType == "기능 액션 버튼 - 두개의 나") {
+                                7
+                            } else if (replyType == "기능 액션 버튼 - 가치 선택") {
+                                8
                             } else {
-                                2
+                                3
                             }
                             Log.d("다다 아포에서 보내는 idx", chatDetailsIdx.toString())
                             getChoiceChatFromServer(jwt, chatDetailsIdx, tag)
 
                             when (tag) {
-                                0, 1, 2, 3 -> {
+                                0, 1, 3, 4 -> {
                                     /* 메세지 전송 버튼 클릭 시 */
                                     btn_chat_send.setOnClickListener {
                                         userChatAdapter.removeChat()
                                         val userChoice = et_second_chat_message.text.toString()
-                                        val chatRight = OurUserChat(mutableListOf(userChoice), 2)
-                                        /* tag == 2 -> user가 보내는 보라색 말풍선 */
+                                        val chatRight = OurUserChat(mutableListOf(userChoice), 3)
+                                        /* tag == 3 -> user가 보내는 보라색 말풍선 */
                                         userChatAdapter.addChat(chatRight)
                                         et_second_chat_message.setText("")
                                         Log.d("다다 여기로 잘 들어왔어", "클릭 리스너")
@@ -138,8 +141,8 @@ class SecondDayChatActivity : AppCompatActivity() {
                                     btn_chat_send.setOnClickListener {
                                         userChatAdapter.removeChat()
                                         val userChoice = et_second_chat_message.text.toString()
-                                        val chatRight = OurUserChat(mutableListOf(userChoice), 2)
-                                        /* tag == 2 -> user가 보내는 보라색 말풍선 */
+                                        val chatRight = OurUserChat(mutableListOf(userChoice), 3)
+                                        /* tag == 3 -> user가 보내는 보라색 말풍선 */
                                         userChatAdapter.addChat(chatRight)
                                         et_second_chat_message.setText("")
                                         Log.d("다다 이제 여기서 어쩔거야", "클릭 리스너")
