@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black262627"
-    tools:context=".ui.sixthDay.SixthDayChatActivity">
+    tools:context=".ui.seventhDay.SeventhDayChatActivity">
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/sixth_lottie_shutter"
+        android:id="@+id/seventh_lottie_shutter"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/sixth_cl_chat_header"
+        android:id="@+id/seventh_cl_chat_header"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/black2C2C2D"
@@ -27,7 +27,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/sixth_btn_back"
+            android:id="@+id/seventh_btn_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -39,7 +39,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/sixth_tv_chat_header"
+            android:id="@+id/seventh_tv_chat_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="39dp"
@@ -50,24 +50,24 @@
             android:textColor="@color/white"
             android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/sixth_btn_back"
+            app:layout_constraintStart_toEndOf="@+id/seventh_btn_back"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/sixth_rcv_chat"
+        android:id="@+id/seventh_rcv_chat"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layoutAnimation="@anim/layout_animation_bottom_to_top"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/sixth_cl_chat_bottom"
+        app:layout_constraintBottom_toTopOf="@+id/seventh_cl_chat_bottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sixth_cl_chat_header" />
+        app:layout_constraintTop_toBottomOf="@+id/seventh_cl_chat_header" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/sixth_cl_chat_bottom"
+        android:id="@+id/seventh_cl_chat_bottom"
         android:layout_width="match_parent"
         android:layout_height="42dp"
         android:background="@color/black2C2C2D"
@@ -76,7 +76,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <View
-            android:id="@+id/sixth_view_chat_keyboard"
+            android:id="@+id/seventh_view_chat_keyboard"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="12dp"
@@ -90,19 +90,19 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/sixth_btn_chat_send"
+            android:id="@+id/seventh_btn_chat_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:layout_marginEnd="3dp"
             android:layout_marginBottom="3dp"
-            app:layout_constraintBottom_toBottomOf="@+id/sixth_view_chat_keyboard"
-            app:layout_constraintEnd_toEndOf="@+id/sixth_view_chat_keyboard"
-            app:layout_constraintTop_toTopOf="@+id/sixth_view_chat_keyboard"
+            app:layout_constraintBottom_toBottomOf="@+id/seventh_view_chat_keyboard"
+            app:layout_constraintEnd_toEndOf="@+id/seventh_view_chat_keyboard"
+            app:layout_constraintTop_toTopOf="@+id/seventh_view_chat_keyboard"
             app:srcCompat="@drawable/btn_send_unact" />
 
         <EditText
-            android:id="@+id/sixth_et_chat_message"
+            android:id="@+id/seventh_et_chat_message"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="12dp"
@@ -118,10 +118,10 @@
             android:textColorHint="@color/gray70"
             android:textColor="@color/white"
             android:fontFamily="@font/gmarket_sans_medium"
-            app:layout_constraintEnd_toStartOf="@+id/sixth_btn_chat_send"
-            app:layout_constraintBottom_toBottomOf="@+id/sixth_view_chat_keyboard"
-            app:layout_constraintStart_toStartOf="@+id/sixth_view_chat_keyboard"
-            app:layout_constraintTop_toTopOf="@+id/sixth_view_chat_keyboard"
+            app:layout_constraintEnd_toStartOf="@+id/seventh_btn_chat_send"
+            app:layout_constraintBottom_toBottomOf="@+id/seventh_view_chat_keyboard"
+            app:layout_constraintStart_toStartOf="@+id/seventh_view_chat_keyboard"
+            app:layout_constraintTop_toTopOf="@+id/seventh_view_chat_keyboard"
             android:inputType="text" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
