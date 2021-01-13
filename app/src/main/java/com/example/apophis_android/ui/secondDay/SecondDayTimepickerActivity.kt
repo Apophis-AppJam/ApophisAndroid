@@ -1,13 +1,10 @@
 package com.example.apophis_android.ui.secondDay
-import android.graphics.Canvas
+
 import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.RectF
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.core.view.marginTop
 import com.example.apophis_android.R
 import kotlinx.android.synthetic.main.activity_second_day_timepicker.*
 
