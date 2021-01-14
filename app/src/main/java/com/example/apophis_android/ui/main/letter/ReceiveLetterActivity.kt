@@ -53,8 +53,7 @@ class ReceiveLetterActivity : AppCompatActivity() {
                     //통신 성공
                     if (response.isSuccessful) {
                         if (response.body()!!.success) {
-                            tv_letter_receive_content.text = response.body()!!.data[0].text
-                            Log.d("다혜 받은 편지", response.body()!!.data[0].text)
+                            tv_letter_receive_content.text = response.body()!!.data.text
                         }
                     }
                 }

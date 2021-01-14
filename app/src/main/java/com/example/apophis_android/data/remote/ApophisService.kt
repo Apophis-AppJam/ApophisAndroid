@@ -68,7 +68,7 @@ interface ApophisService {
     ): Call<BaseResponse<Unit>>
 
     /* 편지 */
-    @GET("/letter")
+    @GET("/letter/new")
     fun requestReceiveLetter(
         @Header("Content-Type") contentType: String = "application/json",
         @Header("jwt") jwt: String
