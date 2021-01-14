@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
@@ -18,6 +19,7 @@ import com.example.apophis_android.data.remote.response.AponymousChatResponse
 import com.example.apophis_android.data.remote.response.BaseResponse
 import com.example.apophis_android.data.remote.response.ChoiceChatResponse
 import kotlinx.android.synthetic.main.activity_first_day_chat.*
+import kotlinx.android.synthetic.main.item_chat_user.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,7 +35,7 @@ class FirstDayChatActivity : AppCompatActivity() {
     private val apophisService = ApophisService
     private val jwt =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
-    private var chatDetailsIdx = 14
+    private var chatDetailsIdx = 5
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -116,11 +118,11 @@ class FirstDayChatActivity : AppCompatActivity() {
 
                             val replyType = response.body()!!.data.postInfo.replyType
                             tag = tagClassification(replyType)
-                            getChoiceChatFromServer(jwt, chatDetailsIdx, tag)
 
                             when (tag) {
                                 0, 1, 2, 5, 6 -> {
                                     /* 메세지 전송 버튼 클릭 시 */
+                                    getChoiceChatFromServer(jwt, chatDetailsIdx, tag)
                                     btn_first_send.setOnClickListener {
                                         userChatAdapter.removeChat()
                                         val userChoice = et_first_chat_message.text.toString()
@@ -131,8 +133,20 @@ class FirstDayChatActivity : AppCompatActivity() {
                                         postReplyToServer(jwt, chatDetailsIdx, 1, userChoice, tag)
                                     }
                                 }
+                                8 -> {
+                                    btn_first_send.setOnClickListener {
+                                        val userChoice = et_first_chat_message.text.toString()
+                                        val chatRight = OurUserChat(mutableListOf(userChoice), 2)
+                                        /* tag == 2 -> user가 보내는 보라색 말풍선 */
+                                        userChatAdapter.addChat(chatRight)
+                                        et_first_chat_message.setText("")
+                                        btn_long_answer_complete.setVisibility(View.VISIBLE)
+                                        //postReplyToServer(jwt, chatDetailsIdx, 1, userChoice, tag)
+                                    }
+                                }
                                 else -> {
                                     /* 메세지 전송 버튼 클릭 시 */
+                                    getChoiceChatFromServer(jwt, chatDetailsIdx, tag)
                                     btn_first_send.setOnClickListener {
                                         userChatAdapter.removeChat()
                                         val userChoice = et_first_chat_message.text.toString()
@@ -233,9 +247,11 @@ class FirstDayChatActivity : AppCompatActivity() {
         } else if (replyType == "기능 액션 버튼 - 나침반") {
             return 6
         } else if (replyType == "기능 액션 버튼 - 카메라") {
-            return 8
-        } else {
+            return 9
+        } else if (replyType == "단일 보기 선택"){
             return 2
+        } else {
+            return 8
         }
     }
 

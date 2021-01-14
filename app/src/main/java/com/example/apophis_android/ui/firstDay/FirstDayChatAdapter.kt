@@ -14,9 +14,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.apophis_android.MainActivity
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
 import com.example.apophis_android.ui.ChipFactory
+import com.example.apophis_android.ui.secondDay.adpater.ChatAdapter
 import com.google.android.material.chip.ChipGroup
 
 
@@ -33,7 +35,7 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
         return when (userChatList[position].tag) {
             0 -> R.layout.item_chat_aponymous
             1 -> R.layout.item_chat_aponymous_image
-            2 -> R.layout.item_chat_user
+            2, 8 -> R.layout.item_chat_user
             3 -> R.layout.item_chat_user_image_portrait
             4 -> R.layout.item_chat_user_image_landscape
             5 -> R.layout.item_chip_choice
@@ -253,6 +255,18 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
 
     companion object { // companion object를 사용하면 자바에서 정적 변수/메서드를 사용했던 것과 동일하게 사용할 수 있다.
         const val CAMERA_ACTIVITY_REQUEST_CODE = 0
+    }
+
+    /* callback listener */
+    interface CallbackListener {
+        fun callBack(inputTextList: MutableList<String>)
+    }
+
+    private lateinit var callbackListener: CallbackListener
+
+    // 완료하기 리스너
+    fun setCallbackListener(callbackListener: CallbackListener) {
+        this.callbackListener = callbackListener
     }
 }
 
