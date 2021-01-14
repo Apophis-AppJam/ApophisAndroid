@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.MusicActivity"
+    android:background="@drawable/bg_main_alpha50">
+
+
+    <ImageView
+        android:id="@+id/img_music_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:src="@drawable/img_music_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_music_title_1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:lineSpacingExtra="4dp"
+        android:text="@string/music_1"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="@+id/img_music_logo"
+        app:layout_constraintStart_toStartOf="@+id/img_music_logo"
+        app:layout_constraintTop_toBottomOf="@+id/img_music_logo" />
+
+    <TextView
+        android:id="@+id/tv_music_title_2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:lineSpacingExtra="4dp"
+        android:text="@string/music_2"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_music_title_1"
+        app:layout_constraintStart_toStartOf="@+id/tv_music_title_1"
+        app:layout_constraintTop_toBottomOf="@+id/tv_music_title_1" />
+
+    <TextView
+        android:id="@+id/btn_click"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:paddingTop="27dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:paddingBottom="27dp"
+        android:text="[click]"
+        android:textSize="12dp"
+        android:textColor="@color/transparency80FF"
+        android:fontFamily="@font/gmarket_sans_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_music_title_2" />
+
+    <TextView
+        android:id="@+id/tv_music_off"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:text="@string/music_off"
+        android:textSize="12dp"
+        android:textColor="@color/transparency80FF"
+        android:fontFamily="@font/gmarket_sans_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_click" />
+
+    <ImageView
+        android:id="@+id/btn_music_onoff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:src="@drawable/btn_music_select"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_music_off" />
+</androidx.constraintlayout.widget.ConstraintLayout>

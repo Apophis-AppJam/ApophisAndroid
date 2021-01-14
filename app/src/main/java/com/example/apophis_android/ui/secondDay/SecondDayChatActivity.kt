@@ -16,7 +16,7 @@ import com.example.apophis_android.data.remote.request.ReplyOneRequest
 import com.example.apophis_android.data.remote.response.AponymousChatResponse
 import com.example.apophis_android.data.remote.response.BaseResponse
 import com.example.apophis_android.data.remote.response.ChoiceChatResponse
-import com.example.apophis_android.ui.secondDay.adpater.SecondDayChatAdapter
+import com.example.apophis_android.ui.secondDay.adapter.SecondDayChatAdapter
 import kotlinx.android.synthetic.main.activity_second_day_chat.*
 import retrofit2.Call
 import retrofit2.Callback

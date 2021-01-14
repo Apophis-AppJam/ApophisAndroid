@@ -1,4 +1,3 @@
-
 <resources>
     <string name="app_name">Apophis</string>
     <string name="kakao_app_key">1a6153a079915abd92ab12375b709763</string>
@@ -16,4 +15,8 @@
 
     <string name="find_light_me_title">밝은 나의 모습에 대해 적어보세요</string>
     <string name="find_dark_me_title">어두운 나의 모습에 대해 적어보세요</string>
+    
+    <string name="music_1">미리 맞이하는 당신의 이른 죽음, 아포피스를 시작합니다.</string>
+    <string name="music_2">주변이 조용하고 집중할 수 있는 환경인지 확인해주세요!</string>
+    <string name="music_off">[음표버튼을 눌러 배경음악을 끌 수 있어요]</string>
 </resources>
