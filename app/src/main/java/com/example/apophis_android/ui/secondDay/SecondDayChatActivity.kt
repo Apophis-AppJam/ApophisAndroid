@@ -28,7 +28,7 @@ class SecondDayChatActivity : AppCompatActivity() {
 
     private val apophisService = ApophisService
     private val jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
-    private var chatDetailsIdx = 27
+    private var chatDetailsIdx = 39
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +38,8 @@ class SecondDayChatActivity : AppCompatActivity() {
 
         // 2일차 시작 인덱스 23
         getAponymousChatFromServer(jwt, chatDetailsIdx)
+
+        btn_second_back.setOnClickListener { onBackPressed() }
 
         et_second_chat_message.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -104,7 +106,7 @@ class SecondDayChatActivity : AppCompatActivity() {
                     //통신 성공
                     if (response.isSuccessful) {
                         if (response.body()!!.success) {
-                            var tag = 0
+                            var tag: Int
                             for (i in response.body()!!.data.chat.indices) {
 
                                 tag = when (response.body()!!.data.chat[i].nextAction) {
@@ -123,26 +125,27 @@ class SecondDayChatActivity : AppCompatActivity() {
                             }
 
                             val replyType = response.body()!!.data.postInfo.replyType
-                            tag = if (replyType == "단일 보기 선택" || replyType == "다중 보기 선택" || replyType == "카테고리 선택") {
+                            tag = if (replyType == "단일 보기 선택" || replyType == "다중 보기 선택" || replyType == "카테고리 선택") { //chip_choice
                                 4
-                            } else if (replyType == "단답형 텍스트 입력") {
+                            } else if (replyType == "단답형 텍스트 입력") { //short answer
                                 5
-                            } else if (replyType == "기능 액션 버튼 - 시간대 설정") {
+                            } else if (replyType == "기능 액션 버튼 - 시간대 설정") { //timer
                                 6
-                            } else if (replyType == "기능 액션 버튼 - 두개의 나 ") {
+                            } else if (replyType == "기능 액션 버튼 - 두개의 나 ") { //find_me
                                 7
-                            } else if (replyType == "기능 액션 버튼 - 가치 선택") {
+                            } else if (replyType == "기능 액션 버튼 - 가치 선택") { //value
                                 8
-                            } else if(replyType == "장문형 텍스트 입력") {
+                            } else if(replyType == "장문형 텍스트 입력") { // long answer
                                 9
+                            } else if (replyType == "일차 종료 (reply 없음)") { //end
+                                10
                             } else {
-                                3
+                                3 //chat_user
                             }
 
                             when (tag) {
                                 0, 1, 3, 4 -> {
                                     getChoiceChatFromServer(jwt, chatDetailsIdx, tag)
-                                    /* 메세지 전송 버튼 클릭 시 */
                                     btn_chat_send.setOnClickListener {
                                         chatAdapter.removeChat()
                                         val userChoice = et_second_chat_message.text.toString()
@@ -160,10 +163,8 @@ class SecondDayChatActivity : AppCompatActivity() {
                                         }
                                     })
                                 }
-                                9 -> {
-                                    /* 메세지 전송 버튼 클릭 시 */
+                                9 -> { //long answer
                                     btn_chat_send.setOnClickListener {
-                                        chatAdapter.removeChat()
                                         val userChoice = et_second_chat_message.text.toString()
                                         val chatRight = OurUserChat(mutableListOf(userChoice), 3)
                                         chatAdapter.addChat(chatRight)
@@ -171,9 +172,12 @@ class SecondDayChatActivity : AppCompatActivity() {
                                         postReplyOneToServer(jwt, chatDetailsIdx, 1, userChoice)
                                     }
                                 }
+                                10 -> {
+                                    Log.d("다혜 10", chatDetailsIdx.toString())
+                                    btn_chat_send.setOnClickListener(null)
+                                }
                                 else -> {
                                     getChoiceChatFromServer(jwt, chatDetailsIdx, tag)
-                                    /* 메세지 전송 버튼 클릭 시 */
                                     btn_chat_send.setOnClickListener {
                                         chatAdapter.removeChat()
                                         val userChoice = et_second_chat_message.text.toString()
@@ -245,8 +249,10 @@ class SecondDayChatActivity : AppCompatActivity() {
                 ) {
                     if (response.isSuccessful) {
                         if (response.body()!!.success) {
-                            getAponymousChatFromServer(jwt, chatDetailsIdx + 1)
-                            btn_chat_send.setImageResource(R.drawable.btn_send_unact)
+                            if (chatDetailsIdx < 41) {
+                                getAponymousChatFromServer(jwt, chatDetailsIdx + 1)
+                                btn_chat_send.setImageResource(R.drawable.btn_send_unact)
+                            }
                         }
                     }
                 }
@@ -274,8 +280,10 @@ class SecondDayChatActivity : AppCompatActivity() {
                 ) {
                     if (response.isSuccessful) {
                         if (response.body()!!.success) {
-                            getAponymousChatFromServer(jwt, chatDetailsIdx + 1)
-                            btn_chat_send.setImageResource(R.drawable.btn_send_unact)
+                            if (chatDetailsIdx < 41) {
+                                getAponymousChatFromServer(jwt, chatDetailsIdx + 1)
+                                btn_chat_send.setImageResource(R.drawable.btn_send_unact)
+                            }
                         }
                     }
                 }

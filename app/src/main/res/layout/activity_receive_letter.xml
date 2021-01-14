@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.letter.ReceiveLetterActivity"
+    android:background="@drawable/bg_letter">
+
+    <ImageView
+        android:id="@+id/btn_letter_back_to_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/group_10" />
+
+    <ImageView
+        android:id="@+id/img_letter_car"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img_letter_car" />
+
+    <TextView
+        android:id="@+id/tv_letter_receive_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="82dp"
+        android:layout_marginEnd="28dp"
+        android:fontFamily="@font/chosunnm"
+        android:text="@string/letter"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_letter_car" />
+
+    <TextView
+        android:id="@+id/tv_letter_sender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/letter_sender"
+        android:textSize="16dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/chosunnm"
+        app:layout_constraintEnd_toEndOf="@+id/tv_letter_receive_content"
+        app:layout_constraintTop_toBottomOf="@+id/tv_letter_receive_content" />
+
+    <ImageView
+        android:id="@+id/btn_letter_go_to_write"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_letter_go_to_write"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/btn_write_act" />
+
+    <TextView
+        android:id="@+id/tv_letter_go_to_write"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:text="편지쓰기"
+        android:textSize="14dp"
+        android:textColor="@color/purpleAB70F5"
+        android:fontFamily="@font/gmarket_sans_medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

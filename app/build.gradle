@@ -48,9 +48,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    /* recyclerview */
-    implementation "androidx.recyclerview:recyclerview:1.2.0-alpha02"
-
     /* retrofit */
     implementation 'com.squareup.retrofit2:retrofit:2.7.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
@@ -62,6 +59,12 @@ dependencies {
     /* glide */
     implementation "com.github.bumptech.glide:glide:4.10.0"
     kapt "com.github.bumptech.glide:compiler:4.10.0"
+
+    //lottie
+    implementation 'com.airbnb.android:lottie:3.4.0'
+
+    /* recyclerview */
+    implementation "androidx.recyclerview:recyclerview:1.2.0-alpha02"
 
     /* kakao */
     implementation 'com.kakao.sdk:usermgmt:1.28.0'
@@ -77,8 +80,4 @@ dependencies {
     implementation "androidx.camera:camera-camera2:$camerax_version"
     implementation "androidx.camera:camera-lifecycle:$camerax_version"
     implementation "androidx.camera:camera-view:1.0.0-alpha14"
-
-    //lottie
-    implementation 'com.airbnb.android:lottie:3.4.0'
-
 }

@@ -34,9 +34,9 @@
         android:id="@+id/btn_find_me_complete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="153dp"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/tv_find_me_complete"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/btn_complete_unact" />
 
@@ -44,13 +44,13 @@
         android:id="@+id/tv_find_me_complete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="167dp"
         android:layout_marginBottom="19dp"
-        android:text="완료"
-        android:textSize="14dp"
-        android:textColor="@color/gray70"
         android:fontFamily="@font/gmarket_sans_medium"
+        android:text="완료"
+        android:textColor="@color/gray70"
+        android:textSize="14dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <View
