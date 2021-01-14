@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_apophis_dday"
-    tools:context=".ui.ApophisActivity">
+    tools:context=".ui.main.ApophisActivity">
 
     <ImageView
         android:id="@+id/apo_btn_back"

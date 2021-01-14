@@ -1,4 +1,4 @@
-package com.example.apophis_android.ui
+package com.example.apophis_android.ui.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -17,5 +17,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SecondDayChatActivity::class.java)
             startActivity(intent)
         }
+
+        view_apophis.setOnClickListener {
+            val intent = Intent(this, ApophisActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }

@@ -101,6 +101,11 @@ class SecondDayChatAdapter(private val context: Context): RecyclerView.Adapter<R
             holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
         }
 
+        if (holder is AponymousSoundViewHolder) {
+            holder.bind(userChatList[position].content)
+            holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
+        }
+
         if (holder is UserViewHolder) {
             holder.bind(userChatList[position].content)
             holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)

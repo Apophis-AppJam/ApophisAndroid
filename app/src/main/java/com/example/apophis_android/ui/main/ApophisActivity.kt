@@ -1,12 +1,10 @@
-package com.example.apophis_android.ui
+package com.example.apophis_android.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.widget.TextView
 import com.example.apophis_android.R
 import kotlinx.android.synthetic.main.activity_apophis.*
-import kotlinx.android.synthetic.main.activity_second_day_value.*
 import java.text.NumberFormat
 import java.util.*
 
