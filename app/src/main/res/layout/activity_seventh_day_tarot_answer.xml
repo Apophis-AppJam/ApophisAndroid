@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_bg_tarot"
+    tools:context=".ui.seventhDay.SeventhDayTarotAnswerActivity">
+
+    <ImageView
+        android:id="@+id/tarot_answer_btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="26dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/slice_2" />
+
+    <ImageView
+        android:id="@+id/tarot_answer_moon_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_moon"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tarot_answer_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="49dp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:gravity="center"
+        android:lineSpacingExtra="8dp"
+        android:text="서버에서 여기로 질문 보내줄거야\n줄바꿈 간격 확인"
+        android:textColor="@color/purpleB274FF"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/tarot_answer_bg"
+        android:layout_width="0dp"
+        android:layout_height="206dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="28dp"
+        android:src="@drawable/tarot_rounded_rectangle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tarot_answer_header" />
+
+    <ImageView
+        android:id="@+id/tarot_answer_bg_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="@+id/tarot_answer_bg"
+        app:layout_constraintStart_toStartOf="@+id/tarot_answer_bg"
+        app:layout_constraintTop_toTopOf="@+id/tarot_answer_bg"
+        app:srcCompat="@drawable/line4" />
+
+    <EditText
+        android:id="@+id/tarot_vp_answer_ed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="48dp"
+        android:background="@null"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:hint="텍스트를 입력하세요"
+        android:lineSpacingExtra="13dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray70"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/tarot_answer_bg_line"
+        app:layout_constraintStart_toStartOf="@+id/tarot_answer_bg_line"
+        app:layout_constraintTop_toBottomOf="@+id/tarot_answer_header" />
+
+    <ImageView
+        android:id="@+id/tarot_answer_complete_btn"
+        android:layout_width="47dp"
+        android:layout_height="34dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="14dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tarot_answer_bg"
+        app:layout_constraintEnd_toEndOf="@+id/tarot_answer_bg"
+        app:srcCompat="@drawable/tarot_answer_complete_btn" />
+
+    <TextView
+        android:id="@+id/tarot_answer_complete_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="완료"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:textSize="14sp"
+        android:textColor="@color/purpleAB70F5"
+        app:layout_constraintTop_toTopOf="@id/tarot_answer_complete_btn"
+        app:layout_constraintBottom_toBottomOf="@id/tarot_answer_complete_btn"
+        app:layout_constraintStart_toStartOf="@id/tarot_answer_complete_btn"
+        app:layout_constraintEnd_toEndOf="@id/tarot_answer_complete_btn"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,4 +15,6 @@
 
     <string name="find_light_me_title">밝은 나의 모습에 대해 적어보세요</string>
     <string name="find_dark_me_title">어두운 나의 모습에 대해 적어보세요</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
