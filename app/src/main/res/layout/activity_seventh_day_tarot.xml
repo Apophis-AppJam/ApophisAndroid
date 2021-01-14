@@ -4,6 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/img_bg_tarot"
     tools:context=".ui.seventhDay.SeventhDayTarotActivity">
+
+    <ImageView
+        android:id="@+id/tarot_btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="26dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/slice_2" />
+
+    <TextView
+        android:id="@+id/tarot_tv_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="유서"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="34dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/tarot_viewpager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tarot_btn_back" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
