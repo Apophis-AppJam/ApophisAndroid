@@ -1,6 +1,7 @@
 package com.example.apophis_android.ui.secondDay
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.inputmethod.InputMethodManager
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
 import com.example.apophis_android.data.remote.ApophisService
@@ -28,7 +30,7 @@ class SecondDayChatActivity : AppCompatActivity() {
 
     private val apophisService = ApophisService
     private val jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
-    private var chatDetailsIdx = 39
+    private var chatDetailsIdx = 23 // 2일차 시작 인덱스 23
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,10 +38,11 @@ class SecondDayChatActivity : AppCompatActivity() {
 
         initRcv()
 
-        // 2일차 시작 인덱스 23
         getAponymousChatFromServer(jwt, chatDetailsIdx)
 
         btn_second_back.setOnClickListener { onBackPressed() }
+
+        constraintLayout_second.setOnClickListener { hideKeyboard() }
 
         et_second_chat_message.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -288,5 +291,10 @@ class SecondDayChatActivity : AppCompatActivity() {
                     }
                 }
             })
+    }
+
+    private fun hideKeyboard() {
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(et_second_chat_message.windowToken, 0)
     }
 }
