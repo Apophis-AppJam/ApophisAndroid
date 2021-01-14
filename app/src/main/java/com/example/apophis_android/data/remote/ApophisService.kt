@@ -2,6 +2,7 @@ package com.example.apophis_android.data.remote
 
 import com.example.apophis_android.data.remote.request.ReplyFourRequest
 import com.example.apophis_android.data.remote.request.ReplyOneRequest
+import com.example.apophis_android.data.remote.request.SendLetterRequest
 import com.example.apophis_android.data.remote.response.*
 import retrofit2.Call
 import retrofit2.http.*
@@ -13,6 +14,7 @@ import retrofit2.http.*
 
 interface ApophisService {
 
+    /* 채팅 */
     @GET("/chat/{chatDetailsIdx}")
     fun requestAponymousChat(
         @Header("Content-Type") contentType: String = "application/json",
@@ -43,6 +45,20 @@ interface ApophisService {
         @Path("chatDetailsIdx") chatDetailsIdx: Int,
         @Path("replyNum") replyNum: Int,
         @Body body: ReplyFourRequest
+    ): Call<BaseResponse<Unit>>
+
+    /* 편지 */
+    @GET("/letter")
+    fun requestReceiveLetter(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("jwt") jwt: String
+    ): Call<ReceiveLetterResponse>
+
+    @POST("/letter")
+    fun requestSendLetter(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("jwt") jwt: String,
+        @Body body: SendLetterRequest
     ): Call<BaseResponse<Unit>>
 
     companion object {
