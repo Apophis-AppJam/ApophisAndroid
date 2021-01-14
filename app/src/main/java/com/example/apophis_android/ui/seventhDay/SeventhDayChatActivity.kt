@@ -1,10 +1,13 @@
 package com.example.apophis_android.ui.seventhDay
 
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.widget.MediaController
 import androidx.appcompat.app.AppCompatActivity
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
@@ -13,12 +16,14 @@ import com.example.apophis_android.data.remote.request.ReplyOneRequest
 import com.example.apophis_android.data.remote.response.AponymousChatResponse
 import com.example.apophis_android.data.remote.response.BaseResponse
 import com.example.apophis_android.data.remote.response.ChoiceChatResponse
-import com.example.apophis_android.ui.seventhDay.seventhAdapter.SeventhChatAdapter
+import com.example.apophis_android.ui.seventhDay.adapter.SeventhChatAdapter
 import com.example.apophis_android.ui.sixthDay.ScrollLinearLayoutManager
 import kotlinx.android.synthetic.main.activity_seventh_day_chat.*
+import kotlinx.android.synthetic.main.item_chat_coin.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 
 class SeventhDayChatActivity : AppCompatActivity() {
 
@@ -27,7 +32,8 @@ class SeventhDayChatActivity : AppCompatActivity() {
     private val apophisService = ApophisService
     private val jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
     private var chatDetailsIdx = 126
-
+    private lateinit var VIDEO_PATH: String
+    private var randomCoin = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +49,7 @@ class SeventhDayChatActivity : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 seventh_btn_chat_send.setImageResource(R.drawable.btn_send_act)
+                seventh_btn_chat_send.isEnabled = true
             }
 
             override fun afterTextChanged(s: Editable?) {}
@@ -51,17 +58,41 @@ class SeventhDayChatActivity : AppCompatActivity() {
         /* chip click listener 재정의 */
         seventhUserChatAdapter.setOnItemClickListener(object : SeventhChatAdapter.OnItemClickListener {
             override fun onItemClick(data: String) {
-                // override fun onItemClick(data: MutableList<String>) {
-
                 seventh_et_chat_message.setText(data)
                 seventh_et_chat_message.setTextColor(Color.parseColor("#FFFFFF"))
                 seventh_btn_chat_send.setImageResource(R.drawable.btn_send_act)
+                seventh_btn_chat_send.isEnabled = true
+            }
+        })
 
-                /*for (i in dataList.indices) {
-                    et_second_chat_message.setText(dataList[i])
-                    et_second_chat_message.setTextColor(Color.parseColor("#FFFFFF"))
-                    btn_chat_send.setImageResource(R.drawable.btn_send_act)
-                }*/
+        /* random coin listener 재정의 */
+        seventhUserChatAdapter.setOnRandomCoinListener(object : SeventhChatAdapter.OnRandomCoinListener {
+            override fun onRandomCoin(data: String) {
+                randomCoin = data
+
+                if (randomCoin == "1") {
+                    VIDEO_PATH = "android.resource://" + packageName + "/" + R.raw.coin_star
+                } else {
+                    VIDEO_PATH = "android.resource://" + packageName + "/" + R.raw.coin_moon
+                }
+
+                var uri: Uri = Uri.parse(VIDEO_PATH)
+                seventh_videoView.setVideoURI(uri)
+                seventh_videoView.setMediaController(MediaController(this@SeventhDayChatActivity))
+
+                seventh_videoView.setOnPreparedListener { seventh_videoView.start() }
+            }
+        })
+
+        /* delay click listener 재정의*/
+        seventhUserChatAdapter.setOnDelayClickListener(object : SeventhChatAdapter.OnDelayClickListener {
+            override fun onDelayClick(data: String) {
+                Handler().postDelayed({
+                    seventh_et_chat_message.setText(data)
+                    seventh_et_chat_message.setTextColor(Color.parseColor("#FFFFFF"))
+                    seventh_btn_chat_send.setImageResource(R.drawable.btn_send_act)
+                    seventh_btn_chat_send.isEnabled = true
+                }, 11000)
             }
         })
 
@@ -108,23 +139,24 @@ class SeventhDayChatActivity : AppCompatActivity() {
                                 }
 
                                 val replyType = response.body()!!.data.postInfo.replyType
-                                tag = if (replyType == "단일 보기 버튼" || replyType == "다중 보기 버튼" || replyType == "단일 보기 선택" || replyType == "다중 보기 버튼") {
+                                tag = if (replyType == "단일 보기 선택" || replyType == "다중 보기 선택") {
                                     3
-                                } else if (replyType == "단답형 텍스트 입력") {
+                                } else if (replyType == "다중 보기 선택 - 통신장애") {
                                     4
-                                } else if (replyType == "타로 방식 시작") {
+                                } else if (replyType == "동전") {
                                     5
-                                } else if (replyType == "기능 액션 버튼 - 두개의 나 ") {
-                                    6
-                                } else {
+                                } else if (replyType == "장문형 텍스트 입력") {
+                                    7
+                                }
+                                else {
                                     2
                                 }
                                 Log.d("다다 아포에서 보내는 idx", chatDetailsIdx.toString())
-                                getChoiceChatFromServer(jwt, chatDetailsIdx, tag)
 
                                 when (tag) {
-                                    0, 1, 2, 3 -> {
+                                    0, 1, 2, 3, 5 -> {
                                         /* 메세지 전송 버튼 클릭 시 */
+                                        getChoiceChatFromServer(jwt, chatDetailsIdx, tag)
                                         seventh_btn_chat_send.setOnClickListener {
                                             seventhUserChatAdapter.removeChat()
                                             val userChoice = seventh_et_chat_message.text.toString()
@@ -138,8 +170,41 @@ class SeventhDayChatActivity : AppCompatActivity() {
                                             postReplyToServer(jwt, chatDetailsIdx, 1, userChoice)
                                         }
                                     }
+                                    4 -> {
+                                        /* 메세지 전송 버튼 클릭 시 */
+                                        getChoiceChatFromServer(jwt, chatDetailsIdx, tag)
+                                        seventh_btn_chat_send.setOnClickListener {
+                                            seventhUserChatAdapter.removeChat()
+                                            val userChoice = seventh_et_chat_message.text.toString()
+                                            val chatRight =
+                                                OurUserChat(mutableListOf(userChoice), 6)
+                                            /* tag == 2 -> user가 보내는 보라색 말풍선 */
+                                            seventhUserChatAdapter.addChat(chatRight)
+                                            seventh_rcv_chat.smoothScrollToPosition(seventhUserChatAdapter.itemCount - 1)
+                                            seventh_et_chat_message.setText("")
+                                            Log.d("다다 여기로 잘 들어왔어", "클릭 리스너, $chatRight")
+                                            Log.d("다다 reply로 보내는 idx", chatDetailsIdx.toString())
+                                            postReplyToServer(jwt, chatDetailsIdx, 1, userChoice)
+                                        }
+                                    }
+                                    7 -> {
+                                        seventh_btn_chat_send.isEnabled = true
+                                        seventh_btn_chat_send.setOnClickListener {
+                                            val userChoice = seventh_et_chat_message.text.toString()
+                                            val chatRight =
+                                                OurUserChat(mutableListOf(userChoice), 2)
+                                            /* tag == 2 -> user가 보내는 보라색 말풍선 */
+                                            seventhUserChatAdapter.addChat(chatRight)
+                                            seventh_rcv_chat.smoothScrollToPosition(seventhUserChatAdapter.itemCount - 1)
+                                            seventh_et_chat_message.setText("")
+                                            Log.d("다다 여기로 잘 들어왔어", "클릭 리스너, $chatRight")
+                                            Log.d("다다 reply로 보내는 idx", chatDetailsIdx.toString())
+                                            postReplyToServer(jwt, chatDetailsIdx, 1, userChoice)
+                                        }
+                                    }
                                     else -> {
                                         /* 메세지 전송 버튼 클릭 시 */
+                                        getChoiceChatFromServer(jwt, chatDetailsIdx, tag)
                                         seventh_btn_chat_send.setOnClickListener {
                                             seventhUserChatAdapter.removeChat()
                                             val userChoice = seventh_et_chat_message.text.toString()
@@ -219,6 +284,7 @@ class SeventhDayChatActivity : AppCompatActivity() {
                                 getAponymousChatFromServer(jwt, chatDetailsIdx + 1)
                                 Log.d("다다 reply에서 보내는 idx", (chatDetailsIdx+1).toString())
                                 seventh_btn_chat_send.setImageResource(R.drawable.btn_send_unact)
+                                seventh_btn_chat_send.isEnabled = false
                                 seventh_rcv_chat.smoothScrollToPosition(seventhUserChatAdapter.itemCount - 1)
                             }
                         }
