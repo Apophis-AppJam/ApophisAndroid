@@ -24,7 +24,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.apophis_android.R
-import com.example.apophis_android.ui.MainActivity.Companion.countCameraChange
+import com.example.apophis_android.ui.main.MainActivity.Companion.countCameraChange
 import kotlinx.android.synthetic.main.activity_camera.*
 import java.io.ByteArrayOutputStream
 import java.io.File

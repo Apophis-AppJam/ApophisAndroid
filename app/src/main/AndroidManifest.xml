@@ -19,12 +19,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Apophis_android"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.main.letter.ReceiveLetterActivity"></activity>
-        <activity android:name=".ui.main.letter.SendLetterActivity" />
 
         <meta-data
             android:name="com.google.android.wearable.standalone"
             android:value="true" />
+
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
@@ -36,22 +35,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.main.ApophisActivity" />
+        <activity android:name=".ui.main.SettingActivity"></activity>
+        <activity android:name=".ui.main.letter.ReceiveLetterActivity" />
+        <activity android:name=".ui.main.letter.SendLetterActivity" />
+
         <activity android:name=".ui.login.LoginActivity" />
+
         <activity android:name=".ui.firstDay.FirstDayChatActivity" />
         <activity
             android:name=".ui.firstDay.CameraActivity"
             android:configChanges="orientation|keyboardHidden" />
         <activity android:name=".ui.firstDay.CompassActivity" />
+
         <activity android:name=".ui.secondDay.SecondDayChatActivity" />
         <activity android:name=".ui.secondDay.SecondDayTimepickerActivity" />
         <activity android:name=".ui.secondDay.SecondDayFindLightMeActivity" />
         <activity android:name=".ui.secondDay.SecondDayFindDarkMeActivity" />
         <activity android:name=".ui.secondDay.SecondDayValueActivity" />
         <activity android:name=".ui.secondDay.SecondDayValueResultActivity" />
+
         <activity android:name=".ui.sixthDay.SixthDayChatActivity" />
         <activity android:name=".ui.sixthDay.SixthDayDirtActivity" />
+
         <activity android:name=".ui.seventhDay.SeventhDayTarotActivity" />
         <activity android:name=".ui.seventhDay.SeventhDayChatActivity" />
     </application>

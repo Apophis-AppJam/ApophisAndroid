@@ -27,32 +27,43 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/img_letter_car" />
 
-    <TextView
-        android:id="@+id/tv_letter_receive_content"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginStart="42dp"
         android:layout_marginTop="82dp"
         android:layout_marginEnd="28dp"
-        android:fontFamily="@font/chosunnm"
-        android:text="@string/letter"
-        android:textColor="@color/white"
-        android:textSize="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_letter_go_to_write"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_letter_car" />
+        app:layout_constraintTop_toBottomOf="@+id/img_letter_car">
 
-    <TextView
-        android:id="@+id/tv_letter_sender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="@string/letter_sender"
-        android:textSize="16dp"
-        android:textColor="@color/white"
-        android:fontFamily="@font/chosunnm"
-        app:layout_constraintEnd_toEndOf="@+id/tv_letter_receive_content"
-        app:layout_constraintTop_toBottomOf="@+id/tv_letter_receive_content" />
+        <TextView
+            android:id="@+id/tv_letter_receive_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/chosunnm"
+            android:lineSpacingExtra="3dp"
+            android:maxLines="8"
+            android:text="textview"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_letter_sender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/chosunnm"
+            android:text="from. 익명의 지구인"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_letter_receive_content" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:id="@+id/btn_letter_go_to_write"

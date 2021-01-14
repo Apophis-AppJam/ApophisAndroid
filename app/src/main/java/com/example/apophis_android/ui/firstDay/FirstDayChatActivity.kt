@@ -15,7 +15,7 @@ import com.example.apophis_android.data.remote.request.ReplyOneRequest
 import com.example.apophis_android.data.remote.response.AponymousChatResponse
 import com.example.apophis_android.data.remote.response.BaseResponse
 import com.example.apophis_android.data.remote.response.ChoiceChatResponse
-import com.example.apophis_android.ui.MainActivity.Companion.countCameraChange
+import com.example.apophis_android.ui.main.MainActivity.Companion.countCameraChange
 import kotlinx.android.synthetic.main.activity_first_day_chat.*
 import retrofit2.Call
 import retrofit2.Callback

@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <View
-        android:id="@+id/view_settting"
+        android:id="@+id/view_setting"
         android:layout_width="58dp"
         android:layout_height="69dp"
         android:layout_marginEnd="18dp"

@@ -235,7 +235,7 @@ class SecondDayChatActivity : AppCompatActivity() {
                 chatDetailsIdx = chatDetailsIdx,
                 replyNum = replyNum,
                 body = ReplyOneRequest(replyString)
-            ) .enqueue(object : Callback<BaseResponse<Unit>> {
+            ).enqueue(object : Callback<BaseResponse<Unit>> {
                 override fun onFailure(
                     call: Call<BaseResponse<Unit>>,
                     t: Throwable
