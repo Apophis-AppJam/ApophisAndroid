@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,11 +14,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.apophis_android.MainActivity
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
 import com.example.apophis_android.ui.ChipFactory
-import com.example.apophis_android.ui.secondDay.adpater.ChatAdapter
+import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 
 
@@ -183,25 +182,32 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
 
     inner class ChoiceChatViewHolder(itemView: View, inflater: LayoutInflater) : RecyclerView.ViewHolder(itemView) {
         private var chipGroup: ChipGroup = itemView.findViewById(R.id.chipgroup_choice)
-        private val chipTextList: MutableList<String> = mutableListOf()
+        //private val chipTextList: MutableMap<String, Int> = mutableMapOf()
+        private var selectedChips: Int = 0
         private val inflater: LayoutInflater = inflater
+        private var chip: MutableList<Chip> = mutableListOf()
+        private var chipChecked: Boolean = false
 
         fun bind(chipItem: MutableList<String>) {
             chipGroup.removeAllViews()
-            chipTextList.clear()
-            chipItem.forEach {
-                val chip = ChipFactory.newInstance(inflater)
-                chip.text = it
-                chip.isClickable = true
-                chipGroup.addView(chip)
-                chipTextList.add(it)
-
-                chip.setOnClickListener {
-                    itemClickListener.onItemClick(chip.text.toString())
+            chip.clear()
+            chipItem.forEachIndexed  { index, value ->
+                val newchip = ChipFactory.newInstance(inflater)
+                newchip.text = value
+                newchip.isClickable = true
+                chip.add(newchip)
+                chipGroup.addView(newchip)
+                Log.i("chip", chip[index].text.toString()+index.toString())
+//                chipTextList[value] = index
+                newchip.setOnClickListener {
+                    itemClickListener.onItemClick(chip[index].text.toString(), index)
+                    //selectedChips.add(chip.text.toString())
                     // itemClickListener.onItemClick(chipTextList)
                 }
             }
+//            chipGroup.setSelectionRequired(true)
         }
+
     }
 
     inner class CompassViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -209,7 +215,7 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
 
         fun bind() {
             btnCompass.setOnClickListener {
-                itemClickListener.onItemClick("여긴가?")
+                itemClickListener.onItemClick("여긴가?", null)
                 val intent = Intent(context, CompassActivity::class.java)
                 context.startActivity(intent)
             }
@@ -243,7 +249,7 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
 
     /* chip click listener */
     interface OnItemClickListener {
-        fun onItemClick(data: String)
+        fun onItemClick(data: String, index: Int?)
         // fun onItemClick(dataList: MutableList<String>)
     }
 
@@ -257,17 +263,11 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
         const val CAMERA_ACTIVITY_REQUEST_CODE = 0
     }
 
-    /* callback listener */
-    interface CallbackListener {
-        fun callBack(inputTextList: MutableList<String>)
-    }
-
-    private lateinit var callbackListener: CallbackListener
-
-    // 완료하기 리스너
-    fun setCallbackListener(callbackListener: CallbackListener) {
-        this.callbackListener = callbackListener
+    private fun chipChecked(chipChecked: Boolean): Boolean{
+        if(chipChecked){
+            return false
+        }else {
+            return true
+        }
     }
 }
-
-

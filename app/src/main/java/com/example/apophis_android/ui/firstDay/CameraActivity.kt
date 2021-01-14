@@ -3,6 +3,7 @@ package com.example.apophis_android.ui.firstDay
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
@@ -11,18 +12,21 @@ import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.media.Image
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.apophis_android.R
+import com.example.apophis_android.ui.MainActivity.Companion.countCameraChange
 import kotlinx.android.synthetic.main.activity_camera.*
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -38,11 +42,13 @@ class CameraActivity : AppCompatActivity() {
 
     private lateinit var outputDirectory: File
     private lateinit var cameraExecutor: ExecutorService
+    private var previewPicture: Bitmap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR) // 가로,세로 전환 설정
         setContentView(R.layout.activity_camera)
+        countCameraChange() // true면 세로, false면 가로
 
         // 몰입모드(전체화면)
         hideUpperStateExpression()
@@ -61,13 +67,15 @@ class CameraActivity : AppCompatActivity() {
 
         // Set up the listener for take photo button
         iv_camera_button.setOnClickListener {
-            val takePicture = 1
-            takePhoto(takePicture)
+            takePhoto()
         }
 
         tv_camera_send_button.setOnClickListener {
-            val storePicture=2
-            takePhoto((storePicture))
+            val savedUri = getImageUri(this, previewPicture)
+            val intent = Intent()
+            intent.putExtra("savedUri", savedUri)
+            setResult(Activity.RESULT_OK, intent)
+            finish()
         }
 
         tv_camera_retake_button.setOnClickListener {
@@ -79,7 +87,7 @@ class CameraActivity : AppCompatActivity() {
         cameraExecutor = Executors.newSingleThreadExecutor()
     }
 
-    private fun takePhoto(i: Int) {
+    private fun takePhoto() {
         // Get a stable reference of the modifiable image capture use case
         val imageCapture = imageCapture ?: return
 
@@ -94,15 +102,17 @@ class CameraActivity : AppCompatActivity() {
         // Create output options object which contains file + metadata
         val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
 
-        if (i == 1) {
-            imageCapture.takePicture(ContextCompat.getMainExecutor(this), object : ImageCapture.OnImageCapturedCallback() {
+
+        imageCapture.takePicture(
+            ContextCompat.getMainExecutor(this),
+            object : ImageCapture.OnImageCapturedCallback() {
                 @SuppressLint("UnsafeExperimentalUsageError")
                 override fun onCaptureSuccess(imageProxy: ImageProxy) {
                     imageProxy.image?.let {
                         val rotationDegrees = imageProxy.imageInfo.rotationDegrees
-                        val bitmap = it.toBitmap(rotationDegrees)
+                        previewPicture = it.toBitmap(rotationDegrees)
 
-                        iv_camera_capture.setImageBitmap(bitmap)
+                        iv_camera_capture.setImageBitmap(previewPicture)
                         super.onCaptureSuccess(imageProxy)
                         previewMode()
                     }
@@ -112,26 +122,6 @@ class CameraActivity : AppCompatActivity() {
                     val msg = "Photo capture failed: ${exception.message}"
                 }
             })
-        }
-
-//         Set up image capture listener, which is triggered after photo has
-//         been taken
-        if (i == 2) {
-            imageCapture.takePicture(
-                outputOptions, ContextCompat.getMainExecutor(this), object : ImageCapture.OnImageSavedCallback {
-                    override fun onError(exc: ImageCaptureException) {
-                        Log.e(TAG, "Photo capture failed: ${exc.message}", exc)
-                    }
-
-                    override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                        val savedUri = Uri.fromFile(photoFile)
-                        val intent = Intent()
-                        intent.putExtra("savedUri", savedUri)
-                        setResult(Activity.RESULT_OK, intent)
-                        finish()
-                    }
-                })
-        }
     }
 
     private fun Image.toBitmap(rotationDegrees: Int): Bitmap {
@@ -248,7 +238,7 @@ class CameraActivity : AppCompatActivity() {
         window.decorView.systemUiVisibility = newUiOptions
     }
 
-    private fun cameraMode(){
+    private fun cameraMode() {
         iv_camera_button.setVisibility(View.VISIBLE)
         pv_camera_display.setVisibility(View.VISIBLE)
         tv_camera_retake_button.setVisibility(View.INVISIBLE)
@@ -256,11 +246,30 @@ class CameraActivity : AppCompatActivity() {
         iv_camera_capture.setVisibility(View.INVISIBLE)
     }
 
-    private fun previewMode(){
+    private fun previewMode() {
         iv_camera_button.setVisibility(View.INVISIBLE)
         pv_camera_display.setVisibility(View.INVISIBLE)
         tv_camera_retake_button.setVisibility(View.VISIBLE)
         tv_camera_send_button.setVisibility(View.VISIBLE)
         iv_camera_capture.setVisibility(View.VISIBLE)
+    }
+
+    private fun getImageUri(context: Context, inImage: Bitmap?): Uri {
+        val bytes = ByteArrayOutputStream()
+        inImage?.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        val path = MediaStore.Images.Media.insertImage(
+            context.getContentResolver(),
+            inImage,
+            "Title",
+            null
+        )
+        return Uri.parse(path)
+    }
+
+    private fun countCameraChange(){
+        if(countCameraChange) // 초기 : false
+            countCameraChange = false
+        else
+            countCameraChange = true
     }
 }

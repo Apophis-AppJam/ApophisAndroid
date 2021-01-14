@@ -2,15 +2,12 @@ package com.example.apophis_android.ui.firstDay
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Color
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.View
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
 import com.example.apophis_android.data.remote.ApophisService
@@ -18,8 +15,8 @@ import com.example.apophis_android.data.remote.request.ReplyOneRequest
 import com.example.apophis_android.data.remote.response.AponymousChatResponse
 import com.example.apophis_android.data.remote.response.BaseResponse
 import com.example.apophis_android.data.remote.response.ChoiceChatResponse
+import com.example.apophis_android.ui.MainActivity.Companion.countCameraChange
 import kotlinx.android.synthetic.main.activity_first_day_chat.*
-import kotlinx.android.synthetic.main.item_chat_user.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,7 +32,7 @@ class FirstDayChatActivity : AppCompatActivity() {
     private val apophisService = ApophisService
     private val jwt =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
-    private var chatDetailsIdx = 5
+    private var chatDetailsIdx = 18
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,24 +52,6 @@ class FirstDayChatActivity : AppCompatActivity() {
 
             override fun afterTextChanged(s: Editable?) {}
         })
-
-        /* chip click listener 재정의 */
-        userChatAdapter.setOnItemClickListener(object : FirstDayChatAdapter.OnItemClickListener {
-            override fun onItemClick(data: String) {
-                // override fun onItemClick(data: MutableList<String>) {
-
-                et_first_chat_message.setText(data)
-                //et_second_chat_message.setTextColor(Color.parseColor("#FFFFFF"))
-                btn_first_send.setImageResource(R.drawable.btn_send_act)
-
-                /*for (i in dataList.indices) {
-                    et_second_chat_message.setText(dataList[i])
-                    et_second_chat_message.setTextColor(Color.parseColor("#FFFFFF"))
-                    btn_chat_send.setImageResource(R.drawable.btn_send_act)
-                }*/
-            }
-        })
-
     }
 
     private fun initRcv() {
@@ -132,6 +111,22 @@ class FirstDayChatActivity : AppCompatActivity() {
                                         et_first_chat_message.setText("")
                                         postReplyToServer(jwt, chatDetailsIdx, 1, userChoice, tag)
                                     }
+
+                                    /* chip click listener 재정의 */
+                                    userChatAdapter.setOnItemClickListener(object : FirstDayChatAdapter.OnItemClickListener {
+                                        var indexlist: MutableList<Int?> = mutableListOf(-1)
+                                        override fun onItemClick(data: String, index: Int?) {
+                                            if(indexlist.contains(index)){
+                                                indexlist.remove(index)
+                                                et_first_chat_message.setText("")
+                                                btn_first_send.setImageResource(R.drawable.btn_send_unact)
+                                            }else {
+                                                indexlist.add(index)
+                                                et_first_chat_message.setText(data)
+                                                btn_first_send.setImageResource(R.drawable.btn_send_act)
+                                            }
+                                        }
+                                    })
                                 }
                                 8 -> {
                                     btn_first_send.setOnClickListener {
@@ -140,8 +135,7 @@ class FirstDayChatActivity : AppCompatActivity() {
                                         /* tag == 2 -> user가 보내는 보라색 말풍선 */
                                         userChatAdapter.addChat(chatRight)
                                         et_first_chat_message.setText("")
-                                        btn_long_answer_complete.setVisibility(View.VISIBLE)
-                                        //postReplyToServer(jwt, chatDetailsIdx, 1, userChoice, tag)
+                                        postReplyToServer(jwt, chatDetailsIdx, 1, userChoice, tag)
                                     }
                                 }
                                 else -> {
@@ -207,7 +201,6 @@ class FirstDayChatActivity : AppCompatActivity() {
     ) {
         if (tag == 6) {
             getAponymousChatFromServer(jwt, chatDetailsIdx + 1)
-            Toast.makeText(this,"나침반",Toast.LENGTH_SHORT).show()
         }
         else {
             apophisService.getInstance()
@@ -231,7 +224,6 @@ class FirstDayChatActivity : AppCompatActivity() {
                         if (response.isSuccessful) {
                             if (response.body()!!.success) {
                                 getAponymousChatFromServer(jwt, chatDetailsIdx + 1)
-                                Toast.makeText(this@FirstDayChatActivity,"ss",Toast.LENGTH_SHORT).show()
                             }
                         }
                     }
@@ -263,12 +255,22 @@ class FirstDayChatActivity : AppCompatActivity() {
             if (resultCode == Activity.RESULT_OK) {
                 val uri: Uri? = data?.getParcelableExtra("savedUri")
                 userChatAdapter.removeChat()
-                val aponymousChatData = OurUserChat(
-                    mutableListOf(uri.toString()),
-                    3
-                )
+                val aponymousChatData : OurUserChat
+                Log.i("count", countCameraChange.toString())
+                if(countCameraChange) {
+                    aponymousChatData = OurUserChat(
+                        mutableListOf(uri.toString()),
+                        3
+                    )
+                }
+                else {
+                    aponymousChatData = OurUserChat(
+                        mutableListOf(uri.toString()),
+                        4
+                    )
+                }
                 userChatAdapter.addChat(aponymousChatData)
-                postReplyToServer(jwt, chatDetailsIdx, 1, uri.toString(), 3)
+                postReplyToServer(jwt, chatDetailsIdx, 0, uri.toString(), 3)
             }
         }
     }

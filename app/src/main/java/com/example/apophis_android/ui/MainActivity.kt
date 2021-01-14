@@ -18,4 +18,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+    companion object{
+        var countCameraChange = false
+    }
 }
