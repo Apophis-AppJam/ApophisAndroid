@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_music.*
 
 class MusicActivity : AppCompatActivity() {
     
-    val onOff: Boolean = true //재생
+    private var onOff: Boolean = true //재생
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,8 +20,17 @@ class MusicActivity : AppCompatActivity() {
         mediaplayer?.isLooping = true
 
         btn_music_onoff.setOnClickListener {
-            mediaplayer?.release()
-            btn_music_onoff.setImageResource(R.drawable.btn_music_unselect)
+            if (onOff) {
+                mediaplayer?.release()
+                btn_music_onoff.setImageResource(R.drawable.btn_music_unselect)
+                onOff = false
+            } else {
+                mediaplayer = MediaPlayer.create(this, R.raw.apophis_bgm)
+                mediaplayer?.start()
+                mediaplayer?.isLooping = true
+                btn_music_onoff.setImageResource(R.drawable.btn_music_select)
+                onOff = true
+            }
         }
 
         btn_click.setOnClickListener {
