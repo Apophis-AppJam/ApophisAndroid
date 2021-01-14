@@ -11,15 +11,19 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
 import com.example.apophis_android.data.remote.ApophisService
+import com.example.apophis_android.data.remote.request.ReplyCategoryRequest
 import com.example.apophis_android.data.remote.request.ReplyOneRequest
+import com.example.apophis_android.data.remote.request.ReplyPictureRequest
 import com.example.apophis_android.data.remote.response.AponymousChatResponse
 import com.example.apophis_android.data.remote.response.BaseResponse
 import com.example.apophis_android.data.remote.response.ChoiceChatResponse
+import com.example.apophis_android.ui.firstDay.adapter.FirstDayChatAdapter
 import com.example.apophis_android.ui.main.MainActivity.Companion.countCameraChange
 import kotlinx.android.synthetic.main.activity_first_day_chat.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
 
 /**
  * Created By hanjaehyeon
@@ -32,7 +36,7 @@ class FirstDayChatActivity : AppCompatActivity() {
     private val apophisService = ApophisService
     private val jwt =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
-    private var chatDetailsIdx = 18
+    private var chatDetailsIdx = 17
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +59,10 @@ class FirstDayChatActivity : AppCompatActivity() {
     }
 
     private fun initRcv() {
-        userChatAdapter = FirstDayChatAdapter(this)
+        userChatAdapter =
+            FirstDayChatAdapter(
+                this
+            )
         rcv_first_chat.adapter = userChatAdapter
     }
 
@@ -98,6 +105,9 @@ class FirstDayChatActivity : AppCompatActivity() {
                             val replyType = response.body()!!.data.postInfo.replyType
                             tag = tagClassification(replyType)
 
+                            var categorySentence = ""
+                            var datalist: MutableList<String> = mutableListOf()
+
                             when (tag) {
                                 0, 1, 2, 5, 6 -> {
                                     /* 메세지 전송 버튼 클릭 시 */
@@ -109,18 +119,20 @@ class FirstDayChatActivity : AppCompatActivity() {
                                         /* tag == 2 -> user가 보내는 보라색 말풍선 */
                                         userChatAdapter.addChat(chatRight)
                                         et_first_chat_message.setText("")
+                                        btn_first_send.setImageResource(R.drawable.btn_send_unact)
                                         postReplyToServer(jwt, chatDetailsIdx, 1, userChoice, tag)
                                     }
 
                                     /* chip click listener 재정의 */
-                                    userChatAdapter.setOnItemClickListener(object : FirstDayChatAdapter.OnItemClickListener {
+                                    userChatAdapter.setOnItemClickListener(object :
+                                        FirstDayChatAdapter.OnItemClickListener {
                                         var indexlist: MutableList<Int?> = mutableListOf(-1)
                                         override fun onItemClick(data: String, index: Int?) {
-                                            if(indexlist.contains(index)){
+                                            if (indexlist.contains(index)) {
                                                 indexlist.remove(index)
                                                 et_first_chat_message.setText("")
                                                 btn_first_send.setImageResource(R.drawable.btn_send_unact)
-                                            }else {
+                                            } else {
                                                 indexlist.add(index)
                                                 et_first_chat_message.setText(data)
                                                 btn_first_send.setImageResource(R.drawable.btn_send_act)
@@ -135,8 +147,48 @@ class FirstDayChatActivity : AppCompatActivity() {
                                         /* tag == 2 -> user가 보내는 보라색 말풍선 */
                                         userChatAdapter.addChat(chatRight)
                                         et_first_chat_message.setText("")
+                                        btn_first_send.setImageResource(R.drawable.btn_send_unact)
                                         postReplyToServer(jwt, chatDetailsIdx, 1, userChoice, tag)
                                     }
+                                }
+                                9 -> { // 카테고리
+                                    /* 메세지 전송 버튼 클릭 시 */
+                                    getChoiceChatFromServer(jwt, chatDetailsIdx, tag)
+                                    btn_first_send.setOnClickListener {
+                                        userChatAdapter.removeChat()
+                                        val userChoice = et_first_chat_message.text.toString()
+                                        val chatRight = OurUserChat(mutableListOf(userChoice), 2)
+                                        /* tag == 2 -> user가 보내는 보라색 말풍선 */
+                                        userChatAdapter.addChat(chatRight)
+                                        et_first_chat_message.setText("")
+                                        btn_first_send.setImageResource(R.drawable.btn_send_unact)
+                                        datalist.add(categorySentence)
+                                        postCategoryToServer(jwt, chatDetailsIdx, 3, datalist)
+                                    }
+
+                                    /* chip click listener 재정의 */
+                                    userChatAdapter.setOnItemClickListener(object :
+                                        FirstDayChatAdapter.OnItemClickListener {
+                                        override fun onItemClick(
+                                            categotyData: String,
+                                            categoryIndex: Int?
+                                        ) {
+                                            if (datalist.contains(categotyData)) {
+                                                datalist.remove(categotyData)
+                                            } else {
+                                                datalist.add(categotyData)
+                                            }
+                                            if (datalist.size == 3) {
+                                                categorySentence = getcategorySentence(datalist)
+                                                et_first_chat_message.setText(categorySentence)
+                                                btn_first_send.setImageResource(R.drawable.btn_send_act)
+                                            } else {
+                                                et_first_chat_message.setText("")
+                                                btn_first_send.setImageResource(R.drawable.btn_send_unact)
+                                            }
+                                        }
+                                    })
+
                                 }
                                 else -> {
                                     /* 메세지 전송 버튼 클릭 시 */
@@ -148,6 +200,7 @@ class FirstDayChatActivity : AppCompatActivity() {
                                         /* tag == 2 -> user가 보내는 보라색 말풍선 */
                                         userChatAdapter.addChat(chatRight)
                                         et_first_chat_message.setText("")
+                                        btn_first_send.setImageResource(R.drawable.btn_send_unact)
                                         postReplyToServer(jwt, chatDetailsIdx, 1, userChoice, tag)
                                     }
                                 }
@@ -201,8 +254,7 @@ class FirstDayChatActivity : AppCompatActivity() {
     ) {
         if (tag == 6) {
             getAponymousChatFromServer(jwt, chatDetailsIdx + 1)
-        }
-        else {
+        } else {
             apophisService.getInstance()
                 .requestOneReply(
                     jwt = jwt,
@@ -223,7 +275,12 @@ class FirstDayChatActivity : AppCompatActivity() {
                     ) {
                         if (response.isSuccessful) {
                             if (response.body()!!.success) {
-                                getAponymousChatFromServer(jwt, chatDetailsIdx + 1)
+                                if (chatDetailsIdx < 23) {
+                                    Log.i("아포",chatDetailsIdx.toString())
+                                    getAponymousChatFromServer(jwt, chatDetailsIdx + 1)
+                                    Log.i("아포",chatDetailsIdx.toString())
+                                    btn_first_send.setImageResource(R.drawable.btn_send_unact)
+                                }
                             }
                         }
                     }
@@ -231,17 +288,91 @@ class FirstDayChatActivity : AppCompatActivity() {
         }
     }
 
+    private fun postPictureToServer(
+        jwt: String,
+        chatDetailsIdx: Int,
+        replyNum: Int,
+        image: File
+    ) {
+        apophisService.getInstance()
+            .requestPictureReply(
+                jwt = jwt,
+                chatDetailsIdx = chatDetailsIdx,
+                replyNum = replyNum,
+                body = ReplyPictureRequest(image)
+            ).enqueue(object : Callback<BaseResponse<Unit>> {
+                override fun onFailure(
+                    call: Call<BaseResponse<Unit>>,
+                    t: Throwable
+                ) { //통신 실패
+                    Log.d("fail", t.message)
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponse<Unit>>,
+                    response: Response<BaseResponse<Unit>>
+                ) {
+                    if (response.isSuccessful) {
+                        if (response.body()!!.success) {
+                            if (chatDetailsIdx < 23) {
+                                getAponymousChatFromServer(jwt, chatDetailsIdx + 1)
+                                btn_first_send.setImageResource(R.drawable.btn_send_unact)
+                            }
+                        }
+                    }
+                }
+            })
+    }
+
+    private fun postCategoryToServer(
+        jwt: String,
+        chatDetailsIdx: Int,
+        replyNum: Int,
+        reply: MutableList<String>
+    ) {
+        apophisService.getInstance()
+            .requestCategoryReply(
+                jwt = jwt,
+                chatDetailsIdx = chatDetailsIdx,
+                replyNum = replyNum,
+                body = ReplyCategoryRequest(reply[1], reply[2], reply[3], reply[0])
+            ).enqueue(object : Callback<BaseResponse<Unit>> {
+                override fun onFailure(
+                    call: Call<BaseResponse<Unit>>,
+                    t: Throwable
+                ) { //통신 실패
+                    Log.d("fail", t.message)
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponse<Unit>>,
+                    response: Response<BaseResponse<Unit>>
+                ) {
+                    if (response.isSuccessful) {
+                        if (response.body()!!.success) {
+                            if (chatDetailsIdx < 23) {
+                                getAponymousChatFromServer(jwt, chatDetailsIdx + 1)
+                                btn_first_send.setImageResource(R.drawable.btn_send_unact)
+                            }
+                        }
+                    }
+                }
+            })
+    }
+
     private fun tagClassification(replyType: String): Int {
-        if (replyType == "단일 보기 선택" || replyType == "다중 보기 선택" || replyType == "카테고리 선택") {
+        if (replyType == "단일 보기 선택" || replyType == "다중 보기 선택") {
             return 5
         } else if (replyType == "단답형 텍스트 입력") {
             return 7
         } else if (replyType == "기능 액션 버튼 - 나침반") {
             return 6
         } else if (replyType == "기능 액션 버튼 - 카메라") {
-            return 9
-        } else if (replyType == "단일 보기 선택"){
+            return 10
+        } else if (replyType == "단일 보기 선택") {
             return 2
+        } else if (replyType == "카테고리 선택") {
+            return 9
         } else {
             return 8
         }
@@ -255,23 +386,41 @@ class FirstDayChatActivity : AppCompatActivity() {
             if (resultCode == Activity.RESULT_OK) {
                 val uri: Uri? = data?.getParcelableExtra("savedUri")
                 userChatAdapter.removeChat()
-                val aponymousChatData : OurUserChat
+                val aponymousChatData: OurUserChat
                 Log.i("count", countCameraChange.toString())
-                if(countCameraChange) {
+                if (countCameraChange) {
                     aponymousChatData = OurUserChat(
                         mutableListOf(uri.toString()),
                         3
                     )
-                }
-                else {
+                } else {
                     aponymousChatData = OurUserChat(
                         mutableListOf(uri.toString()),
                         4
                     )
                 }
                 userChatAdapter.addChat(aponymousChatData)
-                postReplyToServer(jwt, chatDetailsIdx, 0, uri.toString(), 3)
+                postPictureToServer(jwt, chatDetailsIdx, 0, File(uri.toString()))
             }
         }
+    }
+
+    private fun getcategorySentence(categoryData: MutableList<String>) : String {
+        var categorySentence = "나는 "
+        Log.i("log",categoryData.toString())
+        for(i in 0..1) {
+            if (categoryData[i].contains("한")) {
+                categorySentence += categoryData[i].substring(0, categoryData[i].length - 1) + "하고, "
+            } else if (categoryData[i].contains("인")) {
+                categorySentence += categoryData[i].substring(0, categoryData[i].length - 1) + "이고, "
+            } else if (categoryData[i].contains("는") || categoryData[i].contains("은") ||
+                categoryData[i].contains("센")) {
+                categorySentence += categoryData[i].substring( 0, categoryData[i].length - 1) + "고, "
+            } else if(categoryData[i].contains("운")) {
+                categorySentence += categoryData[i].substring( 0, categoryData[i].length - 2) + "럽고, "
+            }
+        }
+        categorySentence += categoryData[2] + " 사람이야."
+        return categorySentence
     }
 }

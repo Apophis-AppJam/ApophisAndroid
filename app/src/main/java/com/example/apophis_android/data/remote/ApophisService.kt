@@ -1,5 +1,6 @@
 package com.example.apophis_android.data.remote
 
+import com.example.apophis_android.data.remote.request.ReplyCategoryRequest
 import com.example.apophis_android.data.remote.request.ReplyFourRequest
 import com.example.apophis_android.data.remote.request.ReplyOneRequest
 import com.example.apophis_android.data.remote.request.ReplyPictureRequest
@@ -55,6 +56,15 @@ interface ApophisService {
         @Path("chatDetailsIdx") chatDetailsIdx: Int,
         @Path("replyNum") replyNum: Int,
         @Body body: ReplyPictureRequest
+    ): Call<BaseResponse<Unit>>
+
+    @POST("/reply/{chatDetailsIdx}/{replyNum}")
+    fun requestCategoryReply(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("jwt") jwt: String,
+        @Path("chatDetailsIdx") chatDetailsIdx: Int,
+        @Path("replyNum") replyNum: Int,
+        @Body body: ReplyCategoryRequest
     ): Call<BaseResponse<Unit>>
 
     /* 편지 */

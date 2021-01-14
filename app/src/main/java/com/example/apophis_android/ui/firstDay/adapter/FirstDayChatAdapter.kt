@@ -1,4 +1,4 @@
-package com.example.apophis_android.ui.firstDay
+package com.example.apophis_android.ui.firstDay.adapter
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -17,6 +17,8 @@ import com.bumptech.glide.Glide
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
 import com.example.apophis_android.ui.ChipFactory
+import com.example.apophis_android.ui.firstDay.CameraActivity
+import com.example.apophis_android.ui.firstDay.CompassActivity
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 
@@ -37,7 +39,7 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
             2, 8 -> R.layout.item_chat_user
             3 -> R.layout.item_chat_user_image_portrait
             4 -> R.layout.item_chat_user_image_landscape
-            5 -> R.layout.item_chip_choice
+            5, 9 -> R.layout.item_chip_choice
             6 -> R.layout.item_chat_compass
             7 -> R.layout.item_chat_short_answer
             else -> R.layout.item_chat_camera
@@ -228,7 +230,9 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
         fun bind() {
             btnCamera.setOnClickListener {
                 val intent = Intent(context, CameraActivity::class.java)
-                (context as Activity).startActivityForResult(intent, CAMERA_ACTIVITY_REQUEST_CODE)
+                (context as Activity).startActivityForResult(intent,
+                    CAMERA_ACTIVITY_REQUEST_CODE
+                )
             }
         }
     }
