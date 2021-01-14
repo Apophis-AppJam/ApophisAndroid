@@ -3,14 +3,18 @@
 
     <font
         android:font="@font/gmarket_sans_light"
-        android:fontStyle="normal" />
+        android:fontStyle="normal"/>
 
     <font
         android:font="@font/gmarket_sans_medium"
-        android:fontStyle="normal" />
+        android:fontStyle="normal"/>
 
     <font
     android:font="@font/gmarket_sans_bold"
-    android:fontStyle="normal" />
+    android:fontStyle="normal"/>
+
+    <font
+        android:font="@font/chosunnm"
+        android:fontStyle="normal"/>
 
 </font-family>

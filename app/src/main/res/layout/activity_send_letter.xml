@@ -7,4 +7,60 @@
     tools:context=".ui.main.letter.SendLetterActivity"
     android:background="@drawable/bg_letter">
 
+    <ImageView
+        android:id="@+id/btn_letter_back_to_receive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="26dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/slice_2" />
+
+    <ImageView
+        android:id="@+id/btn_letter_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_letter_send"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/btn_complete_act" />
+
+    <TextView
+        android:id="@+id/tv_letter_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:text="보내기"
+        android:textSize="14dp"
+        android:textColor="@color/purpleAB70F5"
+        android:fontFamily="@font/gmarket_sans_medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/tv_letter_send_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="28dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:cursorVisible="false"
+        android:background="@null"
+        android:inputType="textMultiLine"
+        android:hint="텍스트를 입력해주세요"
+        android:textColorHint="@color/gray70"
+        android:textSize="16dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/chosunnm"
+        app:layout_constraintBottom_toTopOf="@+id/btn_letter_send"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_letter_back_to_receive" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

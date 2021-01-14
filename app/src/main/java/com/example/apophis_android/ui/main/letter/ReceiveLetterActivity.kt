@@ -10,6 +10,6 @@ class ReceiveLetterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_receive_letter)
 
-        btn_letter_back.setOnClickListener { onBackPressed() }
+        btn_letter_back_to_main.setOnClickListener { onBackPressed() }
     }
 }
