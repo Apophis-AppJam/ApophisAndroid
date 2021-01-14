@@ -34,10 +34,10 @@
         android:id="@+id/btn_find_me_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="164dp"
         android:layout_marginBottom="43dp"
         android:background="@drawable/boarder_round_rectangle_purple5a_17dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView

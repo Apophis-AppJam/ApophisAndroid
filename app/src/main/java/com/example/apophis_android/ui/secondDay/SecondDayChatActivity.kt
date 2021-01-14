@@ -39,6 +39,8 @@ class SecondDayChatActivity : AppCompatActivity() {
         // 2일차 시작 인덱스 23
         getAponymousChatFromServer(jwt, chatDetailsIdx)
 
+        btn_second_back.setOnClickListener { onBackPressed() }
+
         et_second_chat_message.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
