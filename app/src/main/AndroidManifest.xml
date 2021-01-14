@@ -36,14 +36,16 @@
         <activity android:name=".ui.firstDay.CompassActivity" />
         <activity android:name=".ui.firstDay.FirstDayChatActivity" />
         <activity android:name=".ui.secondDay.SecondDayChatActivity">
+
+        </activity>
+        <activity android:name=".ui.ApophisActivity" />
+        <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.ApophisActivity" />
-        <activity android:name=".MainActivity" />
         <activity android:name=".ui.secondDay.SecondDayTimepickerActivity" />
         <activity android:name=".ui.secondDay.SecondDayFindLightMeActivity" />
         <activity android:name=".ui.secondDay.SecondDayFindDarkMeActivity" />

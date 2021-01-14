@@ -10,7 +10,6 @@ import android.os.Vibrator
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import com.airbnb.lottie.LottieAnimationView
 //import com.airbnb.lottie.LottieAnimationView
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
@@ -19,7 +18,7 @@ import com.example.apophis_android.data.remote.request.ReplyOneRequest
 import com.example.apophis_android.data.remote.response.AponymousChatResponse
 import com.example.apophis_android.data.remote.response.BaseResponse
 import com.example.apophis_android.data.remote.response.ChoiceChatResponse
-import com.example.apophis_android.ui.sixthDay.sixthAdapter.SixthChatAdapter
+import com.example.apophis_android.ui.sixthDay.adapter.SixthDayChatAdapter
 import kotlinx.android.synthetic.main.activity_sixth_day_chat.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,7 +26,7 @@ import retrofit2.Response
 
 class SixthDayChatActivity : AppCompatActivity() {
 
-    private lateinit var sixthUserChatAdapter: SixthChatAdapter
+    private lateinit var sixthUserChatAdapter: SixthDayChatAdapter
 
     private val apophisService = ApophisService
     private val jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
@@ -55,7 +54,7 @@ class SixthDayChatActivity : AppCompatActivity() {
         })
 
         /* chip click listener 재정의 */
-        sixthUserChatAdapter.setOnItemClickListener(object : SixthChatAdapter.OnItemClickListener {
+        sixthUserChatAdapter.setOnItemClickListener(object : SixthDayChatAdapter.OnItemClickListener {
             override fun onItemClick(data: String) {
                 // override fun onItemClick(data: MutableList<String>) {
 
@@ -74,7 +73,7 @@ class SixthDayChatActivity : AppCompatActivity() {
     }
 
     private fun initRcv() {
-        sixthUserChatAdapter = SixthChatAdapter(this)
+        sixthUserChatAdapter = SixthDayChatAdapter(this)
         sixth_rcv_chat.adapter = sixthUserChatAdapter
         sixth_rcv_chat.layoutManager = ScrollLinearLayoutManager(this, 12)
     }
@@ -156,17 +155,17 @@ class SixthDayChatActivity : AppCompatActivity() {
                                 4
                             } else if (replyType == "기능 액션 버튼 - 얼룩 지우기") {
                                 5
-                            } else if (replyType == "기능 액션 버튼 - 두개의 나 ") {
+                            } else if (replyType == "장문형 텍스트 입력") {
                                 6
                             } else {
                                 2
                             }
                             Log.d("다다 아포에서 보내는 idx", chatDetailsIdx.toString())
-                            getChoiceChatFromServer(jwt, chatDetailsIdx, tag)
 
                             when (tag) {
                                 0, 1, 2, 3 -> {
                                     /* 메세지 전송 버튼 클릭 시 */
+                                    getChoiceChatFromServer(jwt, chatDetailsIdx, tag)
                                     sixth_btn_chat_send.setOnClickListener {
                                         sixthUserChatAdapter.removeChat()
                                         val userChoice = sixth_et_chat_message.text.toString()
@@ -180,8 +179,22 @@ class SixthDayChatActivity : AppCompatActivity() {
                                         postReplyToServer(jwt, chatDetailsIdx, 1, userChoice)
                                     }
                                 }
+                                6 -> {
+                                    sixth_btn_chat_send.setOnClickListener {
+                                        val userChoice = sixth_et_chat_message.text.toString()
+                                        val chatRight = OurUserChat(mutableListOf(userChoice), 2)
+                                        /* tag == 2 -> user가 보내는 보라색 말풍선 */
+                                        sixthUserChatAdapter.addChat(chatRight)
+                                        sixth_rcv_chat.smoothScrollToPosition(sixthUserChatAdapter.itemCount - 1)
+                                        sixth_et_chat_message.setText("")
+                                        Log.d("다다 여기로 잘 들어왔어", "클릭 리스너, $chatRight")
+                                        Log.d("다다 reply로 보내는 idx", chatDetailsIdx.toString())
+                                        postReplyToServer(jwt, chatDetailsIdx, 1, userChoice)
+                                    }
+                                }
                                 else -> {
                                     /* 메세지 전송 버튼 클릭 시 */
+                                    getChoiceChatFromServer(jwt, chatDetailsIdx, tag)
                                     sixth_btn_chat_send.setOnClickListener {
                                         sixthUserChatAdapter.removeChat()
                                         val userChoice = sixth_et_chat_message.text.toString()
