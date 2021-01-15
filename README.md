@@ -205,9 +205,9 @@ implementation "androidx.camera:camera-view:1.0.0-alpha14"
 
 ### 🔧 Tech Stack
 
+1. 카메라 이미지 캡처
 ------
 ```kotlin
-1. 카메라 이미지 캡처
  imageCapture.takePicture(
             ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageCapturedCallback() {
