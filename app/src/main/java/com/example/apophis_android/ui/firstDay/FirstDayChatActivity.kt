@@ -21,6 +21,7 @@ import com.example.apophis_android.data.remote.response.ChoiceChatResponse
 import com.example.apophis_android.ui.firstDay.adapter.FirstDayChatAdapter
 import com.example.apophis_android.ui.main.MainActivity.Companion.countCameraChange
 import kotlinx.android.synthetic.main.activity_first_day_chat.*
+import kotlinx.android.synthetic.main.activity_second_day_chat.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -191,7 +192,12 @@ class FirstDayChatActivity : AppCompatActivity() {
                                             }
                                         }
                                     })
-
+                                }
+                                    11 -> {
+                                        val user = ""
+                                        val chat = OurUserChat(mutableListOf(user), 11)
+                                        userChatAdapter.addChat(chat)
+                                        btn_chat_send.setOnClickListener(null)
                                 }
                                 else -> {
                                     /* 메세지 전송 버튼 클릭 시 */
@@ -374,6 +380,8 @@ class FirstDayChatActivity : AppCompatActivity() {
             return 10
         } else if (replyType == "단일 보기 선택") {
             return 2
+        } else if (replyType == "일차 종료 (reply 없음)") {
+            return 11
         } else if (replyType == "카테고리 선택") {
             return 9
         } else {

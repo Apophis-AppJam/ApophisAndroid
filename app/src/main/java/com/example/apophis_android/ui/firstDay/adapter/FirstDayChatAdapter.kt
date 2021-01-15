@@ -19,6 +19,7 @@ import com.example.apophis_android.data.entity.OurUserChat
 import com.example.apophis_android.ui.ChipFactory
 import com.example.apophis_android.ui.firstDay.CameraActivity
 import com.example.apophis_android.ui.firstDay.CompassActivity
+import com.example.apophis_android.ui.firstDay.FirstDayChatEndingActivity
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 
@@ -42,6 +43,7 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
             5, 9 -> R.layout.item_chip_choice
             6 -> R.layout.item_chat_compass
             7 -> R.layout.item_chat_short_answer
+            11 -> R.layout.item_chat_ending
             else -> R.layout.item_chat_camera
         }
     }
@@ -80,6 +82,10 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
             R.layout.item_chat_camera -> {
                 val view = layoutInflater.inflate(R.layout.item_chat_camera, parent, false)
                 CameraViewHolder(view)
+            }
+            R.layout.item_chat_ending -> {
+                val view = layoutInflater.inflate(R.layout.item_chat_ending, parent, false)
+                EndingViewHolder(view)
             }
             else ->
                 throw IllegalArgumentException("ViewType [$viewType] is unexpected")
@@ -123,6 +129,10 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
         }
 
         if (holder is CameraViewHolder) {
+            holder.bind()
+            holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
+        }
+        if (holder is FirstDayChatAdapter.EndingViewHolder) {
             holder.bind()
             holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
         }
@@ -233,6 +243,16 @@ class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
                 (context as Activity).startActivityForResult(intent,
                     CAMERA_ACTIVITY_REQUEST_CODE
                 )
+            }
+        }
+    }
+
+    inner class EndingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val btnAction = itemView.findViewById<View>(R.id.btn_ending_okay)
+        fun bind() {
+            btnAction.setOnClickListener {
+                val intent = Intent(context, FirstDayChatEndingActivity::class.java)
+                context.startActivity(intent)
             }
         }
     }
