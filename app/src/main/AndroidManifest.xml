@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.apophis_android">
+
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.VIBRATE" />
+
     <uses-feature android:name="android.hardware.type.watch" />
     <uses-feature android:name="android.hardware.camera.any" />
+
     <application
         android:name=".ui.login.GlobalApplication"
         android:allowBackup="true"
@@ -16,29 +19,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Apophis_android"
         android:usesCleartextTraffic="true">
-        <!--        <uses-library-->
-        <!--            android:name="com.google.android.wearable"-->
-        <!--            android:required="true" />-->
-        <!--        &lt;!&ndash;-->
-        <!--               Set to true if your app is Standalone, that is, it does not require the handheld-->
-        <!--               app to run.-->
-        <!--        &ndash;&gt;-->
+        <activity android:name=".ui.main.DayActivity"></activity>
+        <!-- <uses-library -->
+        <!-- android:name="com.google.android.wearable" -->
+        <!-- android:required="true" /> -->
+        <!-- &lt;!&ndash; -->
+        <!-- Set to true if your app is Standalone, that is, it does not require the handheld -->
+        <!-- app to run. -->
+        <!-- &ndash;&gt; -->
         <meta-data
             android:name="com.google.android.wearable.standalone"
             android:value="flase" />
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
+
         <activity android:name=".ui.main.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".ui.login.LoginActivity" />
         <activity
             android:name=".ui.onboarding.NewsActivity"
-            android:label="@string/title_activity_news"  />
+            android:label="@string/title_activity_news" />
         <activity android:name=".ui.onboarding.StartActivity" />
         <activity
             android:name=".ui.onboarding.CallActivity"
@@ -54,8 +60,10 @@
             android:name=".ui.firstDay.CameraActivity"
             android:configChanges="orientation|keyboardHidden" />
         <activity android:name=".ui.firstDay.CompassActivity" />
-        <activity android:name=".ui.secondDay.SecondDayChatActivity"  android:exported="true" />
-        <activity android:name=".ui.secondDay.SecondDayChatEndingActivity"/>
+        <activity
+            android:name=".ui.secondDay.SecondDayChatActivity"
+            android:exported="true" />
+        <activity android:name=".ui.secondDay.SecondDayChatEndingActivity" />
         <activity android:name=".ui.secondDay.time.SecondDayTimepickerActivity" />
         <activity android:name=".ui.secondDay.findMe.SecondDayFindLightMeActivity" />
         <activity android:name=".ui.secondDay.findMe.SecondDayFindDarkMeActivity" />
@@ -67,4 +75,5 @@
         <activity android:name=".ui.seventhDay.tarot.SeventhDayTarotAnswerActivity" />
         <activity android:name=".ui.seventhDay.SeventhDayChatActivity" />
     </application>
+
 </manifest>

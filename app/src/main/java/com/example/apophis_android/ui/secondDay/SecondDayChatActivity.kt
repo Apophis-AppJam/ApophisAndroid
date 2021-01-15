@@ -160,6 +160,7 @@ class SecondDayChatActivity : AppCompatActivity() {
                                 }
                                 5 -> { //short answer
                                     getChoiceChatFromServer(jwt, chatDetailsIdx, tag)
+                                    btn_chat_send.setOnClickListener(null)
                                     chatAdapter.setCallbackListener(object : SecondDayChatAdapter.CallbackListener{
                                         override fun callBack(inputTextList: MutableList<String>) {
                                             postReplyFourToServer(jwt, chatDetailsIdx, 4, inputTextList)
