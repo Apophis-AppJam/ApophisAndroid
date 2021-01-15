@@ -18,27 +18,44 @@
         app:srcCompat="@drawable/img_moon" />
 
     <TextView
-        android:id="@+id/tv_ending"
+        android:id="@+id/tv_ending_message_content1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="37dp"
-        android:text="대화가 끊겼습니다"
-        android:textSize="18dp"
+        android:text="@string/second_ending_message1"
+        android:textSize="14dp"
         android:textColor="@color/white"
         android:fontFamily="@font/gmarket_sans_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_ending_moon" />
 
+    <TextView
+        android:id="@+id/tv_ending_message_content2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="73dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="72dp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:text="@string/second_ending_message2"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:lineSpacingExtra="4dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ending_message_content1" />
+
     <View
         android:id="@+id/view_ending_message_background"
         android:layout_width="295dp"
         android:layout_height="176dp"
-        android:layout_marginTop="73dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_rectangle_black26_10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_ending"
-        android:background="@drawable/round_rectangle_black26_10dp"/>
+        app:layout_constraintTop_toBottomOf="@+id/tv_ending_message_content2" />
 
     <TextView
         android:id="@+id/tv_ending_message_title"
@@ -73,11 +90,16 @@
         app:layout_constraintTop_toBottomOf="@+id/view_ending_line">
 
         <TextView
-            android:id="@+id/tv_ending_message_content1"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_ending_message_content3"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="56dp"
             android:fontFamily="@font/gmarket_sans_medium"
-            android:text="@string/second_ending_message1"
+            android:lineSpacingExtra="4dp"
+            android:text="@string/second_ending_message3"
+            android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="14dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -85,43 +107,37 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_ending_message_content2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/gmarket_sans_medium"
-            android:text="@string/second_ending_message2"
-            android:textColor="@color/white"
-            android:textSize="14dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_ending_message_content1" />
-
-        <TextView
-            android:id="@+id/tv_ending_message_content3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/gmarket_sans_medium"
-            android:text="@string/second_ending_message3"
-            android:textColor="@color/white"
-            android:textSize="14dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_ending_message_content2" />
-
-        <TextView
             android:id="@+id/tv_ending_message_content4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/gmarket_sans_medium"
             android:text="@string/second_ending_message4"
             android:textColor="@color/white"
             android:textSize="14dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:lineSpacingExtra="4dp"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/tv_ending_message_content3"
+            app:layout_constraintStart_toStartOf="@+id/tv_ending_message_content3"
             app:layout_constraintTop_toBottomOf="@+id/tv_ending_message_content3" />
+
+        <ImageView
+            android:id="@+id/img_quote_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="29dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/img_quote_left" />
+
+        <ImageView
+            android:id="@+id/img_quote_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="29dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/img_quote_right" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
