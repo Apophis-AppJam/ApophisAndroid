@@ -6,10 +6,6 @@
 
 <img src="https://user-images.githubusercontent.com/63586451/104689431-d8683500-5745-11eb-8a57-5532602f7260.jpg" alt="프로필"/>
 
-
-
-<br>
-
 > SOPT 27기 17th APP-JAM : Apophis 🌠
 
 <br>
