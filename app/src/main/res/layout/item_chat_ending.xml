@@ -27,7 +27,7 @@
         app:layout_constraintEnd_toEndOf="@+id/view_background"
         app:layout_constraintStart_toStartOf="@+id/view_background"
         app:layout_constraintTop_toTopOf="@+id/view_background"
-        app:srcCompat="@drawable/img_moon" />
+        app:srcCompat="@drawable/img_moon_small" />
 
     <TextView
         android:id="@+id/tv_chat_ending_title"

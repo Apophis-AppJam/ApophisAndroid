@@ -19,12 +19,13 @@
     <string name="music_1">미리 맞이하는 당신의 이른 죽음, 아포피스를 시작합니다.</string>
     <string name="music_2">주변이 조용하고 집중할 수 있는 환경인지 확인해주세요!</string>
     <string name="music_off">[음표버튼을 눌러 배경음악을 끌 수 있어요]</string>
+    
     <string name="incoming_call">수신전화</string>
     <string name="caller">익명의 누군가</string>
     <string name="phone_number">알 수 없는 번호</string>
     <string name="first_call">첫번째 통화</string>
     <string name="answer">응답</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="onboarding_start">시작하기</string>
     <string name="start_title">아포니머스가 남긴 메세지</string>
@@ -32,4 +33,10 @@
     <string name="news_title">[속보] 7일 뒤 아포피스 충돌</string>
     <string name="livechat">실시간 채팅</string>
     <string name="news_view">조희수 109,087,340회 실시간</string>
+    
+    <string name="second_ending_message1">멸망까지 닷새</string>
+    <string name="second_ending_message2">여러 갈래 길에 쌓이는 눈 : 당신의 가치</string>
+    <string name="second_ending_message3">너에게는 어떤 모습들이 있니? 빛이든 그림자든.</string>
+    <string name="second_ending_message4">그 모습들은 전부 너일테니까.</string>
+    
 </resources>
