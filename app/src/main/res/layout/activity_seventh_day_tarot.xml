@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/img_bg_tarot"
-    tools:context=".ui.seventhDay.SeventhDayTarotActivity">
+    tools:context=".ui.seventhDay.tarot.SeventhDayTarotActivity">
 
     <ImageView
         android:id="@+id/tarot_btn_back"

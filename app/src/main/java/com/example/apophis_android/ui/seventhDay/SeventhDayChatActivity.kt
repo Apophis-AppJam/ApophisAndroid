@@ -2,7 +2,6 @@ package com.example.apophis_android.ui.seventhDay
 
 import android.content.Intent
 import android.graphics.Color
-import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -11,7 +10,6 @@ import android.text.TextWatcher
 import android.util.Log
 import android.widget.MediaController
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import com.airbnb.lottie.LottieAnimationView
 import com.example.apophis_android.R
@@ -22,6 +20,7 @@ import com.example.apophis_android.data.remote.response.AponymousChatResponse
 import com.example.apophis_android.data.remote.response.BaseResponse
 import com.example.apophis_android.data.remote.response.ChoiceChatResponse
 import com.example.apophis_android.ui.seventhDay.adapter.SeventhChatAdapter
+import com.example.apophis_android.ui.seventhDay.tarot.SeventhDayTarotActivity
 import com.example.apophis_android.ui.sixthDay.ScrollLinearLayoutManager
 import kotlinx.android.synthetic.main.activity_second_day_chat.*
 import kotlinx.android.synthetic.main.activity_seventh_day_chat.*
@@ -38,7 +37,7 @@ class SeventhDayChatActivity : AppCompatActivity() {
 
     private val apophisService = ApophisService
     private val jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
-    private var chatDetailsIdx = 148
+    private var chatDetailsIdx = 130
     private lateinit var VIDEO_PATH: String
     private var randomCoin = ""
 
@@ -247,6 +246,7 @@ class SeventhDayChatActivity : AppCompatActivity() {
                                             val intent = Intent(this@SeventhDayChatActivity, SeventhDayTarotActivity::class.java)
                                             intent.putExtra("chatDetailIdx", chatDetailsIdx.toString())
                                             startActivity(intent)
+                                            getAponymousChatFromServer(jwt, chatDetailsIdx + 10)
                                         }, 10000)
                                     }
                                     10 -> {

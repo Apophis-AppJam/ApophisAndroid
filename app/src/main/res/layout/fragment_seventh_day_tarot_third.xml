@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.seventhDay.SeventhDayTarotThirdFragment">
+    tools:context=".ui.seventhDay.tarot.SeventhDayTarotThirdFragment">
 
     <ImageView
         android:id="@+id/tarot3_viewpager_bg"
@@ -49,7 +49,7 @@
         android:fontFamily="@font/gmarket_sans_medium"
         android:gravity="center"
         android:lineSpacingExtra="8dp"
-        android:text="서버에서 여기로 질문 보내줄거야\n줄바꿈 간격 확인"
+        android:text="한 번 쯤 하고 싶었는데 못해본 말이 있을까?"
         android:textColor="@color/purpleB274FF"
         android:textSize="12sp"
         android:visibility="invisible"
