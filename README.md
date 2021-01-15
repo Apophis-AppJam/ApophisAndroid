@@ -228,14 +228,72 @@ implementation "androidx.camera:camera-view:1.0.0-alpha14"
                 }
             })
 ```
-imageProxy로 받아서 원하는 형태로 변형해서 사용 가능하다.
+imageProxy로 받아서 원하는 형태로 변형해서 사용 가능
 
 <br>
 
+2. 나침반 센서 메소드
+```kotlin
+override fun onSensorChanged(event: SensorEvent) {
+        if (event.sensor === accelerometer) {
+            lowPass(event.values, lastAccelerometer)
+            lastAccelerometerSet = true
+        } else if (event.sensor === magnetometer) {
+            lowPass(event.values, lastMagnetometer)
+            lastMagnetometerSet = true
+        }
+
+        if (lastAccelerometerSet && lastMagnetometerSet) {
+            val r = FloatArray(9)
+            if (SensorManager.getRotationMatrix(r, null, lastAccelerometer, lastMagnetometer)) {
+                val orientation = FloatArray(3)
+                SensorManager.getOrientation(r, orientation)
+                val degree = (Math.toDegrees(orientation[0].toDouble()) + 360).toFloat() % 360
+
+                var rotateAnimation = RotateAnimation(
+                    currentDegree,
+                    -degree,
+                    Animation.RELATIVE_TO_SELF, 0.5f,
+                    Animation.RELATIVE_TO_SELF, 0.5f)
+                rotateAnimation.duration = 200
+                rotateAnimation.fillAfter = true
+
+                image.startAnimation(rotateAnimation)
+                currentDegree = -degree
+
+                if (degree > 80 && degree < 100) {
+                    Timer().schedule(1500) {
+                        runOnUiThread {
+                            iv_compass_arrow.setImageResource(R.drawable.img_compass_arrow_bold)
+                            sensorManager.unregisterListener(this@CompassActivity, accelerometer)
+                            sensorManager.unregisterListener(this@CompassActivity, magnetometer)
+                            rotateAnimation = RotateAnimation(
+                                -90.toFloat(), (-90).toFloat(), Animation.RELATIVE_TO_SELF,
+                                0.5f, Animation.RELATIVE_TO_SELF, 0.5f
+                            )
+                            rotateAnimation.duration = 210
+                            rotateAnimation.fillAfter = true
+                            currentDegree = -degree
+                            iv_compass.startAnimation(rotateAnimation)
+                            Thread.currentThread().interrupt()
+                            Timer().schedule(1500){
+                                finish()
+                            }
+                        }
+                    }
+                } else {
+                    iv_compass.setImageResource(R.drawable.img_compass)
+                }
+            }
+        }
+    }
+```
+가속도 센서(TYPE_ACCELEROMETER), 자기장 센서(TYPE_ACCELEROMETER)를 활용하여 값을 지속적으로 받아와 방향을 인식하고 센서값이 바뀔 때마다 리스너 오브젝트의 onSensorChanged() 메소드가 호출됨
 
 
 
 <br>
+
 
 
 
