@@ -120,7 +120,7 @@ class SecondDayValueActivity : AppCompatActivity() {
             value_tv_number.text = "$totalNum"
             activeImage()
             value_btn_next.isEnabled = false
-            value_btn_next.setBackgroundResource(R.drawable.value_next_btn_yet)
+            value_btn_next.setBackgroundResource(R.drawable.boarder_round_rectangle_purple5a_17dp)
             value_tv_next.setTextColor(Color.parseColor("#5A4F63"))
         }
 
@@ -129,7 +129,7 @@ class SecondDayValueActivity : AppCompatActivity() {
     private fun choiceLove(): Int {
         loveNum++
         value_tv_love_number.text = "${loveNum}회"
-        value_iv_love.setImageResource(R.drawable.value_circle_clicked)
+        value_iv_love.setImageResource(R.drawable.circle_whiteb3_1dp)
         when (loveNum) {
             1 -> value_iv_love.setBackgroundResource(R.drawable.img_value_1)
             2 -> value_iv_love.setBackgroundResource(R.drawable.img_value_2)
@@ -150,7 +150,7 @@ class SecondDayValueActivity : AppCompatActivity() {
     private fun choiceRelation(): Int {
         relationNum++
         value_tv_relation_number.text = "${relationNum}회"
-        value_iv_relation.setImageResource(R.drawable.value_circle_clicked)
+        value_iv_relation.setImageResource(R.drawable.circle_whiteb3_1dp)
         when (relationNum) {
             1 -> value_iv_relation.setBackgroundResource(R.drawable.img_value_1)
             2 -> value_iv_relation.setBackgroundResource(R.drawable.img_value_2)
@@ -171,7 +171,7 @@ class SecondDayValueActivity : AppCompatActivity() {
     private fun choiceAchievement(): Int {
         achievementNum++
         value_tv_achievement_number.text = "${achievementNum}회"
-        value_iv_achievement.setImageResource(R.drawable.value_circle_clicked)
+        value_iv_achievement.setImageResource(R.drawable.circle_whiteb3_1dp)
         when (achievementNum) {
             1 -> value_iv_achievement.setBackgroundResource(R.drawable.img_value_1)
             2 -> value_iv_achievement.setBackgroundResource(R.drawable.img_value_2)
@@ -192,7 +192,7 @@ class SecondDayValueActivity : AppCompatActivity() {
     private fun choiceSatisfaction(): Int {
         satisfactionNum++
         value_tv_satisfaction_number.text = "${satisfactionNum}회"
-        value_iv_satisfaction.setImageResource(R.drawable.value_circle_clicked)
+        value_iv_satisfaction.setImageResource(R.drawable.circle_whiteb3_1dp)
         when (satisfactionNum) {
             1 -> value_iv_satisfaction.setBackgroundResource(R.drawable.img_value_1)
             2 -> value_iv_satisfaction.setBackgroundResource(R.drawable.img_value_2)
@@ -213,7 +213,7 @@ class SecondDayValueActivity : AppCompatActivity() {
     private fun choiceJoy(): Int {
         joyNum++
         value_tv_joy_number.text = "${joyNum}회"
-        value_iv_joy.setImageResource(R.drawable.value_circle_clicked)
+        value_iv_joy.setImageResource(R.drawable.circle_whiteb3_1dp)
         when (joyNum) {
             1 -> value_iv_joy.setBackgroundResource(R.drawable.img_value_1)
             2 -> value_iv_joy.setBackgroundResource(R.drawable.img_value_2)
@@ -234,7 +234,7 @@ class SecondDayValueActivity : AppCompatActivity() {
     private fun choiceStability(): Int {
         stabilityNum++
         value_tv_stability_number.text = "${stabilityNum}회"
-        value_iv_stability.setImageResource(R.drawable.value_circle_clicked)
+        value_iv_stability.setImageResource(R.drawable.circle_whiteb3_1dp)
         when (stabilityNum) {
             1 -> value_iv_stability.setBackgroundResource(R.drawable.img_value_1)
             2 -> value_iv_stability.setBackgroundResource(R.drawable.img_value_2)
@@ -288,17 +288,17 @@ class SecondDayValueActivity : AppCompatActivity() {
         value_iv_joy.setBackgroundResource(0)
         value_iv_stability.setBackgroundResource(0)
 
-        value_iv_love.setImageResource(R.drawable.value_circle)
-        value_iv_relation.setImageResource(R.drawable.value_circle)
-        value_iv_achievement.setImageResource(R.drawable.value_circle)
-        value_iv_satisfaction.setImageResource(R.drawable.value_circle)
-        value_iv_joy.setImageResource(R.drawable.value_circle)
-        value_iv_stability.setImageResource(R.drawable.value_circle)
+        value_iv_love.setImageResource(R.drawable.circle_white4c_1dp)
+        value_iv_relation.setImageResource(R.drawable.circle_white4c_1dp)
+        value_iv_achievement.setImageResource(R.drawable.circle_white4c_1dp)
+        value_iv_satisfaction.setImageResource(R.drawable.circle_white4c_1dp)
+        value_iv_joy.setImageResource(R.drawable.circle_white4c_1dp)
+        value_iv_stability.setImageResource(R.drawable.circle_white4c_1dp)
     }
 
     private fun activeNextBtn() {
         value_btn_next.isEnabled = true
-        value_btn_next.setBackgroundResource(R.drawable.value_next_btn_done)
+        value_btn_next.setBackgroundResource(R.drawable.boarder_round_rectangle_purpleab_17dp)
         value_tv_next.setTextColor(Color.parseColor("#AB70F5"))
     }
 }

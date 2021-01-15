@@ -2,6 +2,7 @@ package com.example.apophis_android.ui.seventhDay.tarot
 
 import android.app.Activity
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +18,9 @@ class SeventhDayTarotActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seventh_day_tarot)
+
+        var seventhSecondPlayer = MediaPlayer.create(this@SeventhDayTarotActivity, R.raw.seventhday_2)
+        seventhSecondPlayer.start()
 
         tarot_btn_back.setOnClickListener { finish() }
 

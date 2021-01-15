@@ -51,7 +51,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="28dp"
-        android:src="@drawable/tarot_rounded_rectangle"
+        android:src="@drawable/round_rectangle_black31_20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tarot_answer_header" />
@@ -92,7 +92,7 @@
         android:layout_marginBottom="14dp"
         app:layout_constraintBottom_toBottomOf="@+id/tarot_answer_bg"
         app:layout_constraintEnd_toEndOf="@+id/tarot_answer_bg"
-        app:srcCompat="@drawable/tarot_answer_complete_btn" />
+        app:srcCompat="@drawable/round_rectangle_purpleab_17dp" />
 
     <TextView
         android:id="@+id/tarot_answer_complete_tv"

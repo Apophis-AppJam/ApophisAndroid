@@ -79,6 +79,7 @@
         <activity android:name=".ui.seventhDay.tarot.SeventhDayTarotActivity" />
         <activity android:name=".ui.seventhDay.tarot.SeventhDayTarotAnswerActivity" />
         <activity android:name=".ui.seventhDay.SeventhDayChatActivity" />
+        <activity android:name=".ui.seventhDay.SeventhDayChatEndingActivity" />
     </application>
 
 </manifest>

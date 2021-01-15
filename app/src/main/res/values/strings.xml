@@ -34,11 +34,19 @@
     <string name="livechat">실시간 채팅</string>
     <string name="news_view">조희수 109,087,340회 실시간</string>
 
+
     <string name="first_ending_message1">멸망까지 엿새</string>
+
 
     <string name="second_ending_message1">멸망까지 닷새</string>
     <string name="second_ending_message2">여러 갈래 길에 쌓이는 눈 : 당신의 가치</string>
     <string name="second_ending_message3">너에게는 어떤 모습들이 있니? 빛이든 그림자든.</string>
     <string name="second_ending_message4">그 모습들은 전부 너일테니까.</string>
 
+
+    <string name="seventh_ending_message1">멸망의 날</string>
+    <string name="seventh_ending_message2">아포피스, 끝은 또 다른 시작 : 당신의 말</string>
+    <string name="seventh_ending_message3">사실 소행성은 언제나 우리 곁에 있었던 거야.</string>
+
+>>>>>>> feature/22_seventhDay_chat_layout
 </resources>

@@ -1,6 +1,7 @@
 package com.example.apophis_android.ui.seventhDay.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Handler
@@ -18,6 +19,8 @@ import com.bumptech.glide.Glide
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
 import com.example.apophis_android.ui.ChipFactory
+import com.example.apophis_android.ui.secondDay.SecondDayChatEndingActivity
+import com.example.apophis_android.ui.secondDay.adapter.SecondDayChatAdapter
 import com.google.android.material.chip.ChipGroup
 import java.util.*
 
@@ -38,6 +41,7 @@ class SeventhChatAdapter(private val context: Context): RecyclerView.Adapter<Rec
             4 -> R.layout.item_chip_choice
             5 -> R.layout.item_chat_coin
             6 -> R.layout.item_chat_error
+            10 -> R.layout.item_chat_ending
             else -> R.layout.item_chat_find_me
         }
     }
@@ -72,6 +76,10 @@ class SeventhChatAdapter(private val context: Context): RecyclerView.Adapter<Rec
             R.layout.item_chat_error -> {
                 val view = layoutInflater.inflate(R.layout.item_chat_error, parent, false)
                 ErrorUserViewHolder(view)
+            }
+            R.layout.item_chat_ending -> {
+                val view = layoutInflater.inflate(R.layout.item_chat_ending, parent, false)
+                EndingViewHolder(view)
             }
             else ->
                 throw IllegalArgumentException("ViewType [$viewType] is unexpected")
@@ -110,6 +118,10 @@ class SeventhChatAdapter(private val context: Context): RecyclerView.Adapter<Rec
         }
         if (holder is ErrorUserViewHolder) {
             holder.bind(userChatList[position].content)
+            holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
+        }
+        if (holder is SecondDayChatAdapter.EndingViewHolder) {
+            holder.bind()
             holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
         }
     }
@@ -183,6 +195,16 @@ class SeventhChatAdapter(private val context: Context): RecyclerView.Adapter<Rec
         fun bind(chatDataList: MutableList<String>) {
             chatDataList.forEach {
                 content.text = it
+            }
+        }
+    }
+
+    inner class EndingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val btnAction = itemView.findViewById<View>(R.id.btn_ending_okay)
+        fun bind() {
+            btnAction.setOnClickListener {
+                val intent = Intent(context, SecondDayChatEndingActivity::class.java)
+                context.startActivity(intent)
             }
         }
     }

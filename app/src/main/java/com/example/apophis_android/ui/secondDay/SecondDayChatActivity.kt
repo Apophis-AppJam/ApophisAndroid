@@ -4,13 +4,14 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.media.MediaPlayer
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
-import androidx.appcompat.app.AppCompatActivity
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
 import com.example.apophis_android.data.remote.ApophisService
@@ -121,6 +122,13 @@ class SecondDayChatActivity : AppCompatActivity() {
                                     snowBackground()
                                 } else if(nextAction == "음성송출1"){
                                     tag = 2
+                                }
+
+                                if (response.body()!!.data.chat[i].nextAction == "음성송출1") {
+                                    Handler().postDelayed({
+                                        var secondPlayer = MediaPlayer.create(this@SecondDayChatActivity, R.raw.secondday_audio)
+                                        secondPlayer.start()
+                                    }, 3000)
                                 }
 
                                 val aponymousChatData = OurUserChat(mutableListOf(response.body()!!.data.chat[i].text), tag)
