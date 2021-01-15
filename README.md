@@ -188,32 +188,6 @@ implementation "androidx.camera:camera-view:1.0.0-alpha14"
 <br>
 
 ```kotlin
-package com.example.apophis_android.ui.secondDay
-
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
-import android.graphics.Color
-import android.os.Bundle
-import android.os.Handler
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
-import android.view.inputmethod.InputMethodManager
-import androidx.appcompat.app.AppCompatActivity
-import com.example.apophis_android.R
-import com.example.apophis_android.data.entity.OurUserChat
-import com.example.apophis_android.data.remote.ApophisService
-import com.example.apophis_android.data.remote.request.ReplyFourRequest
-import com.example.apophis_android.data.remote.request.ReplyOneRequest
-import com.example.apophis_android.data.remote.response.AponymousChatResponse
-import com.example.apophis_android.data.remote.response.BaseResponse
-import com.example.apophis_android.data.remote.response.ChoiceChatResponse
-import com.example.apophis_android.ui.secondDay.adapter.SecondDayChatAdapter
-import kotlinx.android.synthetic.main.activity_second_day_chat.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class SecondDayChatActivity : AppCompatActivity() {
 
@@ -511,37 +485,6 @@ class SecondDayChatActivity : AppCompatActivity() {
 
 
 ```kotlin
-package com.example.apophis_android.ui.secondDay.adapter
-
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
-import android.graphics.Color
-import android.text.Editable
-import android.text.TextWatcher
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.animation.AnimationUtils
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.apophis_android.R
-import com.example.apophis_android.data.entity.OurUserChat
-import com.example.apophis_android.ui.ChipFactory
-import com.example.apophis_android.ui.secondDay.SecondDayChatActivity
-import com.example.apophis_android.ui.secondDay.SecondDayChatEndingActivity
-import com.example.apophis_android.ui.secondDay.findMe.SecondDayFindLightMeActivity
-import com.example.apophis_android.ui.secondDay.time.SecondDayTimepickerActivity
-import com.example.apophis_android.ui.secondDay.value.SecondDayValueActivity
-import com.google.android.material.chip.ChipGroup
-import java.lang.IllegalArgumentException
-
-/**
- * Created By kimdahyee
- * on 01월 07일, 2020
- */
 
 class SecondDayChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
