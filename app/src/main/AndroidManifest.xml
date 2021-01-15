@@ -2,9 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.apophis_android">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Request camera permissions -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <uses-feature android:name="android.hardware.type.watch" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-feature android:name="android.hardware.camera.any" />
 
     <uses-permission android:name="android.permission.CAMERA" />
@@ -19,10 +22,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Apophis_android"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ui.onboarding.NewsActivity"
+            android:label="@string/title_activity_news">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <uses-library
+            android:name="com.google.android.wearable"
+            android:required="true" />
+        <!--
+               Set to true if your app is Standalone, that is, it does not require the handheld
+               app to run.
+        -->
         <meta-data
             android:name="com.google.android.wearable.standalone"
             android:value="true" />
+
+        <activity android:name=".ui.onboarding.StartActivity" />
+        <activity
+            android:name=".ui.onboarding.CallActivity"
+            android:exported="true" />
+
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
@@ -47,7 +72,6 @@
             android:name=".ui.firstDay.CameraActivity"
             android:configChanges="orientation|keyboardHidden" />
         <activity android:name=".ui.firstDay.CompassActivity" />
-
         <activity android:name=".ui.secondDay.SecondDayChatActivity" />
         <activity android:name=".ui.secondDay.time.SecondDayTimepickerActivity" />
         <activity android:name=".ui.secondDay.findMe.SecondDayFindLightMeActivity" />
@@ -57,7 +81,6 @@
 
         <activity android:name=".ui.sixthDay.SixthDayChatActivity" />
         <activity android:name=".ui.sixthDay.SixthDayDirtActivity" />
-
         <activity android:name=".ui.seventhDay.SeventhDayTarotActivity" />
         <activity android:name=".ui.seventhDay.SeventhDayTarotAnswerActivity" />
         <activity android:name=".ui.seventhDay.SeventhDayChatActivity" />
