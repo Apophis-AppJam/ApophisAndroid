@@ -21,7 +21,7 @@
         android:id="@+id/tarot_tv_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="유서"
+        android:text="당신의 말"
         android:fontFamily="@font/gmarket_sans_medium"
         android:textSize="16sp"
         android:textColor="@color/white"

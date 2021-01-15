@@ -16,14 +16,14 @@ class SeventhDayTarotActivity : AppCompatActivity() {
         viewpagerAdapter = SeventhDayTarotAdapter(supportFragmentManager)
         viewpagerAdapter.fragments = listOf(
             SeventhDayTarotFirstFragment(),
-            SeventhDayTarotFirstFragment(),
-            SeventhDayTarotFirstFragment(),
-            SeventhDayTarotFirstFragment(),
-            SeventhDayTarotFirstFragment(),
-            SeventhDayTarotFirstFragment(),
-            SeventhDayTarotEditFragment(),
-            SeventhDayTarotFirstFragment(),
-            SeventhDayTarotFirstFragment()
+            SeventhDayTarotSecondFragment(),
+            SeventhDayTarotThirdFragment(),
+            SeventhDayTarotFourthFragment(),
+            SeventhDayTarotFifthFragment(),
+            SeventhDayTarotSixthFragment(),
+            SeventhDayTarotSeventhFragment(),
+            SeventhDayTarotEighthFragment(),
+            SeventhDayTarotNinthFragment()
         )
 
         tarot_viewpager.adapter = viewpagerAdapter

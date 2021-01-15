@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.apophis_android">
@@ -23,7 +24,6 @@
         <meta-data
             android:name="com.google.android.wearable.standalone"
             android:value="true" />
-
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
@@ -35,14 +35,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".ui.main.MusicActivity"/>
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.main.ApophisActivity" />
-        <activity android:name=".ui.main.SettingActivity"></activity>
+        <activity android:name=".ui.main.SettingActivity" />
         <activity android:name=".ui.main.letter.ReceiveLetterActivity" />
         <activity android:name=".ui.main.letter.SendLetterActivity" />
-
-        <activity android:name=".ui.login.LoginActivity" />
 
         <activity android:name=".ui.firstDay.FirstDayChatActivity" />
         <activity
@@ -61,6 +60,7 @@
         <activity android:name=".ui.sixthDay.SixthDayDirtActivity" />
 
         <activity android:name=".ui.seventhDay.SeventhDayTarotActivity" />
+        <activity android:name=".ui.seventhDay.SeventhDayTarotAnswerActivity" />
         <activity android:name=".ui.seventhDay.SeventhDayChatActivity" />
     </application>
 
