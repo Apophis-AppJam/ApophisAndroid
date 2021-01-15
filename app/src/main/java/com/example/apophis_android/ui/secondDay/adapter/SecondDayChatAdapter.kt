@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
 import com.example.apophis_android.ui.ChipFactory
+import com.example.apophis_android.ui.secondDay.SecondDayChatEndingActivity
 import com.example.apophis_android.ui.secondDay.findMe.SecondDayFindLightMeActivity
 import com.example.apophis_android.ui.secondDay.time.SecondDayTimepickerActivity
 import com.example.apophis_android.ui.secondDay.value.SecondDayValueActivity
@@ -42,6 +43,7 @@ class SecondDayChatAdapter(private val context: Context): RecyclerView.Adapter<R
             5 -> R.layout.item_chat_short_answer
             6 -> R.layout.item_chat_time
             7 -> R.layout.item_chat_find_me
+            10 -> R.layout.item_chat_ending
             else -> R.layout.item_chat_value
         }
     }
@@ -84,6 +86,10 @@ class SecondDayChatAdapter(private val context: Context): RecyclerView.Adapter<R
             R.layout.item_chat_value -> {
                 val view = layoutInflater.inflate(R.layout.item_chat_value, parent, false)
                 ValueActionViewHolder(view)
+            }
+            R.layout.item_chat_ending -> {
+                val view = layoutInflater.inflate(R.layout.item_chat_ending, parent, false)
+                EndingViewHolder(view)
             }
             else ->
                 throw IllegalArgumentException("ViewType [$viewType] is unexpected")
@@ -132,6 +138,11 @@ class SecondDayChatAdapter(private val context: Context): RecyclerView.Adapter<R
         }
 
         if (holder is ValueActionViewHolder) {
+            holder.bind()
+            holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
+        }
+
+        if (holder is EndingViewHolder) {
             holder.bind()
             holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
         }
@@ -277,6 +288,16 @@ class SecondDayChatAdapter(private val context: Context): RecyclerView.Adapter<R
             btnAction.setOnClickListener {
                 itemClickListener.onItemClick("했어.")
                 val intent = Intent(context, SecondDayValueActivity::class.java)
+                context.startActivity(intent)
+            }
+        }
+    }
+
+    inner class EndingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val btnAction = itemView.findViewById<View>(R.id.btn_ending_okay)
+        fun bind() {
+            btnAction.setOnClickListener {
+                val intent = Intent(context, SecondDayChatEndingActivity::class.java)
                 context.startActivity(intent)
             }
         }

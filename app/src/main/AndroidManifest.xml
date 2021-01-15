@@ -6,10 +6,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.VIBRATE" />
-
     <uses-feature android:name="android.hardware.type.watch" />
     <uses-feature android:name="android.hardware.camera.any" />
-
     <application
         android:name=".ui.login.GlobalApplication"
         android:allowBackup="true"
@@ -20,16 +18,16 @@
         android:theme="@style/Theme.Apophis_android"
         android:usesCleartextTraffic="true">
 
-        <uses-library
-            android:name="com.google.android.wearable"
-            android:required="true" />
-        <!--
-               Set to true if your app is Standalone, that is, it does not require the handheld
-               app to run.
-        -->
+        <!--        <uses-library-->
+        <!--            android:name="com.google.android.wearable"-->
+        <!--            android:required="true" />-->
+
+        <!--               Set to true if your app is Standalone, that is, it does not require the handheld-->
+        <!--               app to run.-->
+
         <meta-data
             android:name="com.google.android.wearable.standalone"
-            android:value="true" />
+            android:value="flase" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"

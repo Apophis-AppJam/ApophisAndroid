@@ -15,6 +15,8 @@
     <color name="black00">#000000</color>
     <color name="black262627">#262627</color>
     <color name="black2C2C2D">#2C2C2D</color>
+    <color name="black2E3030">#2E3030</color>
+    <color name="black002E3030">#002E3030</color>
     <color name="black313133">#313133</color>
     <color name="black383839">#383839</color>
     <color name="black3A3A3B">#3A3A3B</color>
@@ -32,6 +34,7 @@
     <color name="purpleB274FF">#b274ff</color>
 
     <color name="white">#FFFFFFFF</color>
+    <color name="white00FF">#00FFFFFF</color>
     <color name="white4DFF">#4DFFFFFF</color>
     <color name="white4CFF">#4cffffff</color>
     <color name="whiteB3FF">#B3FFFFFF</color>

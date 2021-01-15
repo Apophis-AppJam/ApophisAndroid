@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparency00FF">
+
+
+    <View
+        android:id="@+id/view_background"
+        android:layout_width="0dp"
+        android:layout_height="222dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="35dp"
+        android:background="@drawable/round_rectangle_black38_10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/img_moon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toEndOf="@+id/view_background"
+        app:layout_constraintStart_toStartOf="@+id/view_background"
+        app:layout_constraintTop_toTopOf="@+id/view_background"
+        app:srcCompat="@drawable/img_moon" />
+
+    <TextView
+        android:id="@+id/tv_chat_ending_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:text="대화를 마무리 할까요?"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="@+id/view_background"
+        app:layout_constraintStart_toStartOf="@+id/view_background"
+        app:layout_constraintTop_toBottomOf="@+id/img_moon" />
+
+    <TextView
+        android:id="@+id/tv_chat_ending_des"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:text="내일 저녁 8시에 다시 만나요"
+        android:textColor="@color/whiteB3FF"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_chat_ending_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_chat_ending_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_chat_ending_title" />
+
+    <View
+        android:id="@+id/btn_ending_okay"
+        android:layout_width="175dp"
+        android:layout_height="36dp"
+        android:background="@drawable/round_rectangle_purpleab_20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_background"
+        app:layout_constraintEnd_toEndOf="@+id/view_background"
+        app:layout_constraintStart_toStartOf="@+id/view_background"
+        app:layout_constraintTop_toBottomOf="@+id/tv_chat_ending_des" />
+
+    <TextView
+        android:id="@+id/tv_ending_okay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="알겠어"
+        android:textSize="14dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/gmarket_sans_medium"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_ending_okay"
+        app:layout_constraintEnd_toEndOf="@+id/btn_ending_okay"
+        app:layout_constraintStart_toStartOf="@+id/btn_ending_okay"
+        app:layout_constraintTop_toTopOf="@+id/btn_ending_okay" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

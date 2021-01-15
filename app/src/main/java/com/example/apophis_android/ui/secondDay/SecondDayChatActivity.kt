@@ -30,7 +30,7 @@ class SecondDayChatActivity : AppCompatActivity() {
 
     private val apophisService = ApophisService
     private val jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
-    private var chatDetailsIdx = 23 // 2일차 시작 인덱스 23
+    private var chatDetailsIdx = 38 // 2일차 시작 인덱스 23
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -152,8 +152,8 @@ class SecondDayChatActivity : AppCompatActivity() {
                                     btn_chat_send.setOnClickListener {
                                         chatAdapter.removeChat()
                                         val userChoice = et_second_chat_message.text.toString()
-                                        val chatRight = OurUserChat(mutableListOf(userChoice), 3)
-                                        chatAdapter.addChat(chatRight)
+                                        val chat = OurUserChat(mutableListOf(userChoice), 3)
+                                        chatAdapter.addChat(chat)
                                         et_second_chat_message.setText("")
                                         postReplyOneToServer(jwt, chatDetailsIdx, 1, userChoice)
                                     }
@@ -169,14 +169,16 @@ class SecondDayChatActivity : AppCompatActivity() {
                                 9 -> { //long answer
                                     btn_chat_send.setOnClickListener {
                                         val userChoice = et_second_chat_message.text.toString()
-                                        val chatRight = OurUserChat(mutableListOf(userChoice), 3)
-                                        chatAdapter.addChat(chatRight)
+                                        val chat = OurUserChat(mutableListOf(userChoice), 3)
+                                        chatAdapter.addChat(chat)
                                         et_second_chat_message.setText("")
                                         postReplyOneToServer(jwt, chatDetailsIdx, 1, userChoice)
                                     }
                                 }
                                 10 -> {
-                                    Log.d("다혜 10", chatDetailsIdx.toString())
+                                    val user = ""
+                                    val chat = OurUserChat(mutableListOf(user), 10)
+                                    chatAdapter.addChat(chat)
                                     btn_chat_send.setOnClickListener(null)
                                 }
                                 else -> {
@@ -184,8 +186,8 @@ class SecondDayChatActivity : AppCompatActivity() {
                                     btn_chat_send.setOnClickListener {
                                         chatAdapter.removeChat()
                                         val userChoice = et_second_chat_message.text.toString()
-                                        val chatRight = OurUserChat(mutableListOf(userChoice), 3)
-                                        chatAdapter.addChat(chatRight)
+                                        val chat = OurUserChat(mutableListOf(userChoice), 3)
+                                        chatAdapter.addChat(chat)
                                         et_second_chat_message.setText("")
                                         postReplyOneToServer(jwt, chatDetailsIdx, 1, userChoice)
                                     }
