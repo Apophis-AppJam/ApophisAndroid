@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_0_call_1"
+    tools:context=".ui.onboarding.CallActivity">
+
+    <TextView
+        android:id="@+id/tv_incoming_call"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:text="@string/incoming_call"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_caller"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="49dp"
+        android:text="@string/caller"
+        android:fontFamily="@font/gmarket_sans_light"
+        android:textColor="@color/white"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_incoming_call"
+        app:layout_constraintStart_toStartOf="@+id/tv_incoming_call"
+        app:layout_constraintTop_toBottomOf="@+id/tv_incoming_call" />
+
+    <TextView
+        android:id="@+id/tv_phone_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/phone_number"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_caller"
+        app:layout_constraintStart_toStartOf="@+id/tv_caller"
+        app:layout_constraintTop_toBottomOf="@+id/tv_caller" />
+
+    <ImageView
+        android:id="@+id/iv_apophis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_phone_number"
+        app:srcCompat="@drawable/img_0_apophis" />
+
+    <ImageView
+        android:id="@+id/iv_call_smal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+        app:layout_constraintEnd_toEndOf="@+id/iv_apophis"
+        app:layout_constraintStart_toStartOf="@+id/iv_apophis"
+        app:layout_constraintTop_toBottomOf="@+id/iv_apophis"
+        app:srcCompat="@drawable/img_onboarding_call" />
+
+    <TextView
+        android:id="@+id/tv_first_call"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/first_call"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/iv_call_smal"
+        app:layout_constraintStart_toStartOf="@+id/iv_call_smal"
+        app:layout_constraintTop_toBottomOf="@+id/iv_call_smal" />
+
+    <ImageView
+        android:id="@+id/iv_answer_call"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_first_call"
+        app:layout_constraintStart_toStartOf="@+id/tv_first_call"
+        app:layout_constraintTop_toBottomOf="@+id/tv_first_call"
+        app:srcCompat="@drawable/btn_answercall" />
+
+    <TextView
+        android:id="@+id/tv_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/answer"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/iv_answer_call"
+        app:layout_constraintStart_toStartOf="@+id/iv_answer_call"
+        app:layout_constraintTop_toBottomOf="@+id/iv_answer_call" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="97dp"
+        app:layout_constraintBottom_toTopOf="@+id/iv_call_smal"
+        app:layout_constraintEnd_toEndOf="@+id/tv_phone_number"
+        app:layout_constraintStart_toStartOf="@+id/tv_phone_number"
+        app:layout_constraintTop_toBottomOf="@+id/tv_phone_number"
+        app:srcCompat="@drawable/border_round_circle_purbleab_1dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fragment_container_view_call"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
