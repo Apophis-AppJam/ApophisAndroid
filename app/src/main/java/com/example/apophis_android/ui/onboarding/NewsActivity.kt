@@ -18,6 +18,5 @@ class NewsActivity : AppCompatActivity() {
         newsAdapter = NewsAdapter(this)
         rcv_news.adapter  = newsAdapter
 
-        newsAdapter.addComment(CommentNews("R.id"))
     }
 }

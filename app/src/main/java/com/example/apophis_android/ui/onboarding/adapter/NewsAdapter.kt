@@ -40,12 +40,12 @@ class NewsAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVi
         private val comment = itemView.findViewById<TextView>(R.id.tv_news_comment)
 
         fun bind(commentlist: MutableList<CommentNews>) {
-            commentlist.forEach {
+            /*commentlist.forEach {
                 image.setImageResource()
                 time.text = it.time
                 name.text = it.name
                 comment.text = it.comment
-            }
+            }*/
         }
     }
 
