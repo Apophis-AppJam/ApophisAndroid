@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
 import com.example.apophis_android.ui.ChipFactory
+import com.example.apophis_android.ui.secondDay.SecondDayChatActivity
 import com.example.apophis_android.ui.secondDay.SecondDayChatEndingActivity
 import com.example.apophis_android.ui.secondDay.findMe.SecondDayFindLightMeActivity
 import com.example.apophis_android.ui.secondDay.time.SecondDayTimepickerActivity
