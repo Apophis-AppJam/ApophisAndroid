@@ -153,6 +153,52 @@ implementation "androidx.camera:camera-view:1.0.0-alpha14"
 
 
 
+
+
+<br>
+
+
+
+
+
+
+### 🧱 Project structure
+
+------
+
+```
+🌠apophis_android
+ ┣ 📂data
+ ┃ ┣ 📂entity
+ ┃ ┗ 📂remote
+ ┃    ┣ 📂request
+ ┃    ┗ 📂response
+ ┗ 📂ui
+   ┣ 📂firstDay
+   ┃ ┗ 📂adapter
+   ┣ 📂login
+   ┣ 📂main
+   ┃  ┣ 📂letter
+   ┃ 📂onboarding
+   ┃  ┗ 📂adapter
+   ┣ 📂secondDay
+   ┃ ┣ 📂adapter
+   ┃ ┣ 📂findMe
+   ┃ ┣ 📂time
+   ┃ ┗ 📂value
+   ┣ 📂seventhDay
+   ┃ ┣ 📂adapter
+   ┃ ┗ 📂tarot
+   ┣ 📂sixthDay
+   ┃ ┗ 📂adapter
+   ┗ 📄ChipFactory.kt
+
+  
+
+```
+
+
+
 <br>
 
 
@@ -709,46 +755,10 @@ class SecondDayChatAdapter(private val context: Context): RecyclerView.Adapter<R
 }
 ```
 
+<br>
+
 drawble : 앱의 핵심 기능은 채팅 구현 로직 상 버튼 활성화, 비활성화 기준이 뷰타입마다 달라지는 관계로 개별 drawable을 사용했습니다.
 
-
-
-
-
-### 🧱 Project structure
-
-------
-
-```
-🌠apophis_android
- ┣ 📂data
- ┃ ┣ 📂entity
- ┃ ┗ 📂remote
- ┃    ┣ 📂request
- ┃    ┗ 📂response
- ┗ 📂ui
-   ┣ 📂firstDay
-   ┃ ┗ 📂adapter
-   ┣ 📂login
-   ┣ 📂main
-   ┃  ┣ 📂letter
-   ┃ 📂onboarding
-   ┃  ┗ 📂adapter
-   ┣ 📂secondDay
-   ┃ ┣ 📂adapter
-   ┃ ┣ 📂findMe
-   ┃ ┣ 📂time
-   ┃ ┗ 📂value
-   ┣ 📂seventhDay
-   ┃ ┣ 📂adapter
-   ┃ ┗ 📂tarot
-   ┣ 📂sixthDay
-   ┃ ┗ 📂adapter
-   ┗ 📄ChipFactory.kt
-
-  
-
-```
 
 
 
