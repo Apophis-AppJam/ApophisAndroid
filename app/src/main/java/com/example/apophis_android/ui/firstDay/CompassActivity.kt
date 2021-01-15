@@ -1,21 +1,18 @@
 package com.example.apophis_android.ui.firstDay
 
-import android.content.Context
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.ImageView
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.apophis_android.R
 import kotlinx.android.synthetic.main.activity_compass.*
 import java.util.*
 import kotlin.concurrent.schedule
-import kotlin.concurrent.timer
 
 /**
  * Created By hanjaehyeon
@@ -80,7 +77,7 @@ class CompassActivity : AppCompatActivity(), SensorEventListener {
                 currentDegree = -degree
 
                 if (degree > 80 && degree < 100) {
-                    Timer().schedule(2000) {
+                    Timer().schedule(1500) {
                         runOnUiThread {
                             iv_compass_arrow.setImageResource(R.drawable.img_compass_arrow_bold)
                             sensorManager.unregisterListener(this@CompassActivity, accelerometer)
@@ -94,7 +91,7 @@ class CompassActivity : AppCompatActivity(), SensorEventListener {
                             currentDegree = -degree
                             iv_compass.startAnimation(rotateAnimation)
                             Thread.currentThread().interrupt()
-                            Timer().schedule(2000){
+                            Timer().schedule(1500){
                                 finish()
                             }
                         }
