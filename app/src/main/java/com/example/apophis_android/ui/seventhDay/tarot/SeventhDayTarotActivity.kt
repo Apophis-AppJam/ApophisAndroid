@@ -39,7 +39,7 @@ class SeventhDayTarotActivity : AppCompatActivity() {
 
         tarot_viewpager.adapter = viewpagerAdapter
         tarot_viewpager.clipToPadding = false
-        tarot_viewpager.setPadding(150, 0, 150, 0)
+        tarot_viewpager.setPadding(120, 0, 150, 0)
         tarot_viewpager.setPageMargin(50)
     }
 
@@ -47,6 +47,6 @@ class SeventhDayTarotActivity : AppCompatActivity() {
         val intent = Intent(this, SeventhDayTarotAnswerActivity::class.java)
         intent.putExtra("Idx", idx)
         Log.d("성림",idx.toString())
-        startActivity(intent)
+        startActivityForResult(intent, 100)
     }
 }

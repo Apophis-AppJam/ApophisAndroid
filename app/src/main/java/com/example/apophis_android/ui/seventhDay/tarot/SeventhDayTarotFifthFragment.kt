@@ -1,15 +1,15 @@
 package com.example.apophis_android.ui.seventhDay.tarot
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isInvisible
+import androidx.fragment.app.Fragment
 import com.example.apophis_android.R
-import com.example.apophis_android.ui.seventhDay.tarot.SeventhDayTarotActivity
 
 
 class SeventhDayTarotFifthFragment : Fragment() {
@@ -40,6 +40,13 @@ class SeventhDayTarotFifthFragment : Fragment() {
         }
 
         answerTarot5.setOnClickListener {
+            Handler().postDelayed({
+                snakeTarot5.isInvisible = false
+                lineTarot5.isInvisible = true
+                moonTarot5.isInvisible = true
+                answerTarot5.isInvisible = true
+                questionTarot5.isInvisible = true
+            }, 2000)
             (activity as SeventhDayTarotActivity).moveToTarotAnswer(135)
         }
         return view

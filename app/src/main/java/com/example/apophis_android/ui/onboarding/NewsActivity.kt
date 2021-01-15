@@ -46,7 +46,7 @@ class NewsActivity : AppCompatActivity() {
             CommentNews(R.drawable.img_nickname_5, "오후 8:14", "곤구마", "헐ㅋㅋ 유튭각ㅋㅋ"),
             CommentNews(R.drawable.img_nickname_6, "오후 8:14", "안패트와매트", "너무 geek한 내용이라 안믿음"),
             CommentNews(R.drawable.img_nickname_2, "오후 8:14", "가토수연", "아직 틱톡 못찍었는데 망했다 ㅜ"),
-            CommentNews(R.drawable.img_nickname_3, "오후 8:15", "바비", "8일 남았으니까 흑발해야지"),
+            CommentNews(R.drawable.img_nickname_3, "오후 8:15", "바비", "7일 남았으니까 흑발해야지"),
             CommentNews(R.drawable.img_nickname_4, "오후 8:15", "착레", "삐빅-삐빅- 난 사실 레고다"),
             CommentNews(R.drawable.img_nickname_1, "오후 8:15", "52영재", "5252~ 다들 호들갑 떨지 말라구~"),
             CommentNews(R.drawable.img_nickname_6, "오후 8:15", "스무디두", "스무스하게 갑시다 여러분"),

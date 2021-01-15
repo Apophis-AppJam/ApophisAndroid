@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
-        android:src="@drawable/img_moon_small"
+        android:src="@drawable/img_moon_purple"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/tarot4_viewpager_bg"
         app:layout_constraintStart_toStartOf="@id/tarot4_viewpager_bg"

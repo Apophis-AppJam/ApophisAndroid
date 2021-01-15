@@ -7,6 +7,7 @@ import com.example.apophis_android.R
 import com.example.apophis_android.ui.firstDay.FirstDayChatActivity
 import com.example.apophis_android.ui.secondDay.SecondDayChatActivity
 import com.example.apophis_android.ui.seventhDay.SeventhDayChatActivity
+import com.example.apophis_android.ui.sixthDay.SixthDayChatActivity
 import kotlinx.android.synthetic.main.activity_day.*
 
 class DayActivity : AppCompatActivity() {
@@ -21,6 +22,11 @@ class DayActivity : AppCompatActivity() {
 
         tv_second.setOnClickListener {
             val intent = Intent(this, SecondDayChatActivity::class.java)
+            startActivity(intent)
+        }
+
+        tv_sixth.setOnClickListener {
+            val intent = Intent(this, SixthDayChatActivity::class.java)
             startActivity(intent)
         }
 

@@ -1,18 +1,15 @@
 package com.example.apophis_android.ui.seventhDay.tarot
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isInvisible
+import androidx.fragment.app.Fragment
 import com.example.apophis_android.R
-import com.example.apophis_android.ui.seventhDay.tarot.SeventhDayTarotActivity
 
 
 class SeventhDayTarotEighthFragment : Fragment() {
@@ -44,11 +41,13 @@ class SeventhDayTarotEighthFragment : Fragment() {
         }
 
         answerTarot8.setOnClickListener {
-            snakeTarot8.isInvisible = false
-            lineTarot8.isInvisible = true
-            moonTarot8.isInvisible = true
-            answerTarot8.isInvisible = true
-            questionTarot8.isInvisible = true
+            Handler().postDelayed({
+                snakeTarot8.isInvisible = false
+                lineTarot8.isInvisible = true
+                moonTarot8.isInvisible = true
+                answerTarot8.isInvisible = true
+                questionTarot8.isInvisible = true
+            },2000)
             (activity as SeventhDayTarotActivity).moveToTarotAnswer(138)
         }
 

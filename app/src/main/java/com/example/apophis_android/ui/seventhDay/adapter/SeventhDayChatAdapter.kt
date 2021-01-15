@@ -21,6 +21,7 @@ import com.example.apophis_android.data.entity.OurUserChat
 import com.example.apophis_android.ui.ChipFactory
 import com.example.apophis_android.ui.secondDay.SecondDayChatEndingActivity
 import com.example.apophis_android.ui.secondDay.adapter.SecondDayChatAdapter
+import com.example.apophis_android.ui.seventhDay.SeventhDayChatEndingActivity
 import com.google.android.material.chip.ChipGroup
 import java.util.*
 
@@ -120,7 +121,7 @@ class SeventhChatAdapter(private val context: Context): RecyclerView.Adapter<Rec
             holder.bind(userChatList[position].content)
             holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
         }
-        if (holder is SecondDayChatAdapter.EndingViewHolder) {
+        if (holder is EndingViewHolder) {
             holder.bind()
             holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
         }
@@ -203,7 +204,7 @@ class SeventhChatAdapter(private val context: Context): RecyclerView.Adapter<Rec
         private val btnAction = itemView.findViewById<View>(R.id.btn_ending_okay)
         fun bind() {
             btnAction.setOnClickListener {
-                val intent = Intent(context, SecondDayChatEndingActivity::class.java)
+                val intent = Intent(context, SeventhDayChatEndingActivity::class.java)
                 context.startActivity(intent)
             }
         }

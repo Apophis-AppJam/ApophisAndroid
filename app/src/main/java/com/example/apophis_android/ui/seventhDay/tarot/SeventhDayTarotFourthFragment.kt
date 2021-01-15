@@ -1,6 +1,7 @@
 package com.example.apophis_android.ui.seventhDay.tarot
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -39,6 +40,13 @@ class SeventhDayTarotFourthFragment : Fragment() {
         }
 
         answerTarot4.setOnClickListener {
+            Handler().postDelayed({
+                snakeTarot4.isInvisible = false
+                lineTarot4.isInvisible = true
+                moonTarot4.isInvisible = true
+                answerTarot4.isInvisible = true
+                questionTarot4.isInvisible = true
+            },2000)
             (activity as SeventhDayTarotActivity).moveToTarotAnswer(134)
         }
         return view

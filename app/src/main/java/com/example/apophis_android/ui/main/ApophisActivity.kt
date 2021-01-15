@@ -15,9 +15,9 @@ class ApophisActivity : AppCompatActivity() {
     private lateinit var hour: String
     private lateinit var min: String
     private lateinit var sec: String
-    var DATE_CODE = 1
+    var DATE_CODE = 7
     var YESTERDAY_CHAT_CODE = 1
-    var apoDistance = 129201213
+    var apoDistance = 12486.279
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -128,7 +128,7 @@ class ApophisActivity : AppCompatActivity() {
     }
 
     fun decreaseApo (): Float {
-        apoDistance -= 1
+        apoDistance -= 0.001
         return apoDistance.toFloat()
     }
 }

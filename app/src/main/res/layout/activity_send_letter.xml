@@ -53,6 +53,7 @@
         android:cursorVisible="false"
         android:background="@null"
         android:inputType="textMultiLine"
+        android:lineSpacingExtra="8dp"
         android:hint="텍스트를 입력해주세요"
         android:textColorHint="@color/gray70"
         android:textSize="16dp"

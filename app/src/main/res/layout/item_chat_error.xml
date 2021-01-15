@@ -59,19 +59,23 @@
         android:id="@+id/chat_errer_reset_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/chat_error_btn"
         app:layout_constraintTop_toTopOf="@+id/chat_error_btn"
         app:layout_constraintStart_toStartOf="@id/chat_error_btn"
-        app:srcCompat="@drawable/btn_valueselect_reset"
-        tools:layout_editor_absoluteX="182dp" />
+        app:srcCompat="@drawable/btn_reset" />
 
     <ImageView
         android:id="@+id/chat_error_cancel_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10.7dp"
+        android:layout_marginBottom="10.5dp"
+        android:layout_marginEnd="12.3dp"
         app:layout_constraintBottom_toBottomOf="@+id/chat_error_btn"
         app:layout_constraintEnd_toEndOf="@+id/chat_error_btn"
-        app:layout_constraintStart_toEndOf="@+id/chat_errer_reset_btn"
         app:layout_constraintTop_toTopOf="@+id/chat_error_btn"
         app:srcCompat="@drawable/ic_cancle" />
 

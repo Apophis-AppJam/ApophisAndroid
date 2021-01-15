@@ -1,6 +1,10 @@
 package com.example.apophis_android.ui.seventhDay.tarot
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,9 +44,26 @@ class SeventhDayTarotFirstFragment : Fragment() {
         }
 
         answerTarot1.setOnClickListener {
+            Handler().postDelayed({snakeTarot1.isInvisible = false
+                lineTarot1.isInvisible = true
+                moonTarot1.isInvisible = true
+                answerTarot1.isInvisible = true
+                questionTarot1.isInvisible = true
+            },2000)
             (activity as SeventhDayTarotActivity).moveToTarotAnswer(131)
         }
 
         return view
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 100) {
+            if(resultCode == Activity.RESULT_OK) {
+                val text = data?.getStringExtra("Answer")
+                Log.d("성림 타로 다시 오면 값 있는지", text)
+            }
+        }
     }
 }
