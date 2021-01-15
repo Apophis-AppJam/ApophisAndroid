@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         view_phone.setOnClickListener {
-            val intent = Intent(this, SecondDayChatActivity::class.java)
+            val intent = Intent(this, DayActivity::class.java)
             startActivity(intent)
         }
 

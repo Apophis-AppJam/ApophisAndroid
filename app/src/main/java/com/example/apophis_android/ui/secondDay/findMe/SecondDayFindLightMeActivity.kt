@@ -20,7 +20,7 @@ class SecondDayFindLightMeActivity : AppCompatActivity() {
             val intent = Intent(this, SecondDayFindDarkMeActivity::class.java)
             intent.putExtra("light", et_find_light_me_content.text)
             startActivity(intent)
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+            //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
             finish()
         }
 
