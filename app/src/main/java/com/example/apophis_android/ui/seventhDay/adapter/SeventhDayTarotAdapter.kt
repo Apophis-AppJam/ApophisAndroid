@@ -1,8 +1,9 @@
-package com.example.apophis_android.ui.seventhDay
+package com.example.apophis_android.ui.seventhDay.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
+import com.example.apophis_android.ui.seventhDay.tarot.*
 
 class SeventhDayTarotAdapter (fm : FragmentManager)
     : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){

@@ -170,9 +170,9 @@ class SeventhChatAdapter(private val context: Context): RecyclerView.Adapter<Rec
             btnCoin.setOnClickListener {
                 randomCoinListener.onRandomCoin(randomChoice.toString())
                 if(randomChoice == 1) {
-                    delayClickListener.onDelayClick("별이 나왔어")
+                    delayClickListener.onDelayClick("결과가 나왔네")
                 } else {
-                    delayClickListener.onDelayClick("달이 나왔어")
+                    delayClickListener.onDelayClick("결과가 나왔네")
                 }
             }
         }

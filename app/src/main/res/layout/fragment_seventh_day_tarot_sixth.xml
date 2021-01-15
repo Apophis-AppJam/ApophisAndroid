@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.seventhDay.SeventhDayTarotSixthFragment">
+    tools:context=".ui.seventhDay.tarot.SeventhDayTarotSixthFragment">
 
     <ImageView
         android:id="@+id/tarot6_viewpager_bg"
@@ -49,7 +49,7 @@
         android:fontFamily="@font/gmarket_sans_medium"
         android:gravity="center"
         android:lineSpacingExtra="8dp"
-        android:text="서버에서 여기로 질문 보내줄거야\n줄바꿈 간격 확인"
+        android:text="곧 마지막인 지금 이 순간 너에게 꼭 해주고 싶은 말이 있어?"
         android:textColor="@color/purpleB274FF"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/tarot6_viewpager_bg"

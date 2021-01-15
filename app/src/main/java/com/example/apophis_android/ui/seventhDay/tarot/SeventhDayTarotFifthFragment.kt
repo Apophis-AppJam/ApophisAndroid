@@ -1,6 +1,5 @@
-package com.example.apophis_android.ui.seventhDay
+package com.example.apophis_android.ui.seventhDay.tarot
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,12 +9,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isInvisible
 import com.example.apophis_android.R
+import com.example.apophis_android.ui.seventhDay.tarot.SeventhDayTarotActivity
 
 
 class SeventhDayTarotFifthFragment : Fragment() {
-
     var text5 = "텍스트를 입력하세요"
-    var question5 = "냐핳"
+    var question5 = "그 사람에게 꼭 전하고 싶었던 말이 뭐야?"
     var TAROT5_REQUEST_CODE = 100
 
     override fun onCreateView(
@@ -41,8 +40,7 @@ class SeventhDayTarotFifthFragment : Fragment() {
         }
 
         answerTarot5.setOnClickListener {
-            val intent = Intent(activity,SeventhDayTarotAnswerActivity::class.java)
-            startActivityForResult(intent, TAROT5_REQUEST_CODE)
+            (activity as SeventhDayTarotActivity).moveToTarotAnswer(135)
         }
         return view
     }

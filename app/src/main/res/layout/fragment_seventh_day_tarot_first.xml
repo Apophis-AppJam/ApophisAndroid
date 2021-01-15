@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.seventhDay.SeventhDayTarotFirstFragment">
+    tools:context=".ui.seventhDay.tarot.SeventhDayTarotFirstFragment">
 
     <ImageView
         android:id="@+id/tarot1_viewpager_bg"
@@ -49,7 +49,7 @@
         android:fontFamily="@font/gmarket_sans_medium"
         android:gravity="center"
         android:lineSpacingExtra="8dp"
-        android:text="서버에서 여기로 질문 보내줄거야\n줄바꿈 간격 확인"
+        android:text="죽기 전 돌아봤을 때\n 넌 네가 되고 싶었던 네 자신이 있었어?"
         android:textColor="@color/purpleB274FF"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/tarot1_viewpager_bg"
