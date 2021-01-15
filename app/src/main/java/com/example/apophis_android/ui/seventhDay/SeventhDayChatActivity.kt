@@ -1,6 +1,8 @@
 package com.example.apophis_android.ui.seventhDay
 
+import android.content.Intent
 import android.graphics.Color
+import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -9,6 +11,9 @@ import android.text.TextWatcher
 import android.util.Log
 import android.widget.MediaController
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isGone
+import androidx.core.view.isInvisible
+import com.airbnb.lottie.LottieAnimationView
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
 import com.example.apophis_android.data.remote.ApophisService
@@ -18,7 +23,9 @@ import com.example.apophis_android.data.remote.response.BaseResponse
 import com.example.apophis_android.data.remote.response.ChoiceChatResponse
 import com.example.apophis_android.ui.seventhDay.adapter.SeventhChatAdapter
 import com.example.apophis_android.ui.sixthDay.ScrollLinearLayoutManager
+import kotlinx.android.synthetic.main.activity_second_day_chat.*
 import kotlinx.android.synthetic.main.activity_seventh_day_chat.*
+import kotlinx.android.synthetic.main.activity_seventh_day_chat.seventh_btn_chat_send
 import kotlinx.android.synthetic.main.item_chat_coin.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -31,7 +38,7 @@ class SeventhDayChatActivity : AppCompatActivity() {
 
     private val apophisService = ApophisService
     private val jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
-    private var chatDetailsIdx = 126
+    private var chatDetailsIdx = 148
     private lateinit var VIDEO_PATH: String
     private var randomCoin = ""
 
@@ -42,6 +49,7 @@ class SeventhDayChatActivity : AppCompatActivity() {
         initRcv()
 
         // 7일차 시작 인덱스 126
+
         getAponymousChatFromServer(jwt, chatDetailsIdx)
 
         seventh_et_chat_message.addTextChangedListener(object: TextWatcher {
@@ -68,6 +76,10 @@ class SeventhDayChatActivity : AppCompatActivity() {
         /* random coin listener 재정의 */
         seventhUserChatAdapter.setOnRandomCoinListener(object : SeventhChatAdapter.OnRandomCoinListener {
             override fun onRandomCoin(data: String) {
+                seventh_videoView.isInvisible = false
+                seventh_cl_chat_header.bringToFront()
+                seventh_cl_chat_bottom.bringToFront()
+                seventh_rcv_chat.bringToFront()
                 randomCoin = data
 
                 if (randomCoin == "1") {
@@ -81,6 +93,7 @@ class SeventhDayChatActivity : AppCompatActivity() {
                 seventh_videoView.setMediaController(MediaController(this@SeventhDayChatActivity))
 
                 seventh_videoView.setOnPreparedListener { seventh_videoView.start() }
+
             }
         })
 
@@ -133,6 +146,29 @@ class SeventhDayChatActivity : AppCompatActivity() {
                                         tag = 1
                                     }
 
+                                    if (nextAction == "카운트다운 애니메이션") {
+                                        Handler().postDelayed({
+                                            var FINAL_VIDEO_PATH = "android.resource://" + packageName + "/" + R.raw.countdown_realfin
+                                            var uri: Uri = Uri.parse(FINAL_VIDEO_PATH)
+                                            seventh_videoView.setVideoURI(uri)
+                                            seventh_videoView.bringToFront()
+                                            seventh_videoView.setMediaController(MediaController(this@SeventhDayChatActivity))
+                                            seventh_videoView.setOnPreparedListener { seventh_videoView.start() }
+                                        }, 500)
+
+                                        Handler().postDelayed({
+                                            val seventhLottieFinal: LottieAnimationView = findViewById(R.id.seventh_lottie_final)
+                                            seventhLottieFinal.bringToFront()
+                                            seventhLottieFinal.setAnimation(R.raw.whitelight)
+                                            seventhLottieFinal.playAnimation()
+                                        }, 12500)
+
+                                        Handler().postDelayed({
+                                            seventh_videoView.isInvisible = true
+                                            seventh_lottie_final.isInvisible = true
+                                        }, 16000)
+                                    }
+
                                     val aponymousChatData = OurUserChat(mutableListOf(response.body()!!.data.chat[i].text), tag)
                                     seventhUserChatAdapter.addChat(aponymousChatData)
                                     seventh_rcv_chat.smoothScrollToPosition(seventhUserChatAdapter.itemCount - 1)
@@ -147,6 +183,10 @@ class SeventhDayChatActivity : AppCompatActivity() {
                                     5
                                 } else if (replyType == "장문형 텍스트 입력") {
                                     7
+                                } else if (replyType == "엔딩 뷰") {
+                                    8
+                                } else if (replyType == "reply 없음") {
+                                    9
                                 }
                                 else {
                                     2
@@ -201,6 +241,16 @@ class SeventhDayChatActivity : AppCompatActivity() {
                                             Log.d("다다 reply로 보내는 idx", chatDetailsIdx.toString())
                                             postReplyToServer(jwt, chatDetailsIdx, 1, userChoice)
                                         }
+                                    }
+                                    9 -> {
+                                        Handler().postDelayed({
+                                            val intent = Intent(this@SeventhDayChatActivity, SeventhDayTarotActivity::class.java)
+                                            intent.putExtra("chatDetailIdx", chatDetailsIdx.toString())
+                                            startActivity(intent)
+                                        }, 10000)
+                                    }
+                                    10 -> {
+                                        btn_chat_send.setOnClickListener(null)
                                     }
                                     else -> {
                                         /* 메세지 전송 버튼 클릭 시 */
@@ -281,7 +331,8 @@ class SeventhDayChatActivity : AppCompatActivity() {
                         if (response.isSuccessful) {
                             if (response.body()!!.success) {
                                 Log.d("다다 reply에 들어온 idx", chatDetailsIdx.toString())
-                                getAponymousChatFromServer(jwt, chatDetailsIdx + 1)
+                                if (randomCoin == "0") {getAponymousChatFromServer(jwt, chatDetailsIdx + 2) }
+                                else {getAponymousChatFromServer(jwt, chatDetailsIdx + 1)}
                                 Log.d("다다 reply에서 보내는 idx", (chatDetailsIdx+1).toString())
                                 seventh_btn_chat_send.setImageResource(R.drawable.btn_send_unact)
                                 seventh_btn_chat_send.isEnabled = false

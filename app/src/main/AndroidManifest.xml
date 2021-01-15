@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.apophis_android">
@@ -59,6 +60,7 @@
         <activity android:name=".ui.sixthDay.SixthDayDirtActivity" />
 
         <activity android:name=".ui.seventhDay.SeventhDayTarotActivity" />
+        <activity android:name=".ui.seventhDay.SeventhDayTarotAnswerActivity" />
         <activity android:name=".ui.seventhDay.SeventhDayChatActivity" />
     </application>
 
