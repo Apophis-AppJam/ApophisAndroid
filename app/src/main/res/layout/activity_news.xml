@@ -7,7 +7,7 @@
     tools:context=".ui.onboarding.NewsActivity">
 
     <VideoView
-        android:id="@+id/videoView"
+        android:id="@+id/vv_news_onboarding"
         android:layout_width="wrap_content"
         android:layout_height="203dp"
         android:layout_marginTop="24dp"
@@ -24,7 +24,7 @@
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/videoView">
+        app:layout_constraintTop_toBottomOf="@+id/vv_news_onboarding">
 
         <TextView
             android:id="@+id/tv_news_title"
@@ -84,6 +84,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/black"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
