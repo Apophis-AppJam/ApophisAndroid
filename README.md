@@ -203,6 +203,14 @@ implementation "androidx.camera:camera-view:1.0.0-alpha14"
 
 
 
+### 🔧 Technology Stack
+
+
+
+<br>
+
+
+
 ### 🎉 Core Function
 
 ------
