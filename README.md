@@ -203,11 +203,40 @@ implementation "androidx.camera:camera-view:1.0.0-alpha14"
 
 
 
-### 🔧 Technology Stack
+### 🔧 Tech Stack
+
+------
+```kotlin
+1. 카메라 이미지 캡처
+ imageCapture.takePicture(
+            ContextCompat.getMainExecutor(this),
+            object : ImageCapture.OnImageCapturedCallback() {
+                @SuppressLint("UnsafeExperimentalUsageError")
+                override fun onCaptureSuccess(imageProxy: ImageProxy) {
+                    imageProxy.image?.let {
+                        val rotationDegrees = imageProxy.imageInfo.rotationDegrees
+                        previewPicture = it.toBitmap(rotationDegrees)
+
+                        iv_camera_capture.setImageBitmap(previewPicture)
+                        super.onCaptureSuccess(imageProxy)
+                        previewMode()
+                    }
+                }
+
+                override fun onError(exception: ImageCaptureException) {
+                    val msg = "Photo capture failed: ${exception.message}"
+                }
+            })
+```
+imageProxy로 받아서 원하는 형태로 변형해서 사용 가능하다.
+
+<br>
+
 
 
 
 <br>
+
 
 
 
@@ -765,7 +794,7 @@ class SecondDayChatAdapter(private val context: Context): RecyclerView.Adapter<R
 
 <br>
 
-drawble : 앱의 핵심 기능은 채팅 구현 로직 상 버튼 활성화, 비활성화 기준이 뷰타입마다 달라지는 관계로 개별 drawable을 사용했습니다.
+drawble : 앱의 핵심 기능인 채팅 구현 로직 상 버튼 활성화, 비활성화 기준이 뷰타입마다 달라지는 관계로 개별 drawable을 사용했습니다.
 
 
 
