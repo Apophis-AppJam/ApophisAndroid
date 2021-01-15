@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -36,7 +37,7 @@ class FirstDayChatActivity : AppCompatActivity() {
     private val apophisService = ApophisService
     private val jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4IjoxMiwiaWF0IjoxNjEwNjUyOTk2LCJleHAiOjE2MTEyNTc3OTYsImlzcyI6ImFwb3BoaXMifQ.dWYb7OFX-mxfQNVvtPL7VomaS6I9yIvTkUROKMAqOVI"
         //"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
-    private var chatDetailsIdx = 17
+    private var chatDetailsIdx = 9
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,6 +93,8 @@ class FirstDayChatActivity : AppCompatActivity() {
                                 val nextAction = response.body()!!.data.chat[i].nextAction
                                 if (nextAction == "채팅 이미지") {
                                     tag = 1
+                                } else if (nextAction == "백그라운드 이미지 - 바다 뷰") {
+                                    seaBackground()
                                 }
 
                                 Log.d("tag", tag.toString())
@@ -400,7 +403,11 @@ class FirstDayChatActivity : AppCompatActivity() {
                     )
                 }
                 userChatAdapter.addChat(aponymousChatData)
-                postPictureToServer(jwt, chatDetailsIdx, 0, File(uri.toString()))
+                //postPictureToServer(jwt, chatDetailsIdx, 0, File(uri.toString()))
+                if (chatDetailsIdx < 23) {
+                    getAponymousChatFromServer(jwt, chatDetailsIdx + 1)
+                    btn_first_send.setImageResource(R.drawable.btn_send_unact)
+                }
             }
         }
     }
@@ -422,5 +429,18 @@ class FirstDayChatActivity : AppCompatActivity() {
         }
         categorySentence += categoryData[2] + " 사람이야."
         return categorySentence
+    }
+
+    private fun seaBackground() {
+        rcv_first_chat.setBackgroundResource(R.color.transparency00FF)
+        cl_first_chat_bottom.setBackgroundResource(R.color.transparency00FF)
+        cl_first_chat_header.setBackgroundResource(R.color.transparency00FF)
+        constraintLayout_first.setBackgroundResource(R.drawable.img_sea_bg)
+        Handler().postDelayed({
+            rcv_first_chat.setBackgroundResource(R.color.black262627)
+            cl_first_chat_bottom.setBackgroundResource(R.color.black2C2C2D)
+            cl_first_chat_header.setBackgroundResource(R.color.black2C2C2D)
+            constraintLayout_first.setBackgroundResource(R.color.black262627)
+        }, 40000)
     }
 }

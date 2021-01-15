@@ -4,12 +4,13 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.app.AppCompatActivity
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
 import com.example.apophis_android.data.remote.ApophisService
@@ -30,7 +31,7 @@ class SecondDayChatActivity : AppCompatActivity() {
 
     private val apophisService = ApophisService
     private val jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
-    private var chatDetailsIdx = 38 // 2일차 시작 인덱스 23
+    private var chatDetailsIdx = 23 // 2일차 시작 인덱스 23
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -111,16 +112,15 @@ class SecondDayChatActivity : AppCompatActivity() {
                         if (response.body()!!.success) {
                             var tag: Int
                             for (i in response.body()!!.data.chat.indices) {
+                                tag = 0
 
-                                tag = when (response.body()!!.data.chat[i].nextAction) {
-                                    "채팅 이미지" -> {
-                                        1
-                                    }
-                                    "음성송출1" -> {
-                                        2
-                                    } else -> {
-                                        0
-                                    }
+                                val nextAction = response.body()!!.data.chat[i].nextAction
+                                if (nextAction == "채팅 이미지") {
+                                    tag = 1
+                                } else if (nextAction == "백그라운드 이미지 - 눈길 뷰"){
+                                    snowBackground()
+                                } else if(nextAction == "음성송출1"){
+                                    tag = 2
                                 }
 
                                 val aponymousChatData = OurUserChat(mutableListOf(response.body()!!.data.chat[i].text), tag)
@@ -298,5 +298,18 @@ class SecondDayChatActivity : AppCompatActivity() {
     private fun hideKeyboard() {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(et_second_chat_message.windowToken, 0)
+    }
+
+    private fun snowBackground() {
+        rcv_second_chat.setBackgroundResource(R.color.transparency00FF)
+        cl_second_chat_bottom.setBackgroundResource(R.color.transparency00FF)
+        cl_second_chat_header.setBackgroundResource(R.color.transparency00FF)
+        constraintLayout_second.setBackgroundResource(R.drawable.bg_snowroadxx)
+        Handler().postDelayed({
+            rcv_second_chat.setBackgroundResource(R.color.black262627)
+            cl_second_chat_bottom.setBackgroundResource(R.color.black2C2C2D)
+            cl_second_chat_header.setBackgroundResource(R.color.black2C2C2D)
+            constraintLayout_second.setBackgroundResource(R.color.black262627)
+        }, 40000)
     }
 }
