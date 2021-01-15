@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="6dp"
-        android:src="@drawable/value_circle"
+        android:src="@drawable/circle_white4c_1dp"
         app:layout_constraintEnd_toStartOf="@+id/value_iv_relation"
         app:layout_constraintTop_toBottomOf="@+id/value_tv_times" />
 
@@ -83,7 +83,7 @@
         android:layout_marginStart="84dp"
         app:layout_constraintStart_toStartOf="@+id/value_tv_header"
         app:layout_constraintTop_toTopOf="@+id/value_iv_love"
-        app:srcCompat="@drawable/value_circle" />
+        app:srcCompat="@drawable/circle_white4c_1dp" />
 
     <ImageView
         android:id="@+id/value_iv_achievement"
@@ -92,7 +92,7 @@
         android:layout_marginTop="6dp"
         app:layout_constraintStart_toStartOf="@+id/value_iv_love"
         app:layout_constraintTop_toBottomOf="@+id/value_iv_love"
-        app:srcCompat="@drawable/value_circle" />
+        app:srcCompat="@drawable/circle_white4c_1dp" />
 
     <ImageView
         android:id="@+id/value_iv_satisfaction"
@@ -101,7 +101,7 @@
         android:layout_marginTop="6dp"
         app:layout_constraintEnd_toEndOf="@+id/value_iv_relation"
         app:layout_constraintTop_toBottomOf="@+id/value_iv_relation"
-        app:srcCompat="@drawable/value_circle" />
+        app:srcCompat="@drawable/circle_white4c_1dp" />
 
     <ImageView
         android:id="@+id/value_iv_joy"
@@ -110,7 +110,7 @@
         android:layout_marginTop="6dp"
         app:layout_constraintStart_toStartOf="@+id/value_iv_achievement"
         app:layout_constraintTop_toBottomOf="@+id/value_iv_achievement"
-        app:srcCompat="@drawable/value_circle" />
+        app:srcCompat="@drawable/circle_white4c_1dp" />
 
     <ImageView
         android:id="@+id/value_iv_stability"
@@ -119,7 +119,7 @@
         android:layout_marginTop="6dp"
         app:layout_constraintEnd_toEndOf="@+id/value_iv_satisfaction"
         app:layout_constraintTop_toBottomOf="@+id/value_iv_satisfaction"
-        app:srcCompat="@drawable/value_circle" />
+        app:srcCompat="@drawable/circle_white4c_1dp" />
 
     <TextView
         android:id="@+id/value_tv_love"
@@ -282,7 +282,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:src="@drawable/value_next_btn_yet"
+        android:src="@drawable/boarder_round_rectangle_purple5a_17dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

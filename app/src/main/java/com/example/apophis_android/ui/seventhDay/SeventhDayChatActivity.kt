@@ -2,6 +2,7 @@ package com.example.apophis_android.ui.seventhDay
 
 import android.content.Intent
 import android.graphics.Color
+import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -145,6 +146,29 @@ class SeventhDayChatActivity : AppCompatActivity() {
                                         tag = 1
                                     }
 
+//                                    if (nextAction == "음성송출2") {
+//                                        Handler().postDelayed({
+//                                            var seventhSecondPlayer = MediaPlayer.create(this@SeventhDayChatActivity, R.raw.seventhday_3)
+//                                            seventhSecondPlayer.start()
+//                                        }, 6000)
+//                                    }
+
+                                    if (nextAction == "음성송출3") {
+                                        seventh_videoView.isInvisible =true
+                                        Handler().postDelayed({
+                                            var seventhThirdPlayer = MediaPlayer.create(this@SeventhDayChatActivity, R.raw.seventhday_3)
+                                            seventhThirdPlayer.start()
+                                        }, 6000)
+                                    }
+
+                                    if (nextAction == "음성송출4") {
+                                        seventh_videoView.isInvisible =true
+                                        Handler().postDelayed({
+                                            var seventhFourthPlayer = MediaPlayer.create(this@SeventhDayChatActivity, R.raw.seventhday_4)
+                                            seventhFourthPlayer.start()
+                                        }, 6000)
+                                    }
+
                                     if (nextAction == "카운트다운 애니메이션") {
                                         Handler().postDelayed({
                                             var FINAL_VIDEO_PATH = "android.resource://" + packageName + "/" + R.raw.countdown_realfin
@@ -182,10 +206,10 @@ class SeventhDayChatActivity : AppCompatActivity() {
                                     5
                                 } else if (replyType == "장문형 텍스트 입력") {
                                     7
-                                } else if (replyType == "엔딩 뷰") {
-                                    8
                                 } else if (replyType == "reply 없음") {
                                     9
+                                } else if (replyType == "일차 종료 (reply 없음)") {
+                                    10
                                 }
                                 else {
                                     2
@@ -250,7 +274,10 @@ class SeventhDayChatActivity : AppCompatActivity() {
                                         }, 10000)
                                     }
                                     10 -> {
-                                        btn_chat_send.setOnClickListener(null)
+                                        val user = ""
+                                        val chat = OurUserChat(mutableListOf(user), 10)
+                                        seventhUserChatAdapter.addChat(chat)
+                                        seventh_btn_chat_send.setOnClickListener(null)
                                     }
                                     else -> {
                                         /* 메세지 전송 버튼 클릭 시 */

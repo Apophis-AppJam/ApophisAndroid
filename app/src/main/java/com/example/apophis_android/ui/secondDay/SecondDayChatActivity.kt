@@ -4,8 +4,10 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -30,7 +32,7 @@ class SecondDayChatActivity : AppCompatActivity() {
 
     private val apophisService = ApophisService
     private val jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
-    private var chatDetailsIdx = 38 // 2일차 시작 인덱스 23
+    private var chatDetailsIdx = 28 // 2일차 시작 인덱스 23
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -121,6 +123,13 @@ class SecondDayChatActivity : AppCompatActivity() {
                                     } else -> {
                                         0
                                     }
+                                }
+
+                                if (response.body()!!.data.chat[i].nextAction == "음성송출1") {
+                                    Handler().postDelayed({
+                                        var secondPlayer = MediaPlayer.create(this@SecondDayChatActivity, R.raw.secondday_audio)
+                                        secondPlayer.start()
+                                    }, 3000)
                                 }
 
                                 val aponymousChatData = OurUserChat(mutableListOf(response.body()!!.data.chat[i].text), tag)

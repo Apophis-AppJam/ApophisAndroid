@@ -61,7 +61,7 @@
         app:layout_constraintEnd_toEndOf="@+id/value_result_iv_bg_circle"
         app:layout_constraintStart_toStartOf="@+id/value_result_iv_bg_circle"
         app:layout_constraintTop_toTopOf="@+id/value_result_iv_bg_circle"
-        app:srcCompat="@drawable/value_result_circle" />
+        app:srcCompat="@drawable/circle_grayb3" />
 
     <TextView
         android:id="@+id/value_result_tv_result"

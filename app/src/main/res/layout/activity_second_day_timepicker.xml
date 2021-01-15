@@ -58,7 +58,7 @@
         android:layout_height="326dp"
         android:layout_marginStart="18dp"
         android:layout_marginTop="54dp"
-        android:background="@drawable/circle"
+        android:background="@drawable/circle_purpleab"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/img_timepicker_background" />
