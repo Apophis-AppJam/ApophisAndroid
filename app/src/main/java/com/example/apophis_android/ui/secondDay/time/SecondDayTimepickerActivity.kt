@@ -1,4 +1,4 @@
-package com.example.apophis_android.ui.secondDay
+package com.example.apophis_android.ui.secondDay.time
 
 import android.app.Activity
 import android.content.Intent

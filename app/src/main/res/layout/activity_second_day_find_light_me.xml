@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.secondDay.SecondDayFindLightMeActivity"
+    tools:context=".ui.secondDay.findMe.SecondDayFindLightMeActivity"
     android:background="@drawable/joel_filipe_qwo_n_ahbm_l_lo_unsplash_2" >
 
     <ImageView

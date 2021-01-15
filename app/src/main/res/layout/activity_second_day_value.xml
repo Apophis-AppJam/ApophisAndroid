@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/img_valueselect"
-    tools:context=".ui.secondDay.SecondDayValueActivity">
+    tools:context=".ui.secondDay.value.SecondDayValueActivity">
 
     <ImageView
         android:id="@+id/value_btn_back"

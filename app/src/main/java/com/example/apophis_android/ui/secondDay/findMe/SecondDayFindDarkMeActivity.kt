@@ -1,4 +1,4 @@
-package com.example.apophis_android.ui.secondDay
+package com.example.apophis_android.ui.secondDay.findMe
 
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity

@@ -1,15 +1,11 @@
-package com.example.apophis_android.ui.secondDay
+package com.example.apophis_android.ui.secondDay.value
 
-import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.example.apophis_android.R
 import kotlinx.android.synthetic.main.activity_second_day_value.*
-import kotlin.math.max
-import kotlin.arrayOf as arrayOf
 
 class SecondDayValueActivity : AppCompatActivity() {
 

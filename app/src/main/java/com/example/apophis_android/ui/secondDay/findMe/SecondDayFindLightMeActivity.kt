@@ -1,4 +1,4 @@
-package com.example.apophis_android.ui.secondDay
+package com.example.apophis_android.ui.secondDay.findMe
 
 import android.content.Intent
 import android.graphics.Color
@@ -6,8 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
-import androidx.core.widget.addTextChangedListener
 import com.example.apophis_android.R
 import kotlinx.android.synthetic.main.activity_second_day_find_light_me.*
 

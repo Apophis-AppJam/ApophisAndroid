@@ -17,9 +17,9 @@ import com.bumptech.glide.Glide
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
 import com.example.apophis_android.ui.ChipFactory
-import com.example.apophis_android.ui.secondDay.SecondDayFindLightMeActivity
-import com.example.apophis_android.ui.secondDay.SecondDayTimepickerActivity
-import com.example.apophis_android.ui.secondDay.SecondDayValueActivity
+import com.example.apophis_android.ui.secondDay.findMe.SecondDayFindLightMeActivity
+import com.example.apophis_android.ui.secondDay.time.SecondDayTimepickerActivity
+import com.example.apophis_android.ui.secondDay.value.SecondDayValueActivity
 import com.google.android.material.chip.ChipGroup
 import java.lang.IllegalArgumentException
 

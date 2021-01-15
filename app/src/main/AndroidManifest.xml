@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.apophis_android">
@@ -50,11 +49,11 @@
         <activity android:name=".ui.firstDay.CompassActivity" />
 
         <activity android:name=".ui.secondDay.SecondDayChatActivity" />
-        <activity android:name=".ui.secondDay.SecondDayTimepickerActivity" />
-        <activity android:name=".ui.secondDay.SecondDayFindLightMeActivity" />
-        <activity android:name=".ui.secondDay.SecondDayFindDarkMeActivity" />
-        <activity android:name=".ui.secondDay.SecondDayValueActivity" />
-        <activity android:name=".ui.secondDay.SecondDayValueResultActivity" />
+        <activity android:name=".ui.secondDay.time.SecondDayTimepickerActivity" />
+        <activity android:name=".ui.secondDay.findMe.SecondDayFindLightMeActivity" />
+        <activity android:name=".ui.secondDay.findMe.SecondDayFindDarkMeActivity" />
+        <activity android:name=".ui.secondDay.value.SecondDayValueActivity" />
+        <activity android:name=".ui.secondDay.value.SecondDayValueResultActivity" />
 
         <activity android:name=".ui.sixthDay.SixthDayChatActivity" />
         <activity android:name=".ui.sixthDay.SixthDayDirtActivity" />
