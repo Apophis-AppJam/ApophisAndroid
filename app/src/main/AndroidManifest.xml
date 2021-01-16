@@ -19,7 +19,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Apophis_android"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.sixthDay.SixthDayChatEndingActivity"></activity>
         <!-- <uses-library -->
         <!-- android:name="com.google.android.wearable" -->
         <!-- android:required="true" /> -->
@@ -72,6 +71,7 @@
         <activity android:name=".ui.secondDay.value.SecondDayValueActivity" />
         <activity android:name=".ui.secondDay.value.SecondDayValueResultActivity" />
         <activity android:name=".ui.sixthDay.SixthDayChatActivity" />
+        <activity android:name=".ui.sixthDay.SixthDayChatEndingActivity"></activity>
         <activity android:name=".ui.sixthDay.SixthDayDirtActivity" />
         <activity android:name=".ui.seventhDay.tarot.SeventhDayTarotActivity" />
         <activity android:name=".ui.seventhDay.tarot.SeventhDayTarotAnswerActivity" />
