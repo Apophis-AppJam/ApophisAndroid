@@ -44,7 +44,8 @@
         <activity android:name=".ui.login.LoginActivity" />
         <activity
             android:name=".ui.onboarding.NewsActivity"
-            android:label="@string/title_activity_news" />
+            android:label="@string/title_activity_news"
+            android:exported="true" />
         <activity android:name=".ui.onboarding.StartActivity" />
         <activity
             android:name=".ui.onboarding.CallActivity"
@@ -58,7 +59,7 @@
         <activity android:name=".ui.main.letter.ReceiveLetterActivity" />
         <activity android:name=".ui.main.letter.SendLetterActivity" />
 
-        <activity android:name=".ui.firstDay.FirstDayChatActivity" android:exported="true" />
+        <activity android:name=".ui.firstDay.FirstDayChatActivity" />
         <activity android:name=".ui.firstDay.FirstDayChatEndingActivity"/>
         <activity
             android:name=".ui.firstDay.CameraActivity"

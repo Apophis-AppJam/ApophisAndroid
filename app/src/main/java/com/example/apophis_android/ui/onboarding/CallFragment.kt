@@ -18,9 +18,9 @@ import java.util.*
 
 class CallFragment : Fragment() {
     val callMessage: MutableList<String> = mutableListOf("어, 드디어 받았다.", "안녕. 전화 잠깐 끊지 말아주라.",
-            "방금 7일 후에 지구멸망한다는 뉴스 속보 봤어?", "넌 남은 일주일을 어떻게 보낼 생각이야?",
-            "내가 누구냐고?", "음.. 그냥 아무 번호나 찍어서 전화했어.", "죽기 전에 이런거 한 번쯤 해보고 싶었거든.",
-            "사실 당황스럽겠지만, 내가 연락할 사람이\n한 명도 없어서 그러는데.", "남은 일주일 동안 나랑 연락하면서 지내주면 안될까?",
+            "방금 7일 후에 지구멸망한다는\n뉴스 속보 봤어?", "넌 남은 일주일을 어떻게 보낼 생각이야?",
+            "내가 누구냐고?", "음.. 그냥 아무 번호나 찍어서\n전화했어.", "죽기 전에 이런거 한 번쯤\n해보고 싶었거든.",
+            "사실 당황스럽겠지만, 내가 연락할 사람이\n한 명도 없어서 그러는데.", "남은 일주일 동안 나랑\n연락하면서 지내주면 안될까?",
             "만약 괜찮다면... 계속 연락하고 싶어.")
     var index = 0
     override fun onCreateView(
@@ -50,7 +50,7 @@ class CallFragment : Fragment() {
                 Update()
             }
         }
-        timer.schedule(second, 0, 1500)
+        timer.schedule(second, 0, 1900)
     }
 
     protected fun Update() {

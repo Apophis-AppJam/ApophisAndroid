@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".ui.onboarding.NewsActivity">
 
     <VideoView
         android:id="@+id/vv_news_onboarding"
         android:layout_width="wrap_content"
         android:layout_height="203dp"
-        android:layout_marginTop="24dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

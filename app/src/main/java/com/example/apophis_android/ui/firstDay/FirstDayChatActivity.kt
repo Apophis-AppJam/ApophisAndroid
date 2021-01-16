@@ -37,7 +37,7 @@ class FirstDayChatActivity : AppCompatActivity() {
     private val apophisService = ApophisService
     private val jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4IjoxMiwiaWF0IjoxNjEwNjUyOTk2LCJleHAiOjE2MTEyNTc3OTYsImlzcyI6ImFwb3BoaXMifQ.dWYb7OFX-mxfQNVvtPL7VomaS6I9yIvTkUROKMAqOVI"
         //"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
-    private var chatDetailsIdx = 21
+    private var chatDetailsIdx = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
