@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.apophis_android">
@@ -48,7 +49,7 @@
         <activity android:name=".ui.onboarding.StartActivity" />
         <activity
             android:name=".ui.onboarding.CallActivity"
-             />
+            />
         <activity android:name=".ui.main.MusicActivity" />
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.main.ApophisActivity" />
@@ -75,6 +76,7 @@
         <activity android:name=".ui.secondDay.value.SecondDayValueActivity" />
         <activity android:name=".ui.secondDay.value.SecondDayValueResultActivity" />
         <activity android:name=".ui.sixthDay.SixthDayChatActivity" />
+        <activity android:name=".ui.sixthDay.SixthDayChatEndingActivity" />
         <activity android:name=".ui.sixthDay.SixthDayDirtActivity" />
         <activity android:name=".ui.seventhDay.tarot.SeventhDayTarotActivity" />
         <activity android:name=".ui.seventhDay.tarot.SeventhDayTarotAnswerActivity" />

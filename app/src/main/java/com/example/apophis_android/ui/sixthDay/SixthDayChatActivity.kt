@@ -10,6 +10,7 @@ import android.os.Vibrator
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import com.airbnb.lottie.LottieAnimationView
 //import com.airbnb.lottie.LottieAnimationView
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
@@ -19,7 +20,9 @@ import com.example.apophis_android.data.remote.response.AponymousChatResponse
 import com.example.apophis_android.data.remote.response.BaseResponse
 import com.example.apophis_android.data.remote.response.ChoiceChatResponse
 import com.example.apophis_android.ui.sixthDay.adapter.SixthDayChatAdapter
+import kotlinx.android.synthetic.main.activity_seventh_day_chat.*
 import kotlinx.android.synthetic.main.activity_sixth_day_chat.*
+import kotlinx.android.synthetic.main.activity_sixth_day_chat.sixth_btn_chat_send
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,13 +33,14 @@ class SixthDayChatActivity : AppCompatActivity() {
 
     private val apophisService = ApophisService
     private val jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
-    private var chatDetailsIdx = 110
+    private var chatDetailsIdx = 124
 
     private var vibrator: Vibrator? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sixth_day_chat)
+        sixth_btn_back.setOnClickListener { onBackPressed() }
 
         initRcv()
 
@@ -48,6 +52,7 @@ class SixthDayChatActivity : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 sixth_btn_chat_send.setImageResource(R.drawable.btn_send_act)
+                sixth_btn_chat_send.isEnabled = true
             }
 
             override fun afterTextChanged(s: Editable?) {}
@@ -136,10 +141,10 @@ class SixthDayChatActivity : AppCompatActivity() {
                                         var shutterPlayer = MediaPlayer.create(this@SixthDayChatActivity, R.raw.shutter)
                                         shutterPlayer.start()
 
-//                                        val sixthLottieShutter: LottieAnimationView = findViewById(R.id.sixth_lottie_shutter)
-//                                        sixthLottieShutter.bringToFront()
-//                                        sixthLottieShutter.setAnimation(R.raw.day6_shutter)
-//                                        sixthLottieShutter.playAnimation()
+                                        val sixthLottieShutter: LottieAnimationView = findViewById(R.id.sixth_lottie_shutter)
+                                        sixthLottieShutter.bringToFront()
+                                        sixthLottieShutter.setAnimation(R.raw.day6_shutter)
+                                        sixthLottieShutter.playAnimation()
                                     }, 1000)
                                 }
 
@@ -157,6 +162,8 @@ class SixthDayChatActivity : AppCompatActivity() {
                                 5
                             } else if (replyType == "장문형 텍스트 입력") {
                                 6
+                            } else if (replyType == "일차 종료 (reply 없음)") {
+                                10
                             } else {
                                 2
                             }
@@ -180,6 +187,8 @@ class SixthDayChatActivity : AppCompatActivity() {
                                     }
                                 }
                                 6 -> {
+                                    sixth_et_chat_message.hint = "텍스트를 입력하세요"
+                                    sixth_btn_chat_send.isEnabled = true
                                     sixth_btn_chat_send.setOnClickListener {
                                         val userChoice = sixth_et_chat_message.text.toString()
                                         val chatRight = OurUserChat(mutableListOf(userChoice), 2)
@@ -190,7 +199,15 @@ class SixthDayChatActivity : AppCompatActivity() {
                                         Log.d("다다 여기로 잘 들어왔어", "클릭 리스너, $chatRight")
                                         Log.d("다다 reply로 보내는 idx", chatDetailsIdx.toString())
                                         postReplyToServer(jwt, chatDetailsIdx, 1, userChoice)
+                                        sixth_et_chat_message.hint = "선택지를 골라주세요"
                                     }
+                                }
+                                10 -> {
+                                    val user = ""
+                                    val chat = OurUserChat(mutableListOf(user), 10)
+                                    sixthUserChatAdapter.addChat(chat)
+                                    sixth_rcv_chat.smoothScrollToPosition(sixthUserChatAdapter.itemCount - 1)
+                                    sixth_btn_chat_send.setOnClickListener(null)
                                 }
                                 else -> {
                                     /* 메세지 전송 버튼 클릭 시 */
@@ -274,6 +291,7 @@ class SixthDayChatActivity : AppCompatActivity() {
                             getAponymousChatFromServer(jwt, chatDetailsIdx + 1)
                             Log.d("다다 reply에서 보내는 idx", (chatDetailsIdx+1).toString())
                             sixth_btn_chat_send.setImageResource(R.drawable.btn_send_unact)
+                            sixth_btn_chat_send.isEnabled = false
                             sixth_rcv_chat.smoothScrollToPosition(sixthUserChatAdapter.itemCount - 1)
                         }
                     }
