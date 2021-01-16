@@ -1,10 +1,12 @@
 package com.example.apophis_android.ui.firstDay
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.os.Vibrator
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -38,6 +40,8 @@ class FirstDayChatActivity : AppCompatActivity() {
     private val jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4IjoxMiwiaWF0IjoxNjEwNjUyOTk2LCJleHAiOjE2MTEyNTc3OTYsImlzcyI6ImFwb3BoaXMifQ.dWYb7OFX-mxfQNVvtPL7VomaS6I9yIvTkUROKMAqOVI"
         //"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
     private var chatDetailsIdx = 1
+
+    private var vibrator: Vibrator? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,6 +99,11 @@ class FirstDayChatActivity : AppCompatActivity() {
                                     tag = 1
                                 } else if (nextAction == "백그라운드 이미지 - 바다 뷰") {
                                     seaBackground()
+                                } else if (nextAction == "진동") {
+                                    Handler().postDelayed({
+                                        vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                                        vibrator?.vibrate(500)
+                                    }, 2000)
                                 }
 
                                 Log.d("tag", tag.toString())
@@ -412,7 +421,9 @@ class FirstDayChatActivity : AppCompatActivity() {
                 userChatAdapter.addChat(aponymousChatData)
                 //postPictureToServer(jwt, chatDetailsIdx, 0, File(uri.toString()))
                 if (chatDetailsIdx < 23) {
+                    chatDetailsIdx = 17
                     getAponymousChatFromServer(jwt, chatDetailsIdx + 1)
+                    Log.i("hi", chatDetailsIdx.toString())
                     btn_first_send.setImageResource(R.drawable.btn_send_unact)
                 }
             }

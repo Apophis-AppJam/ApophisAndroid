@@ -94,7 +94,7 @@ class NewsActivity : AppCompatActivity() {
             //method
             val intent = Intent(this, CallActivity::class.java)
             startActivity(intent)
-        }, 44000)
+        }, 45000)
     }
     private lateinit var second: TimerTask
     private val handler = Handler()

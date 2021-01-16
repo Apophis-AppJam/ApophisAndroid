@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -31,7 +30,6 @@ import com.google.android.material.chip.ChipGroup
 class FirstDayChatAdapter(private val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val userChatList: MutableList<OurUserChat> = mutableListOf()
-    private var uri: Uri? = null
 
     override fun getItemViewType(position: Int): Int {
         return when (userChatList[position].tag) {
