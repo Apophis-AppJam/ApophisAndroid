@@ -16,7 +16,7 @@ import retrofit2.Response
 class ReceiveLetterActivity : AppCompatActivity() {
 
     private val apophisService = ApophisService
-    private val jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
+    private val jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4IjoxNywiaWF0IjoxNjEwNjU0NTEwLCJleHAiOjE2MTEyNTkzMTAsImlzcyI6ImFwb3BoaXMifQ.0i5NzM5zLDRmN_gW_7yuEY5wDsssoHDT0pDe_CNc4h8"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
