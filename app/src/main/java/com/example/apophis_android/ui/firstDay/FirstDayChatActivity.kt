@@ -21,7 +21,6 @@ import com.example.apophis_android.data.remote.response.ChoiceChatResponse
 import com.example.apophis_android.ui.firstDay.adapter.FirstDayChatAdapter
 import com.example.apophis_android.ui.main.MainActivity.Companion.countCameraChange
 import kotlinx.android.synthetic.main.activity_first_day_chat.*
-import kotlinx.android.synthetic.main.activity_second_day_chat.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -38,7 +37,7 @@ class FirstDayChatActivity : AppCompatActivity() {
     private val apophisService = ApophisService
     private val jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4IjoxMiwiaWF0IjoxNjEwNjUyOTk2LCJleHAiOjE2MTEyNTc3OTYsImlzcyI6ImFwb3BoaXMifQ.dWYb7OFX-mxfQNVvtPL7VomaS6I9yIvTkUROKMAqOVI"
         //"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
-    private var chatDetailsIdx = 9
+    private var chatDetailsIdx = 21
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -197,7 +196,7 @@ class FirstDayChatActivity : AppCompatActivity() {
                                         val user = ""
                                         val chat = OurUserChat(mutableListOf(user), 11)
                                         userChatAdapter.addChat(chat)
-                                        btn_chat_send.setOnClickListener(null)
+                                        btn_first_send.setOnClickListener(null)
                                 }
                                 else -> {
                                     /* 메세지 전송 버튼 클릭 시 */

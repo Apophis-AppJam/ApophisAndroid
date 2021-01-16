@@ -9,7 +9,6 @@ import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.CommentNews
-import com.example.apophis_android.ui.main.MainActivity
 import com.example.apophis_android.ui.onboarding.adapter.NewsAdapter
 import kotlinx.android.synthetic.main.activity_news.*
 
@@ -62,9 +61,11 @@ class NewsActivity : AppCompatActivity() {
         )
         newsAdapter.notifyDataSetChanged()
 
+        newsAdapter.addComment(CommentNews(R.drawable.img_nickname_1, "오후 8:17", "마피아혜인", "일단 마피아게임 할 사람?"))
+
         Handler().postDelayed({
             //method
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this, CallActivity::class.java)
             startActivity(intent)
         }, 44000)
     }

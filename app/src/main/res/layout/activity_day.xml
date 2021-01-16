@@ -12,7 +12,7 @@
         android:id="@+id/tv_first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="105dp"
+        android:layout_marginTop="80dp"
         android:fontFamily="@font/gmarket_sans_medium"
         android:text="1일차"
         android:textColor="@color/white"

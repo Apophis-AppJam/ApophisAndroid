@@ -17,10 +17,15 @@ import java.util.*
  */
 
 class CallFragment : Fragment() {
-    val callMessage: MutableList<String> = mutableListOf("안녕", "쟈기야", "ㅎㅇㅎㅇ", "머해")
+    val callMessage: MutableList<String> = mutableListOf("어, 드디어 받았다.", "안녕. 전화 잠깐 끊지 말아주라.",
+            "방금 7일 후에 지구멸망한다는 뉴스 속보 봤어?", "넌 남은 일주일을 어떻게 보낼 생각이야?",
+            "내가 누구냐고?", "음.. 그냥 아무 번호나 찍어서 전화했어.", "죽기 전에 이런거 한 번쯤 해보고 싶었거든.",
+            "사실 당황스럽겠지만, 내가 연락할 사람이\n한 명도 없어서 그러는데.", "남은 일주일 동안 나랑 연락하면서 지내주면 안될까?",
+            "만약 괜찮다면... 계속 연락하고 싶어.")
+    var index = 0
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_call, container, false)
@@ -32,42 +37,44 @@ class CallFragment : Fragment() {
         callStart()
     }
 
-    // call message start each time
-    var index = -1
+
+//    // call message start each time
+
     private lateinit var second: TimerTask
     private val handler = Handler()
     val timer = Timer()
     fun callStart() {
 
-        second = object: TimerTask() {
+        second = object : TimerTask() {
             override fun run() {
                 Update()
             }
         }
-
         timer.schedule(second, 0, 1500)
     }
+
     protected fun Update() {
-        val updater = object:Runnable {
+        val updater = object : Runnable {
             override fun run() {
-                index++
-                if(index == callMessage.size){
+                Log.i("index", index.toString())
+                if (index == callMessage.size) {
                     timer.cancel()
+                    Log.i("index", index.toString())
                     (activity as CallActivity).changeCallText()
                     activity?.supportFragmentManager
-                        ?.beginTransaction()
-                        ?.remove(this@CallFragment)
-                        ?.commit()
-                    Log.i("end","end")
-                }else {
-                    tv_call_message.setText(callMessage[index])
+                            ?.beginTransaction()
+                            ?.remove(this@CallFragment)
+                            ?.commit()
+                } else {
+                    tv_call_message.setText(callMessage[index++])
                     tv_call_message.animation =
-                        AnimationUtils.loadAnimation(context, R.anim.fade_in)
+                            AnimationUtils.loadAnimation(context, R.anim.fade_in_onboarding)
                     tv_call_message.animation =
-                        AnimationUtils.loadAnimation(context, R.anim.fade_out)
+                            AnimationUtils.loadAnimation(context, R.anim.fade_out_onboarding)
                 }
             }
         }
         handler.post(updater)
     }
 }
+

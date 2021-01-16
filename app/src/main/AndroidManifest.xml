@@ -48,7 +48,7 @@
         <activity android:name=".ui.onboarding.StartActivity" />
         <activity
             android:name=".ui.onboarding.CallActivity"
-            android:exported="true" />
+             />
         <activity android:name=".ui.main.MusicActivity" />
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.main.ApophisActivity" />
@@ -58,7 +58,7 @@
         <activity android:name=".ui.main.letter.ReceiveLetterActivity" />
         <activity android:name=".ui.main.letter.SendLetterActivity" />
 
-        <activity android:name=".ui.firstDay.FirstDayChatActivity" />
+        <activity android:name=".ui.firstDay.FirstDayChatActivity" android:exported="true" />
         <activity android:name=".ui.firstDay.FirstDayChatEndingActivity"/>
         <activity
             android:name=".ui.firstDay.CameraActivity"

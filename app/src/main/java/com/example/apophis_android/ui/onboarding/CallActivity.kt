@@ -20,7 +20,7 @@ class CallActivity : AppCompatActivity() {
         val callfragment = CallFragment()
 
         iv_answer_call.setOnClickListener {
-            if(true) {
+            if(countPushButton) {
                 supportFragmentManager.beginTransaction()
                     .add(R.id.fragment_container_view_call, callfragment).commit()
             } else {
