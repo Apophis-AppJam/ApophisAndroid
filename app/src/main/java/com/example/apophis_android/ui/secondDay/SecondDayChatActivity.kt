@@ -20,6 +20,7 @@ import com.example.apophis_android.data.remote.request.ReplyOneRequest
 import com.example.apophis_android.data.remote.response.AponymousChatResponse
 import com.example.apophis_android.data.remote.response.BaseResponse
 import com.example.apophis_android.data.remote.response.ChoiceChatResponse
+import com.example.apophis_android.ui.main.MusicActivity
 import com.example.apophis_android.ui.secondDay.adapter.SecondDayChatAdapter
 import kotlinx.android.synthetic.main.activity_second_day_chat.*
 import retrofit2.Call
@@ -31,7 +32,7 @@ class SecondDayChatActivity : AppCompatActivity() {
     private lateinit var chatAdapter: SecondDayChatAdapter
 
     private val apophisService = ApophisService
-    private val jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4Ijo2LCJpYXQiOjE2MTAxNjM5NjIsImV4cCI6MTYxMDc2ODc2MiwiaXNzIjoiYXBvcGhpcyJ9.gM5avYDIhGybMsXqlvaWwqJCsTfkAjo1lYD2tvxZAdw"
+    private val jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWR4IjoxNywiaWF0IjoxNjEwNjU0NTEwLCJleHAiOjE2MTEyNTkzMTAsImlzcyI6ImFwb3BoaXMifQ.0i5NzM5zLDRmN_gW_7yuEY5wDsssoHDT0pDe_CNc4h8"
     private var chatDetailsIdx = 23 // 2일차 시작 인덱스 23
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -125,10 +126,16 @@ class SecondDayChatActivity : AppCompatActivity() {
                                 }
 
                                 if (response.body()!!.data.chat[i].nextAction == "음성송출1") {
+                                    MusicActivity.mediaplayer?.release()
                                     Handler().postDelayed({
                                         var secondPlayer = MediaPlayer.create(this@SecondDayChatActivity, R.raw.secondday_audio)
                                         secondPlayer.start()
-                                    }, 3000)
+                                    }, 2000)
+
+                                    /*Handler().postDelayed({
+                                        MusicActivity.mediaplayer?.start()
+                                        MusicActivity.mediaplayer?.isLooping = true
+                                    }, 6000)*/
                                 }
 
                                 val aponymousChatData = OurUserChat(mutableListOf(response.body()!!.data.chat[i].text), tag)
