@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.secondDay.SecondDayChatEndingActivity"
+    android:background="@drawable/img_end_bg">
+
+    <ImageView
+        android:id="@+id/img_ending_moon6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="82dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img_moon" />
+
+    <TextView
+        android:id="@+id/tv_ending6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="37dp"
+        android:text="대화가 끊겼습니다"
+        android:textSize="18dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/gmarket_sans_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_ending_moon6" />
+
+    <View
+        android:id="@+id/view_ending_message_background6"
+        android:layout_width="295dp"
+        android:layout_height="176dp"
+        android:layout_marginTop="73dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ending6"
+        android:background="@drawable/round_rectangle_black26_10dp"/>
+
+    <TextView
+        android:id="@+id/tv_ending_message_title6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="아포니머스가 남긴 메세지"
+        android:textSize="12dp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        android:textColor="@color/purpleAB70F5"
+        app:layout_constraintEnd_toEndOf="@+id/view_ending_message_background6"
+        app:layout_constraintStart_toStartOf="@+id/view_ending_message_background6"
+        app:layout_constraintTop_toTopOf="@+id/view_ending_message_background6" />
+
+    <View
+        android:id="@+id/view_ending_line6"
+        android:layout_width="100dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="14dp"
+        android:background="@color/gray70"
+        app:layout_constraintEnd_toEndOf="@+id/view_ending_message_background6"
+        app:layout_constraintStart_toStartOf="@+id/view_ending_message_background6"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ending_message_title6" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/view_ending_message_background6"
+        app:layout_constraintEnd_toEndOf="@+id/view_ending_message_background6"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@+id/view_ending_message_background6"
+        app:layout_constraintTop_toBottomOf="@+id/view_ending_line6">
+
+        <TextView
+            android:id="@+id/tv_ending_message_content16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/gmarket_sans_medium"
+            android:text="@string/sixth_ending_message1"
+            android:textColor="@color/white"
+            android:textSize="13dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_ending_message_content26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/gmarket_sans_medium"
+            android:text="@string/sixth_ending_message2"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_ending_message_content16" />
+
+        <TextView
+            android:id="@+id/tv_ending_message_content36"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/gmarket_sans_medium"
+            android:text="@string/sixth_ending_message3"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_ending_message_content26" />
+
+        <TextView
+            android:id="@+id/tv_ending_message_content46"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/gmarket_sans_medium"
+            android:text="@string/sixth_ending_message4"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:lineSpacingExtra="4dp"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/tv_ending_message_content36"
+            app:layout_constraintStart_toStartOf="@+id/tv_ending_message_content36"
+            app:layout_constraintTop_toBottomOf="@+id/tv_ending_message_content36" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/btn_back_main6"
+        android:layout_width="295dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="90dp"
+        android:background="@drawable/round_rectangle_purpleab_20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_back_main6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="방으로 돌아가기"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        android:fontFamily="@font/gmarket_sans_medium"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_back_main6"
+        app:layout_constraintEnd_toEndOf="@+id/btn_back_main6"
+        app:layout_constraintStart_toStartOf="@+id/btn_back_main6"
+        app:layout_constraintTop_toTopOf="@+id/btn_back_main6" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,6 +20,9 @@ import com.bumptech.glide.Glide
 import com.example.apophis_android.R
 import com.example.apophis_android.data.entity.OurUserChat
 import com.example.apophis_android.ui.ChipFactory
+import com.example.apophis_android.ui.seventhDay.SeventhDayChatEndingActivity
+import com.example.apophis_android.ui.seventhDay.adapter.SeventhChatAdapter
+import com.example.apophis_android.ui.sixthDay.SixthDayChatEndingActivity
 import com.example.apophis_android.ui.sixthDay.SixthDayDirtActivity
 import com.google.android.material.chip.ChipGroup
 import kotlinx.android.synthetic.main.activity_seventh_day_chat.*
@@ -37,6 +40,7 @@ class SixthDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
             3 -> R.layout.item_chip_choice
             4 -> R.layout.item_chat_short_answer
             5 -> R.layout.item_chat_dirt
+            10 -> R.layout.item_chat_ending
             else -> R.layout.item_chat_find_me
         }
     }
@@ -67,6 +71,10 @@ class SixthDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
             R.layout.item_chat_dirt -> {
                 val view = layoutInflater.inflate(R.layout.item_chat_dirt, parent, false)
                 SixthActionViewHolder(view)
+            }
+            R.layout.item_chat_ending -> {
+                val view = layoutInflater.inflate(R.layout.item_chat_ending, parent, false)
+                EndingViewHolder(view)
             }
             else ->
                 throw IllegalArgumentException("ViewType [$viewType] is unexpected")
@@ -100,6 +108,10 @@ class SixthDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
         }
 
         if (holder is SixthActionViewHolder) {
+            holder.bind()
+            holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
+        }
+        if (holder is EndingViewHolder) {
             holder.bind()
             holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.translate_up)
         }
@@ -218,6 +230,16 @@ class SixthDayChatAdapter(private val context: Context): RecyclerView.Adapter<Re
                     itemClickListener.onItemClick("다 안지워지는 것 같은데.")
                 }, 3000)
                 val intent = Intent(context, SixthDayDirtActivity::class.java)
+                context.startActivity(intent)
+            }
+        }
+    }
+
+    inner class EndingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val btnAction = itemView.findViewById<View>(R.id.btn_ending_okay)
+        fun bind() {
+            btnAction.setOnClickListener {
+                val intent = Intent(context, SixthDayChatEndingActivity::class.java)
                 context.startActivity(intent)
             }
         }

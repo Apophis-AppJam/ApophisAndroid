@@ -17,7 +17,7 @@ class ApophisActivity : AppCompatActivity() {
     private lateinit var sec: String
     var DATE_CODE = 7
     var YESTERDAY_CHAT_CODE = 1
-    var apoDistance = 12486.279
+    var apoDistance = 2798.136
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

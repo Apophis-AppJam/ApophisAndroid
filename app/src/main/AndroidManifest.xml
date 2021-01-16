@@ -19,6 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Apophis_android"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ui.sixthDay.SixthDayChatEndingActivity"></activity>
         <!-- <uses-library -->
         <!-- android:name="com.google.android.wearable" -->
         <!-- android:required="true" /> -->
@@ -26,7 +27,6 @@
         <!-- Set to true if your app is Standalone, that is, it does not require the handheld -->
         <!-- app to run. -->
         <!-- &ndash;&gt; -->
-
         <meta-data
             android:name="com.google.android.wearable.standalone"
             android:value="flase" />
@@ -53,18 +53,15 @@
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.main.ApophisActivity" />
         <activity android:name=".ui.main.SettingActivity" />
-        <activity android:name=".ui.main.DayActivity"/>
-
+        <activity android:name=".ui.main.DayActivity" />
         <activity android:name=".ui.main.letter.ReceiveLetterActivity" />
         <activity android:name=".ui.main.letter.SendLetterActivity" />
-
         <activity android:name=".ui.firstDay.FirstDayChatActivity" />
-        <activity android:name=".ui.firstDay.FirstDayChatEndingActivity"/>
+        <activity android:name=".ui.firstDay.FirstDayChatEndingActivity" />
         <activity
             android:name=".ui.firstDay.CameraActivity"
             android:configChanges="orientation|keyboardHidden" />
         <activity android:name=".ui.firstDay.CompassActivity" />
-
         <activity
             android:name=".ui.secondDay.SecondDayChatActivity"
             android:exported="true" />
